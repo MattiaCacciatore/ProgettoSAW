@@ -1,0 +1,150 @@
+/* Per tutti gli elementi HTML, ossia l'intera pagina. */
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+/* Per colorare i link quando ci si passa sopra con il mouse. */
+a:hover{
+    background-color: #ff4500;
+    font-size: 1.5rem;
+}
+/*--------------------------------------------------------------------------------------------------*/
+/*------------------------------------------- HOMEPAGE ---------------------------------------------*/
+.my_header{
+    text-align: center;
+    text-transform: uppercase;
+    /* font-size: 2rem; */
+    padding: 5px;
+    font-size: 2rem;
+}
+
+.my_body{
+    display: flex; /* Mostra un elemento come un contenitore flessibile (adattivo) a livello di blocchi. */
+    flex-direction: column; /* Imposta la direzione degli elementi flessibili dentro my_body in senso verticale. */
+    margin: 0;
+    min-height: 100vh; /* Viewport Height - altezza della finestra del browser, 100 intende tutta. */
+}
+
+.my_theme{
+    display: initial!important;
+}
+
+.my_main{
+    display: flex;
+    flex: 1; /* L'elemento crescerà e si rimpicciolerà nella stessa proporzione della dimensione della finestra. */
+}
+
+.my_navbar{
+    padding: 5px;
+    text-align: left;
+}
+
+.my_section{
+    flex: 1;
+    padding: 10px;
+}
+
+.my_sidebar{
+    position: sticky; /* La sua posizione è basata sulla posizione dello scorrimento dell'utente. */
+    top: 0;
+    width: 10vw;
+    height: 100vh;
+    padding: 5px;
+    text-align: left;
+    /*overflow: hidden;*/
+}
+/*
+.my_image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}*/
+.my_footer{
+    text-align: center;
+    padding: 5px;
+}
+
+.my_navbar .my_footer a{
+    padding: 5px;
+}
+
+#light-switch:checked ~ :is(header, body, nav, main, h1, h2, h3, h4, h5, h6, section, p, article, a, img, div, span, aside, footer){
+    --bg_cl: #ffffff;
+    --cl: #000000;
+    /* Top-bottom color. */
+    --tb_cl: #e5e5e5;
+    /* Underlined color. */
+    --u_cl: #0000ff;
+}
+
+#dark-switch:checked ~ :is(header, body, nav, main, h1, h2, h3, h4, h5, h6, section, p, article, a, img, div, span, aside, footer){
+    --bg_cl: #292b2f;
+    --cl: #e2d4d0;
+    /* Top-bottom color. */
+    --tb_cl: #404040;
+    /* Underlined color. */
+    --u_cl: #00ffff;
+}
+/*--------------------------------------------------------------------------------------------------*/
+/*--------------------------------------- LOGIN FORM -----------------------------------------------*/
+.my_login_body{
+    background-color:#adcffd;
+    /* Per recuperare le immagini e usarle come sfondo si può usare l'url e il path relativo. */
+    /* background: url('images/background_login_form.jpg') no-repeat; 
+        background-size: cover;
+        background-position: center;
+    */
+}
+
+.my_login_form_module{
+    background-color: #ed0dd3;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%; /* Sottratta la metà della distanza da destra dell'elemento originale. */
+    transform: translate(-50%, -50%);
+    /* Permette di vedere cosa c'è dietro la sovrapposizione dell'elemento. */
+    /*  background: trasparent;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+    */
+    width: 400px;
+    height: 500px;
+    padding: 2rem;
+    border-radius: 3rem;
+}
+
+.my_login_title{
+    font-size: 2rem; /* 2 -> due volte la dimensione del font del browser. */
+    text-align: center;
+    margin: 1rem;
+}
+
+.my_login_input_box{
+    color: rgb(255,255,255);
+    background: transparent;
+    width: 80%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 2rem;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.my_login_input_box_submit{
+    border: 2rem solid black;
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+
+.my_login_input_box_register{
+    font-size: 14px;
+    text-align: center;
+    margin-top: 20px 0 15px;
+}
+
+.my_login_input_box_register p a{
+    font-weight: 600;
+}
