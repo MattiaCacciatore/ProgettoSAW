@@ -1,0 +1,138 @@
+
+html, body {
+    height: 100%;
+    margin: 0px;
+  }
+
+  body{
+    text-align: center;
+    background-image: url('../img/suffering.png');
+
+ 
+  }
+
+header {
+    background-color: rgb(193, 164, 237);
+    padding: 20px 70px;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    z-index: 100;
+    position: relative;; /* Cambia da 'top' a 'fixed' */
+    top: 0;
+    left: 0;
+    right: 0;
+
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-style:solid;
+}
+
+header h3 {
+    margin-left: 190px;
+}
+
+
+header img {
+    border-radius: 90px;
+    border-style:solid;
+    border-color: burlywood;
+}
+
+
+
+
+
+/*********** Navigation Bar *************/
+
+.navbar a {
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    padding: 15px;
+    border-radius: 88px;
+
+
+    background-color: rgb(67, 67, 67);
+    color: antiquewhite;
+
+    justify-content: right;
+    margin-left: 10px;
+
+}
+
+.navbar a:hover{
+    background-color: bisque;
+    color:#252323
+}
+
+
+
+/***************** form *****************/
+form {
+
+    background-color:bisque;
+    display: inline-block;
+    padding: 20px 70px;
+    border-radius: 40px;
+    margin-top: 150px;
+    -webkit-box-shadow: 1px 1px 55px 14px rgba(0,0,0,0.48); 
+    box-shadow: 1px 1px 55px 14px rgba(0,0,0,0.48);
+    text-align: center; /* Centro il testo anche quando non c'è l'hover */
+
+
+}
+
+ input[type=email], input[type=password], input[type=text] {
+    width: 280px; 
+    height: 35px;
+    margin: 5px;
+    margin-left: 1px;
+    padding: 0px;
+    color: rgba(70,70,70,1.0);
+    font-family: sans-serif;
+    font-weight: light;
+    font-size: 15px;
+    border: 0.5px;
+    cursor: pointer;
+    border-radius: 88px;
+    border-bottom: solid 0.5px rgba(10,10,10,1.0);
+    text-align: center;
+
+
+
+  }
+
+
+  input[type=email]:hover, input[type=password]:hover, input[type=text]:hover{
+    text-align: center;
+    color: rgba(70,70,70,1.0);
+    border-bottom: solid 0.5px rgba(10,10,10,1.0);
+    background-color: rgba(119, 119, 119, 0.26);
+  }
+
+
+input[type="submit"] {
+    margin-top: 10px; /* Spazio aggiunto sopra il pulsante */
+    padding: 10px 20px;
+    background-color: #c1e6d1;
+    color: #252323;
+    border: none;
+    cursor: pointer;
+    border-radius: 88px;
+
+}
+
+input[type="submit"]:hover{
+    background-color: rgb(164, 143, 189);
+    
+}
+
+
+/******************** print error ******************/
+.form-error{
+    color:rgb(192, 79, 117);
+
+    background-color: #252323;
+}
