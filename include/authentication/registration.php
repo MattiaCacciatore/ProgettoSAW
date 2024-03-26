@@ -53,26 +53,26 @@
         // nota: si e' corretto fare cosi' altrimenti non potremmos
         // scrivere all'interno di $_SESSION
         if($errors) {
-            $_SESSION["errors_signin"] = $errors;
+            $_SESSION["errors_registration"] = $errors;
 
             
 
-            /* Ora, anche se ci sono stati degli errori,con  signin data, 
+            /* Ora, anche se ci sono stati degli errori,con  registration data, 
             voglio mantenere i dati di quei campi che sono stati compilati correttamente dell-utente in modo tale
             che lui non debba reinserirli. eccezion fatta per la password per ovvie
             questioni di sicurezza*/
 
-            $signin_data = [
+            $registration_data = [
                 "firstname" => $firstname,
                 "email" => $email,
             ];
 
-            $_SESSION["signin_data"] = $signin_data;
+            $_SESSION["registration_data"] = $registration_data;
 
 
-            /* ora ci colleghiamo con signin.php stampare queste varibili nei campi del form */
+            /* ora ci colleghiamo con registration.php stampare queste varibili nei campi del form */
 
-            header("Location: ../pages/signIn.php");
+            header("Location: ../pages/registration.php");
             die(); // senza die() all'interno del server si genererebbero comunque degli user con
                     // i campi vuoti; nonostante gli errori vengano correttamente identificati
         }
@@ -82,11 +82,11 @@
             create_user( $pdo,  $firstname,  $email,  $password);
             
 
-            /* una volta creato lo user, per il momento rispediamo l'utente alla signin page
+            /* una volta creato lo user, per il momento rispediamo l'utente alla registration page
             page. Scriveremo il messaggio di successo all'interno dell'url */
 
             
-            header("Location: ../pages/signIn.php?signin=success");
+            header("Location: ../pages/registration.php?registration=success");
 
             $pdo = NULL;
             $stmt = NULL;

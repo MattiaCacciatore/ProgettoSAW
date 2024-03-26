@@ -1,6 +1,6 @@
 <?php
 
-
+    /* nota: non c'è bisogno di includere il file: registration_datab.php per usare le sue funzioni */
 
     declare (strict_types = 1);
 
