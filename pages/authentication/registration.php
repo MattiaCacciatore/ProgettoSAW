@@ -20,6 +20,8 @@
 
   <h2>Crea il tuo account</h2>
 
+<!-- Scheletro del form di registrazione. Non cambiate i nomi dei campi e il nome dello script che viene invocato una volta inseriti i dati richiesti.
+Il form può stare in un file a parte oppure nello stesso file registration.php (come abbiamo visto in classe) -->
   <form action="../../include/authentication/registration.php" method="post">
     <label for="firstname">Nome:</label>
     <input type="text" id="firstname" name="firstname" required><br><br>
