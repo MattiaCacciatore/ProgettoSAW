@@ -20,7 +20,7 @@
 
   <h2>Crea il tuo account</h2>
 
-  <form action="registration.php" method="post">
+  <form action="../../include/authentication/registration.php" method="post">
     <label for="firstname">Nome:</label>
     <input type="text" id="firstname" name="firstname" required><br><br>
 
