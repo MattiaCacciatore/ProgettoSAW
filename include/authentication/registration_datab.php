@@ -1,49 +1,45 @@
 <?php
 
+
+
     declare (strict_types = 1);
 
-
-    /*  */
-    function get_email(object $pdo, string $email) {
-
-   
-        $query = "SELECT email FROM users WHERE email = :email;";
-
-    // Preparazione della query
-        $stmt = $pdo->prepare($query);
-
-    // Associazione del parametro :email con il valore della variabile $email
-        $stmt->bindParam(":email", $email);
-
-    // Esecuzione della query
-        $stmt->execute();
-
-    // Recupero della riga risultante come un array associativo
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
-
-    }
+    require_once('./registration_control.php');
 
 
-    function set_user(object $pdo, string $firstname, string $email, string $password) {
+    
+    function insert_user_into_database(object $pdo, string $firstname, string $lastname, string $email, string  $hashedPwd) {
        
-        $query = "INSERT INTO users (firstname, email, pwd) VALUES (:firstname, :email, :pwd );";
+        $query = "INSERT INTO users (firstname, lastname, email, pwd) VALUES (:firstname, :lastname, :email, :pwd)";
 
         // Preparazione della query
             $stmt = $pdo->prepare($query);
 
-
-            
-            $hashedPwd = password_hash($password, PASSWORD_BCRYPT);
     
         // Associazione del parametro :email con il valore della variabile $email
             $stmt->bindParam(":firstname", $firstname);
+            $stmt->bindParam(":lastname", $lastname);
             $stmt->bindParam(":email", $email);
             $stmt->bindParam(":pwd", $hashedPwd);
     
         // Esecuzione della query
             $stmt->execute();
+
+        
+        /* verificando la seguente condizione verifichiamo che sia andato a buon fine */
+        return $stmt->rowCount() == 1;
+
+
+        /* se per esempio l'email fosse già registrata, l'errore verrà sollevato dal database
+        siccome email è UNIQUE, quindi non abbiamo bisogno di definire alcun metodoto. tc. se così
+        fosse il return sarebbe false perchè le righe inserite nel database sarebbero 0 e non 1 */
+
+        
     }
+
+
+
+    
+
 
 ?>

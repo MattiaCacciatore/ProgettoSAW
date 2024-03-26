@@ -7,10 +7,10 @@
 /*  verifichiamo se in SESSION sono stati registrati degli errori e li stampiamo  altrimenti stamperemo 
  *   un messaggio di successo*/
     function check_registration_errors() {
-        if (isset($_SESSION["errors_registration"]) && is_array($_SESSION["errors_registration"])) {
+        if (isset($_SESSION["registration_errors"]) && is_array($_SESSION["registration_errors"])) {
 
 
-            $errors = $_SESSION["errors_registration"];
+            $errors = $_SESSION["registration_errors"];
 
             echo "<br>";
 
@@ -19,7 +19,7 @@
             }
 
             // dopo averli stampati mi premuro di eliminarli dalla variabile globale
-            unset($_SESSION["errors_registration"]);
+            unset($_SESSION["registration_errors"]);
 
 
         }elseif (isset($_GET["registration"]) && $_GET["registration"] == "success") {
@@ -99,11 +99,11 @@
 
         // contrariamente per la password il campo sara' sempre vuoto
         echo '<label for="pass">Password:</label><br>
-        <input type="password" id="pass" name="pass" required><br><br>';
+        <input type="password" id="pass" name="pass"><br><br>';
 
 
         echo '<label for="confirm">Conferma Password:</label><br>
-        <input type="password" id="confirm" name="confirm" required><br><br>';
+        <input type="password" id="confirm" name="confirm"><br><br>';
 
 
         echo '<input type="submit" name="submit" value="Accedi">';
