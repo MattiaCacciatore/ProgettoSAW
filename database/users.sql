@@ -3,7 +3,7 @@ CREATE TABLE users (
     firstname VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
+    pwd VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -27,3 +27,17 @@ Data Integrity: Ensuring the uniqueness of email addresses is crucial for data i
  if a user attempts to register with an email that already exists.
 
 */
+
+
+
+
+CREATE TRIGGER enforce_email_uniqueness
+BEFORE INSERT ON users
+FOR EACH ROW
+BEGIN
+    DECLARE email_count INT;
+    SELECT COUNT(*) INTO email_count FROM users WHERE email = NEW.email;
+    IF email_count > 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Email address must be unique';
+    END IF;
+END;

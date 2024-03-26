@@ -27,7 +27,7 @@
 try {
 
     // proviamo a registrare il nuovo utente
-    $registration_result = register_user($pdo, $firstname, $lastname, $email, $password);
+    $registration_result = register_user($pdo, $firstname, $lastname, $email, $password, $confirm_password);
 
     // se tutto va a buon fine
     if (empty($registration_result)) {

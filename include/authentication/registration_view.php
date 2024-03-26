@@ -80,8 +80,7 @@
 
         // verifico che il campo registration_data non sia vuoto per la key email
         if (isset($_SESSION["registration_data"]["email"]) &&
-            !isset($_SESSION["errors_registration"]["invalid_email"]) &&
-            !isset($_SESSION["errors_registration"]["email_registred"])) {
+            !isset($_SESSION["errors_registration"]["invalid_email"])) {
 
             // verrra' cos' ristampato nel campo
             echo '<label for="email">Email</label><br>
@@ -104,6 +103,9 @@
 
         echo '<label for="confirm">Conferma Password:</label><br>
         <input type="password" id="confirm" name="confirm"><br><br>';
+
+
+        unset($_SESSION["registration_data"]);
 
 
     }

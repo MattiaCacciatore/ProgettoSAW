@@ -1,5 +1,7 @@
 <?php
     require_once('../../include/authentication/registration_view.php');
+    require_once ('../../include/config_session.php'); 
+
 
 ?>
 
