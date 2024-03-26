@@ -25,7 +25,7 @@
         }elseif (isset($_GET["registration"]) && $_GET["registration"] == "success") {
 
             echo "<br>";
-            echo '<p class="form-success"> Sign In Success </p>';
+            echo '<p class="form-success"> Registration Success </p>';
 
         }
     }

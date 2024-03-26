@@ -27,7 +27,10 @@
     function register_user($pdo, $firstname, $lastname, $email, $password) {
         $errors = validate_registration_data($firstname, $lastname, $email, $password);
     
+        // in assenza di errori, restituisce un vettore vuoto
         if (!empty($errors)) {
+
+
             return $errors;
         }
     
@@ -35,11 +38,10 @@
     
         /* nota: siccome hai detto che gli errori devono essere il più generici possibili */
         if (!insert_user_into_database($pdo, $firstname, $lastname, $email, $hashed_password)) {
-            $errors["registration_error"] = "Registration failed. Please try again.";
+            $errors["registration_failed"] = "Registration failed. Please try again.";
             return $errors;
         }
     
-        return true;
     }
 
 

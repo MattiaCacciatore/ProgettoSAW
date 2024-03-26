@@ -30,12 +30,11 @@
 Il form può stare in un file a parte oppure nello stesso file registration.php (come abbiamo visto in classe) -->
 <form form action="../../include/authentication/registration.php" method="post">
 
-
         <?php registration_inputs() ?>
         
         <?php check_registration_errors()?>
 
-        <input type="submit" name="submit" value="Accedi">;
+        <input type="submit" name="submit" value="Accedi">
 
     </form>
 

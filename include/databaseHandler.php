@@ -2,7 +2,7 @@
 
   
     $host = 'localhost'; 
-    $dbname ='myfirstdb'; 
+    $dbname ='unigersity'; 
     $dbusername = 'root'; 
     $dbpassword = ''; 
 
