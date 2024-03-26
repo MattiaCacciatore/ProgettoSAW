@@ -9,11 +9,11 @@
         $errors = array();
     
         if (empty($firstname) || empty($lastname) || empty($email) || empty($password)) {
-            $errors[] = "All fields are required.";
+            $errors["empty_input"] = "All fields are required.";
         }
     
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = "Invalid email format.";
+            $errors["invalid_email"] = "Invalid email format.";
         }
     
     

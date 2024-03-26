@@ -106,7 +106,6 @@
         <input type="password" id="confirm" name="confirm"><br><br>';
 
 
-        echo '<input type="submit" name="submit" value="Accedi">';
     }
 
 

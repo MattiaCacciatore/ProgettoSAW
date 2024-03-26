@@ -34,6 +34,9 @@ Il form può stare in un file a parte oppure nello stesso file registration.php 
         <?php registration_inputs() ?>
         
         <?php check_registration_errors()?>
+
+        <input type="submit" name="submit" value="Accedi">;
+
     </form>
 
 
