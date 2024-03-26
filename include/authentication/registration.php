@@ -8,9 +8,10 @@
 
 
     $firstname = $_POST["firstname"];
+    $firstname = $_POST["lastname"];
     $email = $_POST["email"];
-    $password = $_POST["password"];
-    $confirm_password = $_POST['confirm_password'];
+    $password = $_POST["pass"];
+    $confirm_password = $_POST['confirm'];
 
 
 
@@ -25,7 +26,7 @@
 
         $errors = [];
 
-        if (is_input_empty($firstname, $password, $email)) {
+        if (is_input_empty($firstname, $lastname, $email, $password, $confirm_password)) {
             $errors["empty_input"] =  "Fill in all filelds";
         }
 
@@ -64,6 +65,7 @@
 
             $registration_data = [
                 "firstname" => $firstname,
+                "lastname" => $lastname,
                 "email" => $email,
             ];
 
@@ -72,7 +74,7 @@
 
             /* ora ci colleghiamo con registration.php stampare queste varibili nei campi del form */
 
-            header("Location: ../pages/registration.php");
+            header("Location:../../pages/authentication/registration.php ");
             die(); // senza die() all'interno del server si genererebbero comunque degli user con
                     // i campi vuoti; nonostante gli errori vengano correttamente identificati
         }
@@ -86,13 +88,13 @@
             page. Scriveremo il messaggio di successo all'interno dell'url */
 
             
-            header("Location: ../pages/registration.php?registration=success");
+            header("Location: ../../pages/authentication/registration.php?registration=success");
 
             $pdo = NULL;
             $stmt = NULL;
             die();
 
-            header("Location: ../index.php");
+            header("Location: ../../index.php");
 
 
 

@@ -5,9 +5,9 @@
     declare (strict_types = 1);
 
 
-    function is_input_empty(string $firstname, string $password, string $email){
+    function is_input_empty($firstname, $lastname, $email, $password, $confirm_password){
 
-        return ((empty($firstname) ||  empty($password) || empty($email)));
+        return  (empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($confirm_password)) ;
 
     }
 
