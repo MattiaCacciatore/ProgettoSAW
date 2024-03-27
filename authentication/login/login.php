@@ -13,7 +13,7 @@ $password = $_POST["pass"];
 
 try {
 
-    require_once '../../../configuration/databaseHandler.php';
+    require_once '../../configuration/databaseHandler.php';
     require_once './login_datab.php';
     require_once './login_control.php';
 
