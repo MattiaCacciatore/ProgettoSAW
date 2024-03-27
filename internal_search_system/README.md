@@ -7,7 +7,7 @@ Realizza un modulo di ricerca per trovare informazioni utili all'interno del sit
 
 
 ## Funzionalità: 
-Un motore di ricerca interno per un sito come Udemy dovrebbe avere sono abbastanza sicuro che dovrebbe avere le seguenti funzionalità (non penso che risucirò a implementarle tutte con il solo uso di PHP):
+La funzionalità che un sistema di ricerca interno per un sito Udemy-like dovrebbe evere sono pressappoco le seguenti (non penso che risucirò a implementarle tutte con il solo uso di PHP):
 
 ### Funzionalità di base:
 
