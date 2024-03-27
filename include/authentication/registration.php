@@ -32,6 +32,7 @@ try {
     // se tutto va a buon fine
     if (empty($registration_result)) {
         header("Location: ../../pages/authentication/registration.php?registration=success");
+        unset($_SESSION["registration_data"]);
         exit();
 
 

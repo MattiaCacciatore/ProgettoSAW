@@ -44,7 +44,7 @@
 
             // verrra' cos' ristampato nel campo con il dato corretto inserito dall'utente
             // NOTA: dovrei inserire dei triggher o qualcosa per validare i nomi così non va bene
-            echo'<label for="firstname">Firstname</label><br>
+            echo'<label for="firstname">Nome</label><br>
             <input type="text" id="firstname" name="firstname"
             value="'.$_SESSION["registration_data"]["firstname"].'"><br><br>';
 
@@ -52,7 +52,7 @@
         }else {
 
             // altrimenti...
-            echo'<label for="firstname">Firstname</label><br>
+            echo'<label for="firstname">Nome</label><br>
             <input type="text" id="firstname" name="firstname"><br><br>';
         }
 
@@ -104,8 +104,6 @@
         echo '<label for="confirm">Conferma Password:</label><br>
         <input type="password" id="confirm" name="confirm"><br><br>';
 
-
-        unset($_SESSION["registration_data"]);
 
 
     }
