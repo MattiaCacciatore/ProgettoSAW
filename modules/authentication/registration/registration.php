@@ -16,8 +16,8 @@
     $confirm_password = $_POST['confirm'];
 
 // Include necessary files and functions
-    require_once '../../configuration/config_session.php';
-    require_once '../../configuration/databaseHandler.php';
+    require_once '../../../configuration/config_session.php';
+    require_once '../../../configuration/databaseHandler.php';
     require_once './registration_datab.php';
     require_once './registration_control.php';
 

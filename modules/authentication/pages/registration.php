@@ -1,5 +1,5 @@
 <?php
-    require_once ('../../configuration/config_session.php'); 
+    require_once ('../../../configuration/config_session.php'); 
     require_once('../registration/registration_view.php');
 
 
