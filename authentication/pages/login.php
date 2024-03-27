@@ -1,6 +1,6 @@
 <?php
-    require_once ('../../include/config_session.php'); 
-    require_once('../../include/authentication/login_view.php');
+    require_once ('../../configuration/config_session.php'); 
+    require_once('../login/login_view.php');
 
 
 ?>
@@ -30,7 +30,7 @@
 
 <!-- Scheletro del form di registrazione. Non cambiate i nomi dei campi e il nome dello script che viene invocato una volta inseriti i dati richiesti.
 Il form può stare in un file a parte oppure nello stesso file registration.php (come abbiamo visto in classe) -->
-<form form action="../../include/authentication/login.php" method="post">
+<form form action="../login/login.php" method="post">
 
         <label for="email">Email</label><br>
         <input type="email" id="email" name="email"><br><br>

@@ -1,6 +1,6 @@
 <?php
-    require_once('../../include/authentication/registration_view.php');
-    require_once ('../../include/config_session.php'); 
+    require_once ('../../configuration/config_session.php'); 
+    require_once('../registration/registration_view.php');
 
 
 ?>
@@ -30,7 +30,7 @@
 
 <!-- Scheletro del form di registrazione. Non cambiate i nomi dei campi e il nome dello script che viene invocato una volta inseriti i dati richiesti.
 Il form può stare in un file a parte oppure nello stesso file registration.php (come abbiamo visto in classe) -->
-<form form action="../../include/authentication/registration.php" method="post">
+<form form action="../registration/registration.php" method="post">
 
          <?php registration_inputs();
          unset($_SESSION["registration_data"]); ?>

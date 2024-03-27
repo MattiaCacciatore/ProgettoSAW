@@ -16,10 +16,11 @@
     $confirm_password = $_POST['confirm'];
 
 // Include necessary files and functions
-    require_once '../databaseHandler.php';
+    require_once '../../configuration/config_session.php';
+    require_once '../../configuration/databaseHandler.php';
     require_once './registration_datab.php';
     require_once './registration_control.php';
-    require_once '../config_session.php';
+
 
 
 
@@ -31,7 +32,7 @@ try {
 
     // se tutto va a buon fine
     if (empty($registration_result)) {
-        header("Location: ../../pages/authentication/registration.php?registration=success");
+        header("Location: ../pages/registration.php?registration=success");
         unset($_SESSION["registration_data"]);
         exit();
 
@@ -56,7 +57,7 @@ try {
             $_SESSION["registration_data"] = $registration_data;
 
 
-        header("Location: ../../pages/authentication/registration.php?registration=failed");
+        header("Location: ../pages/registration.php?registration=failed");
         exit();
     }
 } catch (PDOException $e) {

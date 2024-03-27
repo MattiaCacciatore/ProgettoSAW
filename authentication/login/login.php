@@ -2,7 +2,7 @@
 
 
 if (!$_SERVER["REQUEST_METHOD"] == "POST") {
-    header("Location: ../index.php" );
+    header("Location: ../../index.php" );
     die();
 }
 
@@ -13,7 +13,7 @@ $password = $_POST["pass"];
 
 try {
 
-    require_once '../databaseHandler.php';
+    require_once '../../configuration/databaseHandler.php';
     require_once './login_datab.php';
     require_once './login_control.php';
 
@@ -50,7 +50,7 @@ try {
     
 
 
-    require_once '../config_session.php';
+    require_once ('../../configuration/config_session.php');
    
 
     // nota: si e' corretto fare cosi' altrimenti non potremmos
@@ -59,14 +59,14 @@ try {
 
 
         $_SESSION["errors_login"] = $errors;
-        header("Location: '../../pages/authentication/login.php?login=failed");
+        header("Location: '../pages/login.phplogin=failed");
         die(); 
 
         
     }
     
 
-    header("Location: ../../pages/authentication/login.php?login=success");
+    header("Location: ../pages/login.phplogin=success");
     $pdo = null;
     $statement = null ;
 
