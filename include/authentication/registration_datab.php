@@ -28,8 +28,9 @@
         try {
             
             // proviamo a eseguire l'inserimento all'interno del database dell'utente
+            // se tutto va bene, $errors sarà vuoto
             $stmt->execute();
-            return true;
+            return $errors;
 
         } catch (PDOException $e) { 
 
