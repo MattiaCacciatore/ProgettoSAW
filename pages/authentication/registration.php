@@ -20,8 +20,8 @@
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#">Contatti</a></li>
-        <li><a href="#">Registrati</a></li>
-        <li><a href="#">Accedi</a></li>
+        <li><a href="./registration.php">Registrati</a></li>
+        <li><a href="./login.php">Accedi</a></li>
       </ul>
     </nav>
   </header>
@@ -32,13 +32,19 @@
 Il form può stare in un file a parte oppure nello stesso file registration.php (come abbiamo visto in classe) -->
 <form form action="../../include/authentication/registration.php" method="post">
 
-        <?php registration_inputs() ?>
+         <?php registration_inputs();
+         unset($_SESSION["registration_data"]); ?>
         
         <?php check_registration_errors()?>
 
-        <input type="submit" name="submit" value="Accedi">
 
-    </form>
+        <input type="submit" name="submit" value="Registrati">
+
+ </form>
+
+
+
+
 
 
 </body>

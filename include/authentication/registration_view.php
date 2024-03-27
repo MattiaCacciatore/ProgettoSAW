@@ -39,7 +39,8 @@
 
 
         // verifico che il campo registration_data non sia vuoto per la key firstname
-        if (isset($_SESSION["registration_data"]["firstname"])) {
+        if (isset($_SESSION["registration_data"]["firstname"]) &&
+            !isset($_SESSION["registration_errors"]["invalid_firstname"])) {
 
 
             // verrra' cos' ristampato nel campo con il dato corretto inserito dall'utente
@@ -59,7 +60,8 @@
 
 
         // verifico che il campo registration_data non sia vuoto per la key lastname
-        if (isset($_SESSION["registration_data"]["lastname"])) {
+        if (isset($_SESSION["registration_data"]["lastname"]) &&
+            !isset($_SESSION["registration_errors"]["invalid_lastname"])) {
 
 
             // verrra' cos' ristampato nel campo con il dato corretto inserito dall'utente
