@@ -4,6 +4,6 @@ CREATE TABLE follow(
 
     PRIMARY KEY (user, course),
 
-    FOREIGN KEY (user) REFERENCES user (email),
-    FOREIGN KEY (course) REFERENCES course (id)
+    FOREIGN KEY (user) REFERENCES user (email) ON DELETE CASCADE,
+    FOREIGN KEY (course) REFERENCES course (id) ON DELETE CASCADE
 );
