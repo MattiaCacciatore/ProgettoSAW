@@ -1,4 +1,5 @@
-CREATE TABLE follow(
+-- In this table all users are teachers.
+CREATE TABLE teach(
     user VARCHAR(100),
     course BIGINT UNSIGNED,
 
