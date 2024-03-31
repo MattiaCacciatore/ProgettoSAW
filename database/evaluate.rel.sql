@@ -1,4 +1,4 @@
-CREATE TABLE teach(
+CREATE TABLE evaluate (
     user VARCHAR(100),
     course BIGINT UNSIGNED,
 
