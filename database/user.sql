@@ -11,4 +11,10 @@ CREATE TABLE user(
 
 
 
-
+-- dati fittizzi
+INSERT INTO user (email, firstname, lastname, pwd, is_admin) VALUES
+  ('maria.rossi@email.com', 'Maria', 'Rossi', 'password', true),  -- Amministratore
+  ('giovanni.bianchi@email.com', 'Giovanni', 'Bianchi', 'password', false),
+  ('anna.verdi@email.com', 'Anna', 'Verdi', 'password', false),
+  ('marco.gialli@email.com', 'Marco', 'Gialli', 'password', false),
+  ('paolo.neri@email.com', 'Paolo', 'Neri', 'password', false);
