@@ -1,5 +1,5 @@
-CREATE TABLE video(
-  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE video (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
   title_course VARCHAR(255) NOT NULL,
   duration_course INT NOT NULL, -- in minuti
   type_video VARCHAR(50) NOT NULL,

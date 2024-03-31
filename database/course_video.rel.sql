@@ -1,6 +1,6 @@
 CREATE TABLE course_video (
-  id_corso INT,
-  id_video INT,
+  id_corso BIGINT,
+  id_video BIGINT,
 
   PRIMARY KEY (id_corso, id_video), -- ho visto che 
 
