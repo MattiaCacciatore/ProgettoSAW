@@ -1,6 +1,6 @@
 CREATE TABLE belong (
   id_corso BIGINT,
-  field_name BIGINT,
+  field_name VARCHAR(100),
 
   PRIMARY KEY (id_corso, field_name),  
 
