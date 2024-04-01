@@ -6,7 +6,7 @@ BEGIN
 	IF NEW.user IN (SELECT follow.user FROM follow WHERE NEW.course = follow.course) THEN
     	INSERT INTO evaluate (user, course, vote, feedback) VALUES(NEW.user, NEW.course, NEW.vote, NEW.feedback);
 	ELSE
-    	SIGNAL SQLSTATE '09000' SET MESSAGE_TEXT = 'This user is ineligible to vote on this course because they did not follow it.';
+    	SIGNAL SQLSTATE '09000' SET MESSAGE_TEXT = 'This user cannot evaluate this course because has not followed it';
 	END IF;
 END;
 //
