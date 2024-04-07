@@ -18,12 +18,41 @@
 
   <h1>Search System Beta</h1>
 
-  <div class="search-wrapper">
+
+  <form action="">
+
+    <span class="search-wrapper">
+      <span class="material-symbols-outlined">search </span>
+      <input type="search" id="search" placeholder="Search" data-search>
+    </span>
 
 
-    <span class="material-symbols-outlined">search </span>
-    <input type="search" id="search" placeholder="Search" data-search>
-  </div>
+    <span class="ambito">
+
+      <fieldset>
+        <legend>Choose Ambits:</legend>
+        <label><input type="checkbox" name="ambit" value="Technology"> Technology</label>
+        <label><input type="checkbox" name="ambit" value="Science"> Science</label>
+        <label><input type="checkbox" name="ambit" value="Art"> Art</label>
+        <label><input type="checkbox" name="ambit" value="Business"> Business</label>
+        <!-- Add more ambit options as needed -->
+    </fieldset>
+    </span>
+
+
+    <span class="release-year">
+
+      <fieldset>
+        <input type="number" name="releaseYear" min="1900" max="2100" placeholder="select release year"></label>
+    </fieldset>
+      
+    </span>
+
+
+    
+
+  </form>
+  
 
 
   <div class="user-cards" data-user-cards-container></div>

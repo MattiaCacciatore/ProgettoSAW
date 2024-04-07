@@ -5,6 +5,17 @@ h1 {
 }
 
 
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+    gap: 1.5rem;
+    margin: 20px;
+  }
+
+
 .search-wrapper {
 
     display: flex;
@@ -68,6 +79,76 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 
 
+/* Style for the ambit selection */
+.ambito,
+.release-year {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  border-radius: 28px;
+  background-color:rgb(215, 215, 216);
+  padding: 5px;
+
+  width: 200px
+}
+
+/* Remove border and padding from fieldset */
+.ambito fieldset,
+.release-year fieldset {
+  border: none;
+  padding: 0;
+}
+
+/* Style for the release year input */
+.release-year input[type="number"] {
+  padding: 8px;
+  border: none;
+  outline: none;
+  
+  border: transparent;
+  background-color:rgb(215, 215, 216);
+
+  width: 150px;
+}
+
+/* Style for the legend */
+legend {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Style for checkboxes */
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+/* Style for labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+
+/* Style the arrows */
+.release-year input[type="number"]::-webkit-inner-spin-button,
+.release-year input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* Style the appearance of the arrows */
+.release-year input[type="number"]::-webkit-inner-spin-button:after {
+  content: '▲';
+  font-size: 12px;
+  color: #555;
+}
+
+.release-year input[type="number"]::-webkit-outer-spin-button:after {
+  content: '▼';
+  font-size: 12px;
+  color: #555;
+}
 
 
 
