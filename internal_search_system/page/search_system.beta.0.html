@@ -6,19 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/style.css">
   <script src="../js/search_sys.js" defer></script>
+
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <title>Search System Beta</title>
 </head>
+
+
+
 <body>
+
+  <h1>Search System Beta</h1>
+
   <div class="search-wrapper">
-    <label for="search">Search System Beta</label>
-    <input type="search" id="search" data-search>
+
+
+    <span class="material-symbols-outlined">search </span>
+    <input type="search" id="search" placeholder="Search" data-search>
   </div>
+
+
   <div class="user-cards" data-user-cards-container></div>
   <template data-user-template>
     <div class="card">
       <div class="header" data-header></div>
       <div class="body" data-body></div>
-    </div>
   </template>
+</div>
 </body>
 </html>

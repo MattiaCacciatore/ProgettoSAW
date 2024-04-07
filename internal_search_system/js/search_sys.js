@@ -14,9 +14,10 @@ let users = []
 // ci poiniamo in ascolto sulla barra di ricerca in modo tale che a ogni input venga eseguita una ticerca (semnaz premere invio)
 searchInput.addEventListener("input", e => {
 
-  // Ottieni il valore inserito nella barra di ricerca, convertendolo in minuscolo per rendere la ricerca case-insensitive
+  // otteniamo il valore inserito nella barra di ricerca, convertendolo in minuscolo per rendere la ricerca case-insensitive
     const value = e.target.value.toLowerCase()
-  // Itera su ogni utente presente nell'array
+
+  // Itera su ogni utente presente nell'array ==> ricerchiamo su tutto il file
     users.forEach(user => {
     // Controlla se il nome o l'email dell'utente corrente includono il valore inserito nella barra di ricerca
         const isVisible =
