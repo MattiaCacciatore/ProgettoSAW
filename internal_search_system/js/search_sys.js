@@ -1,11 +1,23 @@
 
 
+
+//------------------------------------------------------------------------------------------------
+//  search bar
+
 // Seleziona il template HTML per una singola carta utente
 const userCardTemplate = document.querySelector("[data-user-template]")
 // Seleziona il contenitore dove verranno inserite le carte utente
 const userCardContainer = document.querySelector("[data-user-cards-container]")
 // Seleziona l'input della barra di ricerca
 const searchInput = document.querySelector("[data-search]")
+
+
+// filtri
+
+const yearFilter = document.querySelectorAll("[data-release-year]")
+const courseScategory = document.querySelectorAll("[data-courses-category]")
+
+
 
 // creiamo un Array per memorizzare gli utenti ottenuti dalla richiesta
 let users = []
@@ -50,3 +62,38 @@ fetch("https://jsonplaceholder.typicode.com/users")
       return { name: user.name, email: user.email, element: card }
     })
   })
+
+
+
+
+
+  //------------------------------------------------------------------------------------------
+  // metodi per la visualizzazione degli elenchi dei filtri
+
+
+  var checkList = document.getElementById('categories');
+  checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
+    if (checkList.classList.contains('visible'))
+      checkList.classList.remove('visible');
+    else
+      checkList.classList.add('visible');
+  }
+
+
+  var checkList2 = document.getElementById('release-year');
+  checkList2.getElementsByClassName('anchor')[0].onclick = function(evt) {
+    if (checkList2.classList.contains('visible'))
+    checkList2.classList.remove('visible');
+    else
+    checkList2.classList.add('visible');
+  }
+
+
+  // controlla query selector
+
+
+
+
+
+
+  

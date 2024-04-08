@@ -5,7 +5,11 @@ h1 {
 }
 
 
-form {
+
+/*--------------------------------------------------------------------------------------------------------*/
+/*searcb bar  & filters*/
+
+.search-system {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -16,7 +20,9 @@ form {
   }
 
 
-.search-wrapper {
+
+
+.search-wrapper{
 
     display: flex;
 
@@ -35,7 +41,6 @@ form {
     border-radius: 28px;
 
     transition: box-shadow 0.25s;
-    
 
 
   }
@@ -80,8 +85,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 
 /* Style for the ambit selection */
-.ambito,
-.release-year {
+.dropdown-check-list, .release-year {
   display: flex;
   align-items: center;
   margin-right: 20px;
@@ -89,71 +93,160 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   background-color:rgb(215, 215, 216);
   padding: 5px;
 
-  width: 200px
+  width: 230px
 }
 
-/* Remove border and padding from fieldset */
-.ambito fieldset,
-.release-year fieldset {
-  border: none;
-  padding: 0;
-}
+
+
+
+
 
 /* Style for the release year input */
 .release-year input[type="number"] {
-  padding: 8px;
-  border: none;
-  outline: none;
-  
-  border: transparent;
+  border-radius: 28px;
+  margin-left: 14px;
   background-color:rgb(215, 215, 216);
 
-  width: 150px;
+  border: none;
+  outline: none;
+
+
+  width: 400px;
+  height: 2rem;
+  text-align: left;
+
+  border: transparent;
 }
 
-/* Style for the legend */
-legend {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+
 
 /* Style for checkboxes */
 input[type="checkbox"] {
   margin-right: 5px;
 }
 
-/* Style for labels */
-label {
-  display: block;
-  margin-bottom: 5px;
+
+
+
+
+
+
+
+.dropdown-check-list {
+  display: inline-block;
+}
+
+.dropdown-check-list .anchor {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 50px 5px 30px; /* Adjusted padding for icon alignment */
 }
 
 
-/* Style the arrows */
-.release-year input[type="number"]::-webkit-inner-spin-button,
-.release-year input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  appearance: none;
+.dropdown-check-list .categories-icon {
+  position: absolute;
+  align-content: baseline;
+
+
+}
+.dropdown-check-list .anchor:after {
+  position: absolute;
+  content: "";
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  padding: 5px;
+  right: 10px;
+  top: 20%;
+  -moz-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+.dropdown-check-list .anchor:active:after {
+  border: transparent;
+
+  right: 8px;
+  top: 21%;
+}
+
+.dropdown-check-list ul.items {
+  border: transparent;
+  padding: 2px;
+  display: none;
   margin: 0;
+  border: 1px solid #ccc;
+  border-top: none;
 }
 
-/* Style the appearance of the arrows */
-.release-year input[type="number"]::-webkit-inner-spin-button:after {
-  content: '▲';
-  font-size: 12px;
-  color: #555;
+.dropdown-check-list ul.items li {
+  list-style: none;
 }
 
-.release-year input[type="number"]::-webkit-outer-spin-button:after {
-  content: '▼';
-  font-size: 12px;
-  color: #555;
+.dropdown-check-list.visible .anchor {
+  color: #0094ff;
+}
+
+.dropdown-check-list.visible .items {
+  display: block;
 }
 
 
+#showYearsButton {
+  position: relative;
+  border: none;
+  background: transparent;
+}
 
+#showYearsButton::after {
+  content: '\2192'; /* Unicode for right arrow */
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
+.release-year:hover {
+  background:#e8eaec;
+}
+
+#showYearsButton:hover::after {
+  opacity: 1;
+}
  
-  
+#yearTableContainer {
+  display: none;
+}
+
+#yearTableContainer table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#yearTableContainer table th, 
+#yearTableContainer table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#yearTableContainer table th {
+  background-color: #f2f2f2;
+}
+
+
+
+
+/*--------------------------------------------------------------------------------------------------------------*/
+/* user cards */ 
+
+
+
   .user-cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

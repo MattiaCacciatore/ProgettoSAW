@@ -9,6 +9,7 @@
 
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <title>Search System Beta</title>
 </head>
 
@@ -19,40 +20,55 @@
   <h1>Search System Beta</h1>
 
 
-  <form action="">
+<div class="search-system">
 
-    <span class="search-wrapper">
+    <div class="search-wrapper">
       <span class="material-symbols-outlined">search </span>
       <input type="search" id="search" placeholder="Search" data-search>
-    </span>
+    </div>
 
 
-    <span class="ambito">
 
-      <fieldset>
-        <legend>Choose Ambits:</legend>
-        <label><input type="checkbox" name="ambit" value="Technology"> Technology</label>
-        <label><input type="checkbox" name="ambit" value="Science"> Science</label>
-        <label><input type="checkbox" name="ambit" value="Art"> Art</label>
-        <label><input type="checkbox" name="ambit" value="Business"> Business</label>
-        <!-- Add more ambit options as needed -->
-    </fieldset>
-    </span>
-
-
-    <span class="release-year">
-
-      <fieldset>
-        <input type="number" name="releaseYear" min="1900" max="2100" placeholder="select release year"></label>
-    </fieldset>
+    <div class="filters">
+      <div id="categories" class="dropdown-check-list" tabindex="100">
+        <span class="categories-icon material-symbols-outlined">filter_list</span>
+          <span class="anchor">Select course category</span>
+          <ul class="items">
+            <li><input type="checkbox" />Networking </li>
+            <li><input type="checkbox" />Biology</li>
+            <li><input type="checkbox" />Languages </li>
+            <li><input type="checkbox" />Physics </li>
+            <li><input type="checkbox" />Chemestry </li>
+            <li><input type="checkbox" />Mathematics </li>
+            <li><input type="checkbox" />Linear Algebra</li>
+          </ul>
+        </div>
+        
+      </div>
       
-    </span>
+
+      <div id="release-year" class="dropdown-check-list" tabindex="100">
+        <span class="categories-icon material-symbols-outlined">filter_list</span>
+          <span class="anchor">Select release year  </span>
+          <ul class="items">
+            <li><input type="checkbox" />Networking </li>
+            <li><input type="checkbox" />Biology</li>
+            <li><input type="checkbox" />Languages </li>
+            <li><input type="checkbox" />Physics </li>
+            <li><input type="checkbox" />Chemestry </li>
+            <li><input type="checkbox" />Mathematics </li>
+            <li><input type="checkbox" />Linear Algebra</li>
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+ 
+      
+</div>
 
 
     
-
-  </form>
-  
 
 
   <div class="user-cards" data-user-cards-container></div>
