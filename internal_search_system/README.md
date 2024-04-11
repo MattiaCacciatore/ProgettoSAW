@@ -23,7 +23,6 @@ La funzionalità che un sistema di ricerca interno per un sito Udemy-like dovreb
    - **Ordinamento**: Gli utenti dovrebbero poter ordinare i risultati della ricerca per diversi criteri, come:
    - **Pertinenza**: Per visualizzare i corsi più pertinenti alla query di ricerca.
    - **Data di pubblicazione**: Per visualizzare i corsi più recenti.
-   - **Prezzo**: Per visualizzare i corsi più economici o più costosi.
    - **Valutazione**: Per visualizzare i corsi con le migliori valutazioni.
 
 
