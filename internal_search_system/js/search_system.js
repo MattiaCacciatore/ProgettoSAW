@@ -22,6 +22,9 @@ const Mustache = require('mustache');
 
 
         // acquisiamo i valori dei filtri selezionti dall-utente
+
+        /* penso che sia sbagliata, qui inseriamo qualsiasi filtro scelto dall'utente
+        ma ho differenti filtri */
         $('.filterCheckbox:checked').each(function(){
             selectedFilter.push($(this).val());
         });
@@ -38,7 +41,7 @@ const Mustache = require('mustache');
         var performSearchRequest = searchRequest(function() {
 
             $.ajax({
-                url: "search.php",
+                url: "search_script.php",
                 type: "POST",
                 data: dataToSend,
                 dataType: "json",    /* ci aspettiamo un file json di risposta */
