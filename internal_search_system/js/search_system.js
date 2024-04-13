@@ -48,7 +48,7 @@ const Mustache = require('mustache');
                     
                 },
 
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function(textStatus, errorThrown) {
                     
                     console.error("Error:", textStatus, errorThrown);
                     $("#search-results").html("Error: Search failed!");
