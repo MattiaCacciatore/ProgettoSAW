@@ -50,7 +50,7 @@ h1 {
     background: 0 0 2px rgba(0, 0, 0, 0.75);
   }
 
-  .search-wrapper > #search {
+  .search-wrapper > #searchInput {
     border-radius: 28px;
     margin-left: 14px;
     background-color:rgb(215, 215, 216);
@@ -68,7 +68,7 @@ h1 {
   }
 
 
-  .search-wrapper > #search::placeholder {
+  .search-wrapper > #searchInput::placeholder {
     color: rgba(0, 0, 0, 0.25);
   }
 

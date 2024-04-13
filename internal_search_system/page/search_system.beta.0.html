@@ -6,13 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <link rel="stylesheet" href="../css/style.css">
-  <script src="../js/search_sys.js" defer></script>
+
 
   <!-- link per le icone: google matireal -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-  <title>Search System Beta</title>
+
+   <!-- Include jQuery -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="../js/search_system.js" defer"></script>
+    
+   <title>Search System Beta</title>
 </head>
 
 
@@ -29,45 +34,9 @@
 
     <div class="search-wrapper">
       <span class="material-symbols-outlined">search </span>
-      <input type="search" id="search" placeholder="Search" data-search>
+      <input type="search" id="searchInput" placeholder="Search" data-search>
     </div>
 
-
-
-    <div class="filters">
-      <div id="categories" class="dropdown-check-list" tabindex="100">
-        <span class="categories-icon material-symbols-outlined">filter_list</span>
-          <span class="anchor">Select course category</span>
-          <ul class="items">
-            <li><input type="checkbox" />Networking </li>
-            <li><input type="checkbox" />Biology</li>
-            <li><input type="checkbox" />Languages </li>
-            <li><input type="checkbox" />Physics </li>
-            <li><input type="checkbox" />Chemestry </li>
-            <li><input type="checkbox" />Mathematics </li>
-            <li><input type="checkbox" />Linear Algebra</li>
-          </ul>
-        </div>
-        
-      </div>
-      
-
-      <div id="release-year" class="dropdown-check-list" tabindex="100">
-        <span class="categories-icon material-symbols-outlined">filter_list</span>
-          <span class="anchor">Select release year  </span>
-          <ul class="items">
-            <li><input type="checkbox" />Networking </li>
-            <li><input type="checkbox" />Biology</li>
-            <li><input type="checkbox" />Languages </li>
-            <li><input type="checkbox" />Physics </li>
-            <li><input type="checkbox" />Chemestry </li>
-            <li><input type="checkbox" />Mathematics </li>
-            <li><input type="checkbox" />Linear Algebra</li>
-          </ul>
-        </div>
-        
-      </div>
-    </div>
  
       
 </div class="show-cards">

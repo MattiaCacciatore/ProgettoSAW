@@ -5,7 +5,7 @@
 
 // https://github.com/janl/mustache.js/
 
-const Mustache = require('mustache');  
+
 
 
 
@@ -81,7 +81,7 @@ const Mustache = require('mustache');
 
 
     // definiamo "gli eventi in ascolto"
-    $("#searchInput").on("keyup", (event) => {
+    $("#searchInput").on("input", function(event) {
         if (event.isComposing || event.keyCode === 229) {
           return;
         }
@@ -108,33 +108,33 @@ const Mustache = require('mustache');
 //----------------------------------------------------------------------------------------------------
 // show the results
 
-
 function displayResults(response) {
+  let output = ""; // Initialize empty string to accumulate card content
 
-    const templateUrl = "./courseCardTemplate.html"; 
-
-// Recupera il modello Mustache.js
-fetch(templateUrl)
-  .then((response) => response.text()) // Converte la risposta in testo
-  .then((template) => {
-
-
-    const output = ""; // Stringa vuota per accumulare il contenuto delle schede corso
-
-    // per ogni corso all-interno della response 
-    response.courses.forEach((course) => {
-      const renderedCard = Mustache.render(template, course); // Genera la scheda corso
-      output += renderedCard; // Aggiunge la scheda al risultato
-    });
-
-    $(".show-cards").html(output); // mostra all-interno della classe show-cards tutte le carte trovate
-  })
-
-
-  // nel caso ci fossero errori:
-  .catch((error) => {
-    console.error("Errore durante il recupero del modello:", error); // Gestione degli errori
+  // Iterate through each course in the response
+  response.courses.forEach((course) => {
+      // Render the course card using the template and course data
+      const renderedCard = renderCourseCard(course);
+      output += renderedCard; // Append card to output
   });
 
-    
+  // Inject the accumulated HTML into the DOM
+  $(".show-cards").html(output);
+}
+
+function renderCourseCard(course) {
+  // Define your course card template directly in JavaScript
+  // Use string interpolation to insert course data into the template
+  return `
+      <div class="course-card">
+          <h2>${course.name}</h2>
+          <p>By: ${course.teacher}</p>
+          <p>${course.description}</p>
+          <div class="course-details">
+              <span class="price">Price: ${course.price}</span>
+              <span class="ambit">Ambit: ${course.ambit}</span>
+              <span class="rating">Rating: ${course.average_valuation}</span>
+          </div>
+      </div>
+  `;
 }
