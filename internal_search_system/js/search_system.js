@@ -20,8 +20,8 @@ const Mustache = require('mustache');
         var searchTextInput = $('#searchInput').val();
         var categoryFilter  = [];
         var releaseDateFilter = [];
-        var priceFilter = [];
-        var courseAvarageValutationFilter = [];
+        var priceFilter = $('priceInput').val();
+        var courseAvarageValutationFilter = $('everageValitationInput').val();
 
 
         // acquisiamo i valori dei filtri selezionti dall-utente
@@ -36,14 +36,6 @@ const Mustache = require('mustache');
           releaseDateFilter.push($(this).val());
         });
 
-        $('.filter-price-cb:checked').each(function(){
-          priceFilter.push($(this).val());
-        }); 
-        
-        
-        $('.filter-avarageVal-cb:checked').each(function(){
-          courseAvarageValutationFilter.push($(this).val());
-        });        
         
 
 

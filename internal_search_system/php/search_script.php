@@ -20,18 +20,38 @@ if (!isset($_POST['dataToSend'])) {
 
 $searchInput = takeInputIfExsist('searchInput', '');
 $categoryFilter = takeInputIfExsist('categoryFilter', []);
-$releaseDateFilter = takeInputIfExsist('releaseDateFilter', '');
+$releaseDateFilter = takeInputIfExsist('releaseDateFilter',[]);
 $priceFilter = takeInputIfExsist('priceFilter', '');
 $courseAvarageValutationFilter = takeInputIfExsist('courseAvarageValutationFilter', '');
 
 
 $query = queryBuilder($searchInput, $categoryFilter, $releaseDateFilter, $priceFilter, $courseAvarageValutationFilter);
 
+try {
+    // prepariamo la query
+    $stmt = $pdo->prepare($query);
+
+    // esecuzione della query
+    $stmt->execute();
+
+    // Fetch di tutte le colonne; ottenendo un'array associativo
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+        
+    // Encodei risultati in in Json
+    $response = json_encode($results);
+
+    // a questo punto inviamo i risultati al client (ovvero: ) success:  function(response) 
+    echo $response;
 
 
 
 
 
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
 
 
 
@@ -112,11 +132,8 @@ function queryBuilder($searchInput, $categoryFilter, $releaseDateFilter, $priceF
 
     
     if (!empty($priceFilter)) {
-        $whereClause .= "AND (";
-        foreach ($priceFilter as $price) {
-            $whereClause .= " OR price >= '%$date%'";
-        }
-        $whereClause .= ")";
+        $whereClause .= " AND (price >= '$priceFilter')";
+
     }
 
 
