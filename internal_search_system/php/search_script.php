@@ -1,154 +1,83 @@
 <?php
 
-
 include_once '../../configuration/databaseHandler.php';
 
 
-/* non definisco un metodo, perhce' questo file racchiude lo script che utilizza
-ajax per effettuare la richiesta al server, e nient'altro */
 
+// Extract search parameters from $_POST
+$searchInput = isset($_POST['searchInput']) ? $_POST['searchInput'] : '';
+$categoryFilter = isset($_POST['categoryFilter']) ? $_POST['categoryFilter'] : [];
+$releaseDateFilter = isset($_POST['releaseDateFilter']) ? $_POST['releaseDateFilter'] : [];
+$priceFilter = isset($_POST['priceFilter']) ? $_POST['priceFilter'] : '';
+$courseAvarageValutationFilter = isset($_POST['courseAvarageValutationFilter']) ? $_POST['courseAvarageValutationFilter'] : '';
 
-// verofichiamo se e' stato mandato qualcosa
-
-if (!isset($_POST['dataToSend'])) {
-    // retriveAllBestCourses();
-
-    echo "non e' stato cercato nulla \n";
-    exit();
-}
-
-
-$searchInput = takeInputIfExsist('searchInput', '');
-$categoryFilter = takeInputIfExsist('categoryFilter', []);
-$releaseDateFilter = takeInputIfExsist('releaseDateFilter',[]);
-$priceFilter = takeInputIfExsist('priceFilter', '');
-$courseAvarageValutationFilter = takeInputIfExsist('courseAvarageValutationFilter', '');
-
-
+// Build the query
 $query = queryBuilder($searchInput, $categoryFilter, $releaseDateFilter, $priceFilter, $courseAvarageValutationFilter);
 
 try {
-    // prepariamo la query
+    // Prepare and execute the query
     $stmt = $pdo->prepare($query);
-
-    // esecuzione della query
     $stmt->execute();
 
-    // Fetch di tutte le colonne; ottenendo un'array associativo
+    // Fetch all rows as associative arrays
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
-        
-    // Encodei risultati in in Json
-    $response = json_encode($results);
-
-    // a questo punto inviamo i risultati al client (ovvero: ) success:  function(response) 
-    echo $response;
-
-
+    // Encode the results as JSON and send to client
+    echo json_encode($results);
 
 
 
 } catch (PDOException $e) {
+    // Handle database errors
     echo "Error: " . $e->getMessage();
 }
 
 
+/************************************** METHODS ******************************************/
 
+function queryBuilder($searchInput, $categoryFilter, $releaseDateFilter, $priceFilter, $courseAvarageValutationFilter)
+{
+    $whereClause = "WHERE 1"; // Start with a true condition
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>
-
-
-
-
-
-
-<?php 
-
-
-/************************************** METODI ****************************************** */
-
-function takeInputIfExsist(string $post_input, $default = NULL) {
-    if (!isset($_POST[$post_input])) {
-        return $default;
-    }
-    return $_POST[$post_input];
-};
-
-
-
-function queryBuilder($searchInput, $categoryFilter, $releaseDateFilter, $priceFilter, $courseAvarageValutationFilter){
-
-    $whereClause = "WHERE 1"; // inizializzaimo a true per semplicita'
-
-    /*  search input dalla barra di ricerca, verifichiamo se puc'corrispondere all'id del corso oppure al nome */
+    // Add search input conditions
     if (!empty($searchInput)) {
         $whereClause .= " AND (id LIKE '%$searchInput%' OR 
                                 name_course LIKE '%$searchInput%' OR 
                                 description_of_course LIKE '%$searchInput%')";
     }
 
-
-    //  per ogni catergoria selezionata
-    if(!empty($categoryFilter)) {
-       
-        $whereClause .= "AND (";
+    // Add category filter conditions
+    if (!empty($categoryFilter)) {
+        $whereClause .= " AND (";
         foreach ($categoryFilter as $category) {
             $whereClause .= " OR category LIKE '%$category%'";
-         }
-
-         $whereClause .= ")";
-
+        }
+        $whereClause .= ")";
     }
 
-
-    
-    // 
+    // Add release date filter conditions
     if (!empty($releaseDateFilter)) {
-        $whereClause .= "AND (";
+        $whereClause .= " AND (";
         foreach ($releaseDateFilter as $date) {
             $whereClause .= " OR release_date LIKE '%$date%'";
         }
         $whereClause .= ")";
     }
 
-
-    
+    // Add price filter condition
     if (!empty($priceFilter)) {
         $whereClause .= " AND (price >= '$priceFilter')";
-
     }
 
-
-    $courseAvarageValutationFilter = takeInputIfExsist('courseAvarageValutationFilter');
+    // Add course average valuation filter condition
     if (!empty($courseAvarageValutationFilter)) {
         $whereClause .= " AND average_valuation >= '$courseAvarageValutationFilter'";
     }
 
-
-
+    // Construct the final query
     $query = "SELECT * FROM course $whereClause";
 
     return $query;
-
-
-};
+}
 
 ?>

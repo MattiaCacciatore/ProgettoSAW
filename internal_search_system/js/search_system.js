@@ -15,83 +15,75 @@
 // perform search
 
 
-    function performSearch(params) {
+function performSearch( params) {
 
-        var searchTextInput = $('#searchInput').val();
-        var categoryFilter  = [];
-        var releaseDateFilter = [];
-        var priceFilter = $('priceInput').val();
-        var courseAvarageValutationFilter = $('everageValitationInput').val();
+  var searchTextInput = params;
+  var categoryFilter = [];
+  var releaseDateFilter = [];
+  var priceFilter = $('#priceInput').val();
+  var courseAvarageValutationFilter = $('#averageValutationInput').val();
 
+  // acquisiamo i valori dei filtri selezionti dall'utente
+  $('.filter-category-cb:checked').each(function() {
+      categoryFilter.push($(this).val());
+  });
 
-        // acquisiamo i valori dei filtri selezionti dall-utente
-
-        /* penso che sia sbagliata, qui inseriamo qualsiasi filtro scelto dall'utente
-        ma ho differenti filtri */
-        $('.filter-category-cb:checked').each(function(){
-            categoryFilter.push($(this).val());
-        });
-
-        $('.filter-releaseDate-cb:checked').each(function(){
-          releaseDateFilter.push($(this).val());
-        });
-
-        
+  $('.filter-releaseDate-cb:checked').each(function() {
+      releaseDateFilter.push($(this).val());
+  });
 
 
-        // prepariamo i dati da inviare al server
-        var dataToSend = {
-            searchTextInput: searchTextInput,
-            categoryFilter: categoryFilter,
-            releaseDateFilter: releaseDateFilter,
-            priceFilter: priceFilter,
-            courseAvarageValutationFilter: courseAvarageValutationFilter
 
-        };
+  // prepariamo i dati da inviare al server
+  var dataToSend = {
+      searchTextInput: searchTextInput,
+      categoryFilter: categoryFilter,
+      releaseDateFilter: releaseDateFilter,
+      priceFilter: priceFilter,
+      courseAvarageValutationFilter: courseAvarageValutationFilter
+  };
 
 
-        // inviamo una richiesta ajax
-        var performSearchRequest = searchRequest(function() {
 
-            $.ajax({
-                url: "search_script.php",
-                type: "POST",
-                data: dataToSend,
-                dataType: "json",    /* ci aspettiamo un file json di risposta */
-    
-                success:  function(response) {
-                    displayResults(response);
-                    
-                },
 
-                error: function(textStatus, errorThrown) {
-                    
-                    console.error("Error:", textStatus, errorThrown);
-                    $("#search-results").html("Error: Search failed!");
-                },
-                
-            });
-        })
-       
+  // inviamo una richiesta ajax
+  $.ajax({
+      url: "../php/search_script.php",
+      type: "POST",
+      data: dataToSend,
+      dataType: "json",
+      success: function(response) {
 
-        performSearchRequest();
+        $(".show-cards").html(console.log(response));
+      
+      },
 
-        
-    }
+
+
+      error: function(jqXHR, textStatus, errorThrown) {
+          console.error("Error:", textStatus, errorThrown);
+          $("#search-results").html("Error: Search failed!");
+      }
+  });
+}
 
 
     // definiamo "gli eventi in ascolto"
-    $("#searchInput").on("input", function(event) {
-        if (event.isComposing || event.keyCode === 229) {
+    $("#searchInput").keyup(function(event) {
+      if (event.isComposing || event.keyCode === 229) {
           return;
-        }
-        performSearch();
-      });
+      }
+      var input = $(this).val();
+      console.log(input);
+      performSearch(input);
+  });;
 
 
       
       $("#filterInput").on("change", function() {
-        performSearch(); 
+        var input = $(this).val();
+
+        performSearch(input); 
       });
 
 
