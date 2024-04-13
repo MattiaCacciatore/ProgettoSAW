@@ -70,19 +70,25 @@
     </div>
  
       
-</div>
+</div class="show-cards">
 
 
   <!-- ******************************************************************************************************** -->
-  <!-- wild cards dei corsi -->  
+  <!-- wild cards dei corsi 
+  
+
+    vengono stampate dallo script search_system.js che:
+      - prende in input i dati della barra di ricerca e dei filtri
+      - effettua una ricerca con ajax: metodo performingSeacrh
+
+      - i risultati vengono scritti all-interno di template ben definiti (courseCardTemplate.html)
+       con l-utilizzo della libreria moustache.js
+
+       nel metodo: displayResults
+  -->   
 
 
-  <div class="user-cards" data-user-cards-container></div>
-  <template data-user-template>
-    <div class="card">
-      <div class="header" data-header></div>
-      <div class="body" data-body></div>
-  </template>
+  
 </div>
 </body>
 </html>
