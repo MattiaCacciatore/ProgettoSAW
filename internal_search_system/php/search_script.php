@@ -75,7 +75,63 @@ function takeInputIfExsist(string $post_input, $default = NULL) {
 
 
 function queryBuilder($searchInput, $categoryFilter, $releaseDateFilter, $priceFilter, $courseAvarageValutationFilter){
-    // sbura
+
+    $whereClause = "WHERE 1"; // inizializzaimo a true per semplicita'
+
+    /*  search input dalla barra di ricerca, verifichiamo se puc'corrispondere all'id del corso oppure al nome */
+    if (!empty($searchInput)) {
+        $whereClause .= " AND (id LIKE '%$searchInput%' OR 
+                                name_course LIKE '%$searchInput%' OR 
+                                description_of_course LIKE '%$searchInput%')";
+    }
+
+
+    //  per ogni catergoria selezionata
+    if(!empty($categoryFilter)) {
+       
+        $whereClause .= "AND (";
+        foreach ($categoryFilter as $category) {
+            $whereClause .= " OR category LIKE '%$category%'";
+         }
+
+         $whereClause .= ")";
+
+    }
+
+
+    
+    // 
+    if (!empty($releaseDateFilter)) {
+        $whereClause .= "AND (";
+        foreach ($releaseDateFilter as $date) {
+            $whereClause .= " OR release_date LIKE '%$date%'";
+        }
+        $whereClause .= ")";
+    }
+
+
+    
+    if (!empty($priceFilter)) {
+        $whereClause .= "AND (";
+        foreach ($priceFilter as $price) {
+            $whereClause .= " OR price >= '%$date%'";
+        }
+        $whereClause .= ")";
+    }
+
+
+    $courseAvarageValutationFilter = takeInputIfExsist('courseAvarageValutationFilter');
+    if (!empty($courseAvarageValutationFilter)) {
+        $whereClause .= " AND average_valuation >= '$courseAvarageValutationFilter'";
+    }
+
+
+
+    $query = "SELECT * FROM course $whereClause";
+
+    return $query;
+
+
 };
 
 ?>
