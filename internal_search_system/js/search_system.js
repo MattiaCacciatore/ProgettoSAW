@@ -18,22 +18,43 @@ const Mustache = require('mustache');
     function performSearch(params) {
 
         var searchTextInput = $('#searchInput').val();
-        var selectedFilter  = [];
+        var categoryFilter  = [];
+        var releaseDateFilter = [];
+        var priceFilter = [];
+        var courseAvarageValutationFilter = [];
 
 
         // acquisiamo i valori dei filtri selezionti dall-utente
 
         /* penso che sia sbagliata, qui inseriamo qualsiasi filtro scelto dall'utente
         ma ho differenti filtri */
-        $('.filterCheckbox:checked').each(function(){
-            selectedFilter.push($(this).val());
+        $('.filter-category-cb:checked').each(function(){
+            categoryFilter.push($(this).val());
         });
+
+        $('.filter-releaseDate-cb:checked').each(function(){
+          releaseDateFilter.push($(this).val());
+        });
+
+        $('.filter-price-cb:checked').each(function(){
+          priceFilter.push($(this).val());
+        }); 
+        
+        
+        $('.filter-avarageVal-cb:checked').each(function(){
+          courseAvarageValutationFilter.push($(this).val());
+        });        
+        
 
 
         // prepariamo i dati da inviare al server
         var dataToSend = {
             searchTextInput: searchTextInput,
-            selectedFilter: selectedFilter
+            categoryFilter: categoryFilter,
+            releaseDateFilter: releaseDateFilter,
+            priceFilter: priceFilter,
+            courseAvarageValutationFilter: courseAvarageValutationFilter
+
         };
 
 
