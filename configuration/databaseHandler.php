@@ -2,9 +2,9 @@
 
   
     $host = 'localhost'; 
-    $dbname ='unigersity'; 
-    $dbusername = 'root'; 
-    $dbpassword = ''; 
+    $dbname ='S4850100'; 
+    $dbusername = 'S4850100'; 
+    $dbpassword = 'pHpIs50DeCeNt'; 
 
     try {
         // proviamo di stabilire una connessione al database MySQL utilizzando PDO
