@@ -1,5 +1,5 @@
 CREATE TABLE belong (
-  id_corso BIGINT,
+  id_corso BIGINT UNSIGNED,
   field_name VARCHAR(100),
 
   PRIMARY KEY (id_corso, field_name),  

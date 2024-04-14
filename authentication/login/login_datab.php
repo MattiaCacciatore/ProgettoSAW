@@ -10,7 +10,7 @@ declare(strict_types=1);
 */
 function get_user(object $pdo, string $email) {
 
-    $query = "SELECT * FROM users WHERE email = :email;";
+    $query = "SELECT * FROM user WHERE email = :email;";
 
     // Preparazione della query
         $stmt = $pdo->prepare($query);

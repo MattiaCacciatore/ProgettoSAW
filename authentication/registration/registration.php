@@ -14,6 +14,7 @@
     $email = $_POST["email"];
     $password = $_POST["pass"];
     $confirm_password = $_POST['confirm'];
+    $is_admin = FALSE;
 
 // Include necessary files and functions
     require_once '../../configuration/config_session.php';
@@ -28,7 +29,7 @@
 try {
 
     // proviamo a registrare il nuovo utente
-    $registration_result = register_user($pdo, $firstname, $lastname, $email, $password, $confirm_password);
+    $registration_result = register_user($pdo, $firstname, $lastname, $email, $password, $confirm_password, $is_admin);
 
     // se tutto va a buon fine
     if (empty($registration_result)) {

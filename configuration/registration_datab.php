@@ -7,7 +7,7 @@
 
 
     
-    function register_user($pdo, $email, $firstname, $lastname, $password, $confirm_password, $is_admin) {
+    function register_user($pdo, $firstname, $lastname, $email, $password, $confirm_password) {
         // Validate input data
         $errors = validate_registration_data($firstname, $lastname, $email, $password, $confirm_password);
         if (!empty($errors)) {
@@ -18,14 +18,12 @@
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     
         // Insert user into the database
-        $query = "INSERT INTO user (email, firstname, lastname, pwd, is_admin) VALUES (:email, :firstname, :lastname, :pwd, :is_admin)";
+        $query = "INSERT INTO users (firstname, lastname, email, pwd) VALUES (:firstname, :lastname, :email, :pwd)";
         $stmt = $pdo->prepare($query);
-        $stmt->bindParam(":email", $email);
         $stmt->bindParam(":firstname", $firstname);
         $stmt->bindParam(":lastname", $lastname);
+        $stmt->bindParam(":email", $email);
         $stmt->bindParam(":pwd", $hashed_password);
-        $stmt->bindParam(":is_admin", $is_admin);
-
     
         try {
             

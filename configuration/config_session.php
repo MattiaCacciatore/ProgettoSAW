@@ -13,11 +13,11 @@
 
 
 session_set_cookie_params([
-    'lifetime' => 18*3600,      /* 18 ore */
-    'domain' => 'localhost',    /* il dominio in cui il  cookie e' valido */
-    'path' => '/',              /* valido su tutte le pagine del sito */
-    'secure' => true,           /* cookie trasmesso solo su connessioni https */
-    'httponly' => true          /* accessibile solo in http e non puo' essere modificato da js */
+    'lifetime' => 18*3600,                   /* 18 ore */
+    'domain' => 'saw21.dibris.unige.it',    /* il dominio in cui il  cookie e' valido */
+    'path' => '/',                          /* valido su tutte le pagine del sito */
+    'secure' => true,                       /* cookie trasmesso solo su connessioni https */
+    'httponly' => true                      /* accessibile solo in http e non puo' essere modificato da js */
 
 ]);
 
