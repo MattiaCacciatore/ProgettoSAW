@@ -5,22 +5,21 @@ include_once '../../configuration/databaseHandler.php';
 
 
 // Extract search parameters from $_POST
-$searchInput = isset($_POST['searchInput']) ? $_POST['searchInput'] : '';
+$searchInput = isset($_POST['searchTextInput']) ? $_POST['searchTextInput'] : '';
 $categoryFilter = isset($_POST['categoryFilter']) ? $_POST['categoryFilter'] : [];
 $releaseDateFilter = isset($_POST['releaseDateFilter']) ? $_POST['releaseDateFilter'] : [];
 $priceFilter = isset($_POST['priceFilter']) ? $_POST['priceFilter'] : '';
 $courseAvarageValutationFilter = isset($_POST['courseAvarageValutationFilter']) ? $_POST['courseAvarageValutationFilter'] : '';
 
 
-
-// $query = queryBuilder($searchInput, $categoryFilter, $releaseDateFilter, $priceFilter, $courseAvarageValutationFilter);
+$query = queryBuilder($searchInput, $categoryFilter, $releaseDateFilter, $priceFilter, $courseAvarageValutationFilter);
 
 // printf($query);
 
 try {
    
-    $textInput = addslashes($searchInput);
-    $query = "SELECT * FROM course WHERE id LIKE '$textInput%' ";
+    //$textInput = addslashes($searchInput);
+    //$query = "SELECT * FROM course WHERE course.name_course LIKE '%$textInput%' ";
     $stmt = $pdo->prepare($query);
     // $stmt->bindParam(':searchInput', $searchInput);
     $stmt->execute();
@@ -55,9 +54,12 @@ function queryBuilder(string $searchInput, array $categoryFilter, array $release
 
     // Input from the search bar ---------------------------------------------------------------
     if (!empty($searchInput)) {
+
+        // $textInput = addslashes($searchInput);
+
         $whereClause .= " (course.id LIKE '%$searchInput%' OR 
-        course.name_course LIKE '%$searchInput%' OR 
-        course.description_of_course LIKE '%$searchInput%')";
+                            course.name_course LIKE '%$searchInput%' OR 
+                            course.description_of_course LIKE '%$searchInput%')";
     }
 
 

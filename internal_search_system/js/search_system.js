@@ -46,6 +46,7 @@ function performSearch(params) {
 
 
 
+
   // inviamo una richiesta ajax
   $.ajax({
       url: "../php/search_script.php",
@@ -75,6 +76,16 @@ function performSearch(params) {
 //----------------------------------------------------------------------------------------------------
 // definiamo "gli eventi in ascolto"
 $("#searchInput").keyup(function(event) {
+    if (event.isComposing || event.keyCode === 229) {
+          return;
+      }
+      var input = $(this).val();
+      console.log(input);
+      performSearch(input);
+  });;
+
+
+  $("#priceInput").keyup(function(event) {
     if (event.isComposing || event.keyCode === 229) {
           return;
       }
@@ -117,13 +128,7 @@ function displayResults(results) {
 
   // Iterate through each course in the response
   courses.forEach(function(course) {
-      
-    // giusto di prova
-      html += '<div>';
-      html += '<p>Course ID: ' + course.id + '</p>'; 
-      html += '<p>Course Name: ' + course.name_course + '</p>'; 
-      // Add more properties as needed
-      html += '</div>';
+      html += renderCourseCard(course);
   });
 
   // Set the innerHTML of the result position with the accumulated HTML
@@ -139,10 +144,10 @@ function displayResults(results) {
 function renderCourseCard(course) {
 
   return `
-      <div class="course-card">
-          <h2>${course.name}</h2>
+  <div class="course-card" style="border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <h2>${course.name_course}</h2>
           <p>By: ${course.teacher}</p>
-          <p>${course.description}</p>
+          <p>${course.description_of_course}</p>
           <div class="course-details">
               <span class="price">Price: ${course.price}</span>
               <span class="ambit">Ambit: ${course.ambit}</span>

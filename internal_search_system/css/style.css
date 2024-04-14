@@ -68,10 +68,9 @@ h1 {
   }
 
 
-  .search-wrapper > #searchInput::placeholder {
+.search-wrapper::placeholder {
     color: rgba(0, 0, 0, 0.25);
-  }
-
+}
 
   /* clears the ‘X’ from Internet Explorer */
 input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
@@ -247,30 +246,49 @@ input[type="checkbox"] {
 /*--------------------------------------------------------------------------------------------------------------*/
 /* user cards */ 
 
+/* Contenitore griglia */
+.wildCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1.5fr));
+  gap: 25px;
 
+  margin-left: 300px;
+  margin-right: 300px;
+}
 
-  .user-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: .55rem;
-    margin-top: 1rem;
-  }
-  
-  .card {
-    border: 1px solid black;
-    background-color: white;
-    padding: .5rem;
-  }
-  
-  .card > .header {
-    margin-bottom: .25rem;
-  }
-  
-  .card > .body {
-    font-size: .8rem;
-    color: #777;
-  }
-  
-  .hide {
-    display: none;
-  }
+.course-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.course-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.course-card p {
+  margin-bottom: 10px;
+}
+
+.course-details {
+  margin-top: 10px;
+}
+
+.course-details span {
+  margin-right: 10px;
+}
+
+.price {
+  color: #007bff; /* blue */
+}
+
+.ambit {
+  color: #28a745; /* green */
+}
+
+.rating {
+  color: #ffc107; /* yellow */
+}
