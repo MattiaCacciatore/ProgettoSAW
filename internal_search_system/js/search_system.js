@@ -143,7 +143,7 @@ function displayResults(results) {
 function renderCourseCard(course) {
 
   return `
-  <div class="course-card" style="border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <div class="course-card">
   <h2>${course.name_course}</h2>
           <p>By: ${course.teacher}</p>
           <p>${course.description_of_course}</p>
