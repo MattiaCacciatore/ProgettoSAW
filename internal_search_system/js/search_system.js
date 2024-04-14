@@ -151,7 +151,7 @@ function renderCourseCard(course) {
           <div class="course-details">
               <span class="price">Price: ${course.price}</span>
               <span class="ambit">Ambit: ${course.ambit}</span>
-              <span class="rating">Rating: ${course.average_valuation}</span>
+              <span class="rating">Rating: ${course.average_evaluation}</span>
           </div>
       </div>
   `;
