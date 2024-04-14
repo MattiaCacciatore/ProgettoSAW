@@ -11,68 +11,84 @@ $releaseDateFilter = isset($_POST['releaseDateFilter']) ? $_POST['releaseDateFil
 $priceFilter = isset($_POST['priceFilter']) ? $_POST['priceFilter'] : '';
 $courseAvarageValutationFilter = isset($_POST['courseAvarageValutationFilter']) ? $_POST['courseAvarageValutationFilter'] : '';
 
-// Build the query
-$query = queryBuilder($searchInput, $categoryFilter, $releaseDateFilter, $priceFilter, $courseAvarageValutationFilter);
+
+
+// $query = queryBuilder($searchInput, $categoryFilter, $releaseDateFilter, $priceFilter, $courseAvarageValutationFilter);
+
+// printf($query);
 
 try {
-    // Prepare and execute the query
+   
+    $textInput = addslashes($searchInput);
+    $query = "SELECT * FROM course WHERE id LIKE '$textInput%' ";
     $stmt = $pdo->prepare($query);
+    // $stmt->bindParam(':searchInput', $searchInput);
     $stmt->execute();
 
-    // Fetch all rows as associative arrays
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);  // Fetch all rows as associative arrays
 
-    // Encode the results as JSON and send to client
-    echo json_encode($results);
+
+    echo json_encode($results);                    // Encode the results as JSON and send to client
 
 
 
 } catch (PDOException $e) {
-    // Handle database errors
+
     echo "Error: " . $e->getMessage();
 }
 
 
+
+
+
+
+
+
+
+
 /************************************** METHODS ******************************************/
 
-function queryBuilder($searchInput, $categoryFilter, $releaseDateFilter, $priceFilter, $courseAvarageValutationFilter)
-{
-    $whereClause = "WHERE 1"; // Start with a true condition
 
-    // Add search input conditions
+function queryBuilder(string $searchInput, array $categoryFilter, array $releaseDateFilter, string $priceFilter, string $courseAvarageValutationFilter)
+{
+    $whereClause = "WHERE"; // Start with a true condition
+
+    // Input from the search bar ---------------------------------------------------------------
     if (!empty($searchInput)) {
-        $whereClause .= " AND (id LIKE '%$searchInput%' OR 
-                                name_course LIKE '%$searchInput%' OR 
-                                description_of_course LIKE '%$searchInput%')";
+        $whereClause .= " (course.id LIKE '%$searchInput%' OR 
+        course.name_course LIKE '%$searchInput%' OR 
+        course.description_of_course LIKE '%$searchInput%')";
     }
 
-    // Add category filter conditions
+
+    // input from filter of categories'courses --------------------------------------------------
     if (!empty($categoryFilter)) {
         $whereClause .= " AND (";
         foreach ($categoryFilter as $category) {
-            $whereClause .= " OR category LIKE '%$category%'";
+            $whereClause .= " OR course.category LIKE '%$category%'";
         }
         $whereClause .= ")";
     }
 
-    // Add release date filter conditions
+    //  release date filter --------------------------------------------------------------------
     if (!empty($releaseDateFilter)) {
         $whereClause .= " AND (";
         foreach ($releaseDateFilter as $date) {
-            $whereClause .= " OR release_date LIKE '%$date%'";
+            $whereClause .= " OR course.release_date LIKE '%$date%'";
         }
         $whereClause .= ")";
     }
 
-    // Add price filter condition
+    // Add price filter condition ------------------------------------------------------------
     if (!empty($priceFilter)) {
-        $whereClause .= " AND (price >= '$priceFilter')";
+        $whereClause .= " AND (course.price >= '$priceFilter')";
     }
 
-    // Add course average valuation filter condition
+    // Add course average valuation filter condition ----------------------------------------
     if (!empty($courseAvarageValutationFilter)) {
-        $whereClause .= " AND average_valuation >= '$courseAvarageValutationFilter'";
+        $whereClause .= " AND course.average_valuation >= '$courseAvarageValutationFilter'";
     }
+
 
     // Construct the final query
     $query = "SELECT * FROM course $whereClause";

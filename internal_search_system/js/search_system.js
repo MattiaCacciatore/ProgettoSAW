@@ -15,7 +15,7 @@
 // perform search
 
 
-function performSearch( params) {
+function performSearch(params) {
 
   var searchTextInput = params;
   var categoryFilter = [];
@@ -52,15 +52,15 @@ function performSearch( params) {
       type: "POST",
       data: dataToSend,
       dataType: "json",
-      success: function(response) {
+      success: function(results) {
 
-        $(".show-cards").html(console.log(response));
+        displayResults(results);
       
       },
 
 
 
-      error: function(jqXHR, textStatus, errorThrown) {
+      error: function(textStatus, errorThrown) {
           console.error("Error:", textStatus, errorThrown);
           $("#search-results").html("Error: Search failed!");
       }
@@ -68,9 +68,14 @@ function performSearch( params) {
 }
 
 
-    // definiamo "gli eventi in ascolto"
-    $("#searchInput").keyup(function(event) {
-      if (event.isComposing || event.keyCode === 229) {
+
+
+
+
+//----------------------------------------------------------------------------------------------------
+// definiamo "gli eventi in ascolto"
+$("#searchInput").keyup(function(event) {
+    if (event.isComposing || event.keyCode === 229) {
           return;
       }
       var input = $(this).val();
@@ -100,23 +105,39 @@ function performSearch( params) {
 //----------------------------------------------------------------------------------------------------
 // show the results
 
-function displayResults(response) {
-  let output = ""; // Initialize empty string to accumulate card content
+function displayResults(results) {
+  // Parse the JSON data into a JavaScript object
+  var courses = JSON.parse(JSON.stringify(results));
+
+  // Get the DOM element where the results will be displayed
+  var resultPosition = document.querySelector('.wildCards');
+
+  // Initialize an empty string to accumulate HTML content
+  var html = '';
 
   // Iterate through each course in the response
-  response.courses.forEach((course) => {
-      // Render the course card using the template and course data
-      const renderedCard = renderCourseCard(course);
-      output += renderedCard; // Append card to output
+  courses.forEach(function(course) {
+      
+    // giusto di prova
+      html += '<div>';
+      html += '<p>Course ID: ' + course.id + '</p>'; 
+      html += '<p>Course Name: ' + course.name_course + '</p>'; 
+      // Add more properties as needed
+      html += '</div>';
   });
 
-  // Inject the accumulated HTML into the DOM
-  $(".show-cards").html(output);
+  // Set the innerHTML of the result position with the accumulated HTML
+  if (resultPosition) {
+    resultPosition.innerHTML = html;
+  } else {
+      console.error("Element with class 'show-cards' not found.");
+  }
+
 }
 
+
 function renderCourseCard(course) {
-  // Define your course card template directly in JavaScript
-  // Use string interpolation to insert course data into the template
+
   return `
       <div class="course-card">
           <h2>${course.name}</h2>
