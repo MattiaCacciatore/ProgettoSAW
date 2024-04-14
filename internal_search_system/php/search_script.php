@@ -18,10 +18,8 @@ $query = queryBuilder($searchInput, $categoryFilter, $releaseDateFilter, $priceF
 
 try {
    
-    //$textInput = addslashes($searchInput);
-    //$query = "SELECT * FROM course WHERE course.name_course LIKE '%$textInput%' ";
     $stmt = $pdo->prepare($query);
-    // $stmt->bindParam(':searchInput', $searchInput);
+
     $stmt->execute();
 
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);  // Fetch all rows as associative arrays

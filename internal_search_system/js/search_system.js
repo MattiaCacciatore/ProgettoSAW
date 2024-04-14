@@ -17,11 +17,11 @@
 
 function performSearch(params) {
 
-  var searchTextInput = params;
-  var categoryFilter = [];
-  var releaseDateFilter = [];
-  var priceFilter = $('#priceInput').val();
-  var courseAvarageValutationFilter = $('#averageValutationInput').val();
+  let searchTextInput = params;
+  let categoryFilter = [];
+  let releaseDateFilter = [];
+  let priceFilter = $('#priceInput').val();
+  let courseAletageValutationFilter = $('#averageValutationInput').val();
 
   // acquisiamo i valori dei filtri selezionti dall'utente
   $('.filter-category-cb:checked').each(function() {
@@ -35,12 +35,12 @@ function performSearch(params) {
 
 
   // prepariamo i dati da inviare al server
-  var dataToSend = {
+  let dataToSend = {
       searchTextInput: searchTextInput,
       categoryFilter: categoryFilter,
       releaseDateFilter: releaseDateFilter,
       priceFilter: priceFilter,
-      courseAvarageValutationFilter: courseAvarageValutationFilter
+      courseAletageValutationFilter: courseAletageValutationFilter
   };
 
 
@@ -79,8 +79,7 @@ $("#searchInput").keyup(function(event) {
     if (event.isComposing || event.keyCode === 229) {
           return;
       }
-      var input = $(this).val();
-      console.log(input);
+      let input = $(this).val();
       performSearch(input);
   });;
 
@@ -89,7 +88,7 @@ $("#searchInput").keyup(function(event) {
     if (event.isComposing || event.keyCode === 229) {
           return;
       }
-      var input = $(this).val();
+      let input = $(this).val();
       console.log(input);
       performSearch(input);
   });;
@@ -97,7 +96,7 @@ $("#searchInput").keyup(function(event) {
 
       
       $("#filterInput").on("change", function() {
-        var input = $(this).val();
+        let input = $(this).val();
 
         performSearch(input); 
       });
@@ -118,13 +117,13 @@ $("#searchInput").keyup(function(event) {
 
 function displayResults(results) {
   // Parse the JSON data into a JavaScript object
-  var courses = JSON.parse(JSON.stringify(results));
+  let courses = JSON.parse(JSON.stringify(results));
 
   // Get the DOM element where the results will be displayed
-  var resultPosition = document.querySelector('.wildCards');
+  let resultPosition = document.querySelector('.wildCards');
 
   // Initialize an empty string to accumulate HTML content
-  var html = '';
+  let html = '';
 
   // Iterate through each course in the response
   courses.forEach(function(course) {
