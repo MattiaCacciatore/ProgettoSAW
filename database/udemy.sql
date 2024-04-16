@@ -77,17 +77,19 @@ CREATE TABLE teach(
 );
 
 /* TRIGGERS. -----------------------------------------------------------------------------------------------*/
+
+/* TRIGGERS. -----------------------------------------------------------------------------------------------*/
 /* Vincolo V1. */
 DELIMITER //
 CREATE OR REPLACE TRIGGER update_average_evaluation
 AFTER INSERT ON evaluate
 FOR EACH ROW
 BEGIN
-	DECLARE new_average_eval DECIMAL(1,1) UNSIGNED;
+	DECLARE new_average_eval DECIMAL(2,1) UNSIGNED;
 
-	SELECT AVG(evaluate.vote) INTO new_average_eval FROM evaluate WHERE evaluate.course = NEW.course;
+	SELECT AVG(evaluate.vote) INTO new_average_eval FROM evaluate WHERE evaluate.id_course = NEW.id_course;
 
-    	UPDATE course SET course.average_evaluation = new_average_eval WHERE course.id = NEW.course;
+    	UPDATE course SET course.average_evaluation = new_average_eval WHERE course.id = NEW.id_course;
 END;
 //
 /* Vincolo V3. */
@@ -96,8 +98,8 @@ CREATE OR REPLACE TRIGGER check_follower
 BEFORE INSERT ON evaluate
 FOR EACH ROW
 BEGIN
-	IF NEW.user IN (SELECT follow.user FROM follow WHERE NEW.course = follow.course) THEN
-    		INSERT INTO evaluate (user, course, vote, feedback) VALUES(NEW.user, NEW.course, NEW.vote, NEW.feedback);
+	IF NEW.email_user IN (SELECT follow.email_user FROM follow WHERE NEW.id_course = follow.id_course) THEN
+    		INSERT INTO evaluate (email_user, id_course, feedback, vote) VALUES(NEW.email_user, NEW.id_course, NEW.feedback, NEW.vote);
 	ELSE
     		SIGNAL SQLSTATE '09000' SET MESSAGE_TEXT = 'This user cannot evaluate this course because has not followed it';
 	END IF;
