@@ -45,15 +45,15 @@ CREATE TABLE belong(
 );
 
 CREATE TABLE evaluate(
-    user VARCHAR(100),
-    course BIGINT UNSIGNED,
+    email_user VARCHAR(100),
+    id_course BIGINT UNSIGNED,
     feedback VARCHAR(1500),
     vote TINYINT UNSIGNED NOT NULL CHECK (vote <= 5),
 
-    PRIMARY KEY (user, course),
+    PRIMARY KEY (email_user, id_course),
 
-    FOREIGN KEY (user) REFERENCES user (email) ON DELETE CASCADE,
-    FOREIGN KEY (course) REFERENCES course (id) ON DELETE CASCADE
+    FOREIGN KEY (email_user) REFERENCES user (email) ON DELETE CASCADE,
+    FOREIGN KEY (id_course) REFERENCES course (id) ON DELETE CASCADE
 );
 
 CREATE TABLE follow(
