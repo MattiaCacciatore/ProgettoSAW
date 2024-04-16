@@ -15,37 +15,17 @@
 // perform search
 
 
-function performSearch(params) {
+function performSearchFromSearchBarInput(params) {
 
   let searchTextInput = params;
-  let categoryFilter = [];
-  let releaseDateFilter = [];
-  let priceFilter = $('#priceInput').val();
-  let courseAletageValutationFilter = $('#averageValutationInput').val();
 
-  // acquisiamo i valori dei filtri selezionti dall'utente
-  $('.filter-category-cb:checked').each(function() {
-      categoryFilter.push($(this).val());
-  });
-
-  $('.filter-releaseDate-cb:checked').each(function() {
-      releaseDateFilter.push($(this).val());
-  });
 
 
 
   // prepariamo i dati da inviare al server
   let dataToSend = {
       searchTextInput: searchTextInput,
-      categoryFilter: categoryFilter,
-      releaseDateFilter: releaseDateFilter,
-      priceFilter: priceFilter,
-      courseAletageValutationFilter: courseAletageValutationFilter
   };
-
-
-
-
 
   // inviamo una richiesta ajax
   $.ajax({
@@ -73,6 +53,7 @@ function performSearch(params) {
 
 
 
+
 //----------------------------------------------------------------------------------------------------
 // definiamo "gli eventi in ascolto"
 $("#searchInput").keyup(function(event) {
@@ -80,26 +61,10 @@ $("#searchInput").keyup(function(event) {
           return;
       }
       let input = $(this).val();
-      performSearch(input);
-  });;
+      performSearchFromSearchBarInput(input);
+  });
 
 
-  $("#priceInput").keyup(function(event) {
-    if (event.isComposing || event.keyCode === 229) {
-          return;
-      }
-      let input = $(this).val();
-      console.log(input);
-      performSearch(input);
-  });;
-
-
-      
-      $("#filterInput").on("change", function() {
-        let input = $(this).val();
-
-        performSearch(input); 
-      });
 
 
       /*note:

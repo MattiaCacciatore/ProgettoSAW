@@ -1,8 +1,62 @@
 
-h1 {
-    text-align: center;
-    display: block;
+
+
+html, body,h1 {
+	margin: 0;
+	padding: 0;
+	border: 0;
+  background: rgb(153,217,140);
+  background: linear-gradient(90deg, rgba(153,217,140,1) 0%, rgba(118,200,147,1) 50%, rgba(82,182,154,1) 100%);
+
+  
+
 }
+
+
+
+
+.background-header{
+
+
+  background-image: url(./mountains-8242910_1280.png);
+
+  background-position: 2rch;
+
+  background-size: cover;
+
+  min-height: 200px; /* Set a minimum height for the box */
+  height: 20%; /* Set a height relative to the viewport height */
+  max-height: 400px; /* Set a maximum height if needed */
+  /* Add other styles as needed */
+  box-shadow: 1px 4px 56px #000;
+  border-width: 6px;
+
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+
+
+
+}
+
+.background-header h1 {
+
+  text-align: center;
+  size: 500px;
+
+
+  --s: 0.1em;   /* the thickness of the line */
+  --c: #f2e9e4; /* the color */
+  
+  color: #f2e9e4;
+  padding-bottom: var(--s);
+  background: 
+    linear-gradient(90deg,var(--c) 50%,#000 0) calc(100% - var(--_p,0%))/200% 100%,
+    linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
+  -webkit-background-clip: text,padding-box;
+          background-clip: text,padding-box;
+  transition: 0.5s;
+}
+
 
 
 
@@ -10,19 +64,24 @@ h1 {
 /*searcb bar  & filters*/
 
 .search-system {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    
-    gap: 1.5rem;
-    margin: 20px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+
+
+  margin-left: 300px;
+  margin-right: 300px;
+  padding-top: 30px;
+
+
   }
 
 
 
 
 .search-wrapper{
+    grid-column: 1; /* Place in the first column */
+
 
     display: flex;
 
@@ -31,7 +90,7 @@ h1 {
     gap: .25rem;
 
     padding: 15px;
-    background-color:rgb(215, 215, 216);
+    background-color:#f7f7fc;
 
     width: max-content;
 
@@ -39,8 +98,10 @@ h1 {
     width: 470px;
 
     border-radius: 28px;
+    box-shadow: 0 4px 40px #9a8c98;
 
     transition: box-shadow 0.25s;
+
 
 
   }
@@ -50,10 +111,12 @@ h1 {
     background: 0 0 2px rgba(0, 0, 0, 0.75);
   }
 
+
+
   .search-wrapper > #searchInput {
     border-radius: 28px;
     margin-left: 14px;
-    background-color:rgb(215, 215, 216);
+    background-color:#f7f7fc;
 
     border: none;
     outline: none;
@@ -84,162 +147,87 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 
 
-/* Style for the ambit selection */
-.dropdown-check-list, .release-year {
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-  border-radius: 28px;
-  background-color:rgb(215, 215, 216);
-  padding: 5px;
-
-
-  
-  width: 230px
-}
+/*--------------------------------------------------------------------------------------------------------------*/
+/* filter price */ 
 
 
 
 
+  .price-filter{
+
+    grid-column: 2; /* Place in the second column */
 
 
-/* Style for the release year input */
-.release-year input[type="number"] {
-  border-radius: 28px;
-  margin-left: 14px;
-  background-color:rgb(215, 215, 216);
+    display: flex;
+    justify-content: center; /* Aligns items horizontally at the center */
+    align-items: center; /* Aligns items vertically at the center */
 
-  border: none;
-  outline: none;
+    align-items: center;
+    text-align: center;
+    gap: .25rem;
 
-
-  width: 400px;
-  height: 2rem;
-  text-align: left;
-
-  border: transparent;
-}
-
-
-
-/* Style for checkboxes */
-input[type="checkbox"] {
-  margin-right: 5px;
-}
+  }
 
 
 
 
 
+  .price-filter .field {
+    margin: 0 10px; /* Adjust spacing between fields */
+    
+    padding: 15px;
+    background-color:#f7f7fc;
+
+    width: max-content;
+
+    margin: 0px;
+
+    border-radius: 28px;
+    box-shadow: 0 4px 40px #9a8c98;
+
+    transition: box-shadow 0.25s;
+
+  }
+
+  .price-filter input {
+    border-color: transparent;
+    background-color:#f7f7fc;
+
+  }
+
+  .price-filter .button {
+    margin: 0 10px; /* Adjust spacing between fields */
+    
+    padding: 15px;
+    background-color:#f7f7fc;
+
+    width: max-content;
+
+    margin: 0px;
+
+    border-radius: 28px;
+    box-shadow: 0 4px 40px #9a8c98;
+
+    transition: box-shadow 0.25s;
+
+
+    cursor: pointer;
+  }
 
 
 
-.dropdown-check-list {
-  display: inline-block;
-}
+  .price-filter > button:hover{
+    background: rgb(153,217,140);
+    background: linear-gradient(90deg, rgba(153,217,140,1) 0%, rgba(118,200,147,1) 50%, rgba(82,182,154,1) 100%);
 
-.dropdown-check-list .anchor {
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
-  padding: 5px 50px 5px 30px; /* Adjusted padding for icon alignment */
-}
+    text-decoration: solid;
+    color: #f7f7fc;
 
+    font-size: large;
+    box-shadow:  0 4px 40px #9a8c98;
 
-.dropdown-check-list .categories-icon {
-  position: absolute;
-  align-content: baseline;
+  }
 
-
-}
-.dropdown-check-list .anchor:after {
-  position: absolute;
-  content: "";
-  border-left: 2px solid black;
-  border-top: 2px solid black;
-  padding: 5px;
-  right: 10px;
-  top: 20%;
-  -moz-transform: rotate(-135deg);
-  -ms-transform: rotate(-135deg);
-  -o-transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-  transform: rotate(-135deg);
-}
-
-.dropdown-check-list .anchor:active:after {
-  border: transparent;
-
-  right: 8px;
-  top: 21%;
-}
-
-.dropdown-check-list ul.items {
-  border: transparent;
-  padding: 2px;
-  display: none;
-  margin: 0;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-
-.dropdown-check-list ul.items li {
-  list-style: none;
-}
-
-.dropdown-check-list.visible .anchor {
-  color: #0094ff;
-}
-
-.dropdown-check-list.visible .items {
-  display: block;
-}
-
-
-#showYearsButton {
-  position: relative;
-  border: none;
-  background: transparent;
-}
-
-#showYearsButton::after {
-  content: '\2192'; /* Unicode for right arrow */
-  position: absolute;
-  right: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-
-.release-year:hover {
-  background:#e8eaec;
-}
-
-#showYearsButton:hover::after {
-  opacity: 1;
-}
- 
-#yearTableContainer {
-  display: none;
-}
-
-#yearTableContainer table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#yearTableContainer table th, 
-#yearTableContainer table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-}
-
-#yearTableContainer table th {
-  background-color: #f2f2f2;
-}
 
 
 
@@ -249,6 +237,7 @@ input[type="checkbox"] {
 
 /* Contenitore griglia */
 .wildCards {
+  padding-top: 50px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1.5fr));
   gap: 25px;
@@ -258,16 +247,29 @@ input[type="checkbox"] {
 }
 
 .course-card {
-  border: 1px solid #ccc;
+  background: rgba(247,247,247,1);
+  border: 1px solid #585f85;
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 4px 48px  rgba(51,51,59,1) ;
 }
 
 .course-card h2 {
   font-size: 1.5rem;
   margin-bottom: 10px;
+
+  --s: 0.1em;   /* the thickness of the line */
+  --c: #E1CE7A; /* the color */
+  
+  color: #74546A;
+  padding-bottom: var(--s);
+  background: 
+    linear-gradient(90deg,var(--c) 50%,#000 0) calc(100% - var(--_p,0%))/200% 100%,
+    linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
+  -webkit-background-clip: text,padding-box;
+          background-clip: text,padding-box;
+  transition: 0.5s;
 }
 
 .course-card p {
@@ -283,13 +285,13 @@ input[type="checkbox"] {
 }
 
 .price {
-  color: #007bff; /* blue */
+  color: #585f85; /* blue */
 }
 
 .ambit {
-  color: #28a745; /* green */
+  color: #585f85; /* green */
 }
 
 .rating {
-  color: #ffc107; /* yellow */
+  color: #585f85; /* yellow */
 }
