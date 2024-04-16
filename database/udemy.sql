@@ -57,23 +57,23 @@ CREATE TABLE evaluate(
 );
 
 CREATE TABLE follow(
-    user VARCHAR(100),
-    course BIGINT UNSIGNED,
+    email_user VARCHAR(100),
+    id_course BIGINT UNSIGNED,
 
-    PRIMARY KEY (user, course),
+    PRIMARY KEY (email_user, id_course),
 
-    FOREIGN KEY (user) REFERENCES user (email) ON DELETE CASCADE,
-    FOREIGN KEY (course) REFERENCES course (id) ON DELETE CASCADE
+    FOREIGN KEY (email_user) REFERENCES user (email) ON DELETE CASCADE,
+    FOREIGN KEY (id_course) REFERENCES course (id) ON DELETE CASCADE
 );
 
 CREATE TABLE teach(
-    user VARCHAR(100),
-    course BIGINT UNSIGNED,
+    email_user VARCHAR(100),
+    id_course BIGINT UNSIGNED,
 
-    PRIMARY KEY (user, course),
+    PRIMARY KEY (email_user, id_course),
 
-    FOREIGN KEY (user) REFERENCES user (email) ON DELETE CASCADE,
-    FOREIGN KEY (course) REFERENCES course (id) ON DELETE CASCADE
+    FOREIGN KEY (email_user) REFERENCES user (email) ON DELETE CASCADE,
+    FOREIGN KEY (id_course) REFERENCES course (id) ON DELETE CASCADE
 );
 
 /* TRIGGERS. -----------------------------------------------------------------------------------------------*/
