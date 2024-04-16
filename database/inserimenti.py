@@ -10,7 +10,7 @@ size = int(sys.argv[1])
 list_users = []
 
 command = 'php'
-path = 'C:/Users/cacci/Desktop/hash.php'
+path = 'C:/Users/cacci/Desktop/hash.php' # MODIFICARE QUESTO PERCORSO!!!
 f = open('popolamento.sql', 'a')
 # Prepared statements.
 users = 'INSERT INTO user (email, firstname, lastname, pwd) VALUES (\'{email}\', \'{firstname}\', \'{lastname}\', {pwd}); /* la vera password è: {pas} */\n'
