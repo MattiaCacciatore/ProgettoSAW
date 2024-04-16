@@ -4,7 +4,7 @@ CREATE TABLE user(
     firstname VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
     pwd VARCHAR(255) NOT NULL,
-    is_admin BOOLEAN NOT NULL,
+    is_admin BOOLEAN NOT NULL DEFAULT 0, /* di base è false. */
     id_cookie TEXT DEFAULT NULL,
     expire DATETIME DEFAULT NULL,
     UNIQUE KEY (`id_cookie`)
