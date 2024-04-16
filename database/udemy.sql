@@ -98,9 +98,7 @@ CREATE OR REPLACE TRIGGER check_follower
 BEFORE INSERT ON evaluate
 FOR EACH ROW
 BEGIN
-	IF NEW.email_user IN (SELECT follow.email_user FROM follow WHERE NEW.id_course = follow.id_course) THEN
-    		INSERT INTO evaluate (email_user, id_course, feedback, vote) VALUES(NEW.email_user, NEW.id_course, NEW.feedback, NEW.vote);
-	ELSE
+	IF NEW.email_user NOT IN (SELECT follow.email_user FROM follow WHERE NEW.id_course = follow.id_course) THEN
     		SIGNAL SQLSTATE '09000' SET MESSAGE_TEXT = 'This user cannot evaluate this course because has not followed it';
 	END IF;
 END;
