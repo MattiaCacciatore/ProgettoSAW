@@ -10,7 +10,7 @@ size = int(sys.argv[1])
 list_users = []
 
 command = 'php'
-path = 'C:/Users/cacci/Desktop/hash.php' # MODIFICARE QUESTO PERCORSO!!!
+path = 'C:/path/to/hash.php' # MODIFICARE QUESTO PERCORSO!!!
 f = open('popolamento.sql', 'a')
 # Prepared statements.
 users = 'INSERT INTO user (email, firstname, lastname, pwd) VALUES (\'{email}\', \'{firstname}\', \'{lastname}\', {pwd}); /* la vera password è: {pas} */\n'
@@ -18,7 +18,8 @@ users = 'INSERT INTO user (email, firstname, lastname, pwd) VALUES (\'{email}\',
 for i in range(size):
     # password uniche da 8 caratteri alfanumerici.
     arg = fake.unique.password(8,  special_chars=False)
-    # Ci si appoggia alla libreria subprocess per eseguire lo script php invoncandolo tramite shell e passandogli la password come argomento.
+    # Ci si appoggia alla libreria subprocess per eseguire lo script php invoncandolo tramite shell e 
+    # passandogli la password come argomento.
     proc = subprocess.Popen([command, path, arg], shell=True, stdout=subprocess.PIPE)
     # Passaggio di pulizia della stringa NECESSARIO. Va a rimuovere il carattere 'b' all'inizio della stringa.
     # Si fa il cast a lista perchè le stringhe sono immutabili.
@@ -41,6 +42,7 @@ f.write("\n\n")
 video = "INSERT INTO video (title, duration, type, file, id_course) VALUES (\'{title}\', {duration}, \'{type}\', \'{file}\', {course_id});\n"
 list_types = ['mp4', 'avi', 'mkv', 'flv', 'mov', 'wmv', '3gp', 'webm', 'mpeg']
 for i in range(size):
+    # 'url' è un placeholder.
     f.write(video.format(title = fake.bs(), duration = random.randrange(1, 600), type = random.choice(list_types), file = 'url', course_id = (i+1)))
 
 f.write("\n\n")
