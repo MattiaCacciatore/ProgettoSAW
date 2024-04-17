@@ -15,17 +15,21 @@
 // perform search
 
 
-function performSearchFromSearchBarInput(params) {
+function performSearch(params) {
+
 
   let searchTextInput = params;
+  
 
 
 
 
   // prepariamo i dati da inviare al server
   let dataToSend = {
-      searchTextInput: searchTextInput,
+    searchTextInput: searchTextInput,
   };
+
+
 
   // inviamo una richiesta ajax
   $.ajax({
@@ -35,7 +39,8 @@ function performSearchFromSearchBarInput(params) {
       dataType: "json",
       success: function(results) {
 
-        displayResults(results);
+      (!$.trim(results))? console.log("nessun elemento trovato"): displayResults(results);
+    
       
       },
 
@@ -56,12 +61,19 @@ function performSearchFromSearchBarInput(params) {
 
 //----------------------------------------------------------------------------------------------------
 // definiamo "gli eventi in ascolto"
+
+$(document).ready(function() {
+  performSearch(""); // Call performSearch with an empty string on page load
+});
+
+
 $("#searchInput").keyup(function(event) {
     if (event.isComposing || event.keyCode === 229) {
           return;
       }
       let input = $(this).val();
-      performSearchFromSearchBarInput(input);
+      alert(input);
+      performSearch(input);
   });
 
 
@@ -84,6 +96,7 @@ function displayResults(results) {
   // Parse the JSON data into a JavaScript object
   let courses = JSON.parse(JSON.stringify(results));
 
+
   // Get the DOM element where the results will be displayed
   let resultPosition = document.querySelector('.wildCards');
 
@@ -91,9 +104,12 @@ function displayResults(results) {
   let html = '';
 
   // Iterate through each course in the response
-  courses.forEach(function(course) {
-      html += renderCourseCard(course);
-  });
+      courses.forEach(function(course) {
+        html += renderCourseCard(course);
+    });
+
+
+
 
   // Set the innerHTML of the result position with the accumulated HTML
   if (resultPosition) {

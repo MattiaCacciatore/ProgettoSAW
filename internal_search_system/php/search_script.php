@@ -2,93 +2,36 @@
 
 include_once '../../configuration/databaseHandler.php';
 
-
-
 // Extract search parameters from $_POST
-$searchInput = isset($_POST['searchTextInput']) ? $_POST['searchTextInput'] : '';
-$categoryFilter = isset($_POST['categoryFilter']) ? $_POST['categoryFilter'] : [];
-$releaseDateFilter = isset($_POST['releaseDateFilter']) ? $_POST['releaseDateFilter'] : [];
-$priceFilter = isset($_POST['priceFilter']) ? $_POST['priceFilter'] : '';
-$courseAvarageValutationFilter = isset($_POST['courseAvarageValutationFilter']) ? $_POST['courseAvarageValutationFilter'] : '';
+$query = isset($_POST['searchTextInput']) && $_POST['searchTextInput'] !="" ? queryBuilder() : 'SELECT * FROM course WHERE :search';
+$searchInput = isset($_POST['searchTextInput']) && $_POST['searchTextInput'] !="" ? $_POST['searchTextInput'] : 1;
 
-
-$query = queryBuilder($searchInput, $categoryFilter, $releaseDateFilter, $priceFilter, $courseAvarageValutationFilter);
-
+// Remove commented-out line (security risk)
 // printf($query);
 
 try {
-   
+
     $stmt = $pdo->prepare($query);
+
+
+    $stmt->bindParam(":search", $searchInput);
 
     $stmt->execute();
 
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);  // Fetch all rows as associative arrays
 
-
-    echo json_encode($results);                    // Encode the results as JSON and send to client
-
-
+    echo json_encode($results);                 // Encode the results as JSON and send to client
 
 } catch (PDOException $e) {
 
     echo "Error: " . $e->getMessage();
 }
 
-
-
-
-
-
-
-
-
-
 /************************************** METHODS ******************************************/
 
-
-function queryBuilder(string $searchInput, array $categoryFilter, array $releaseDateFilter, string $priceFilter, string $courseAvarageValutationFilter)
+function queryBuilder()
 {
-    $whereClause = "WHERE"; // Start with a true condition
-
-    // Input from the search bar ---------------------------------------------------------------
-    if (!empty($searchInput)) {
-
-        // $textInput = addslashes($searchInput);
-
-        $whereClause .= " (course.id LIKE '%$searchInput%' OR 
-                            course.name_course LIKE '%$searchInput%' OR 
-                            course.description_of_course LIKE '%$searchInput%')";
-    }
-
-
-    // input from filter of categories'courses --------------------------------------------------
-    if (!empty($categoryFilter)) {
-        $whereClause .= " AND (";
-        foreach ($categoryFilter as $category) {
-            $whereClause .= " OR course.category LIKE '%$category%'";
-        }
-        $whereClause .= ")";
-    }
-
-    //  release date filter --------------------------------------------------------------------
-    if (!empty($releaseDateFilter)) {
-        $whereClause .= " AND (";
-        foreach ($releaseDateFilter as $date) {
-            $whereClause .= " OR course.release_date LIKE '%$date%'";
-        }
-        $whereClause .= ")";
-    }
-
-    // Add price filter condition ------------------------------------------------------------
-    if (!empty($priceFilter)) {
-        $whereClause .= " AND (course.price >= '$priceFilter')";
-    }
-
-    // Add course average valuation filter condition ----------------------------------------
-    if (!empty($courseAvarageValutationFilter)) {
-        $whereClause .= " AND course.average_valuation >= '$courseAvarageValutationFilter'";
-    }
-
+    $whereClause = "WHERE ((id LIKE :search)  OR (name_course LIKE :search) OR (description_of_course LIKE :search))";
 
     // Construct the final query
     $query = "SELECT * FROM course $whereClause";
