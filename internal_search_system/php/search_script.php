@@ -13,8 +13,8 @@ try {
 
     $stmt = $pdo->prepare($query);
 
-
-    $stmt->bindParam(":search", $searchInput);
+    $searchWithWildcards = "%$searchInput%";
+    $stmt->bindParam(":search", $searchWithWildcards);
 
     $stmt->execute();
 
@@ -31,7 +31,7 @@ try {
 
 function queryBuilder()
 {
-    $whereClause = "WHERE ((id LIKE :search)  OR (name_course LIKE :search) OR (description_of_course LIKE :search))";
+    $whereClause = "WHERE ((name_course LIKE :search) OR (description_of_course LIKE :search))";
 
     // Construct the final query
     $query = "SELECT * FROM course $whereClause";

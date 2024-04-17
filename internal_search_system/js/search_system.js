@@ -1,16 +1,4 @@
 
-
-// mustache js e' una libreria che ci facilita la vita 
-// per la realizzazione delle  carte dei corsi, inoltre,  rende il codice piu' legginile
-
-// https://github.com/janl/mustache.js/
-
-
-
-
-
-
-
 //----------------------------------------------------------------------------------------------------
 // perform search
 
@@ -39,7 +27,7 @@ function performSearch(params) {
       dataType: "json",
       success: function(results) {
 
-      (!$.trim(results))? console.log("nessun elemento trovato"): displayResults(results);
+      (!$.trim(results))? console.log("nessun elemento trovato") && displayResults(results) : displayResults(results);
     
       
       },
@@ -72,7 +60,6 @@ $("#searchInput").keyup(function(event) {
           return;
       }
       let input = $(this).val();
-      alert(input);
       performSearch(input);
   });
 
