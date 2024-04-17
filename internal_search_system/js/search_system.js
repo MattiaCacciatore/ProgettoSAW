@@ -8,14 +8,12 @@ function performSearch(params) {
 
   let searchTextInput = params;
   
-
-
-  document.querySelector('.wildCards').innerHTML= '<p class="error"params:</p>'+ console.log(searchTextInput);
-
   // prepariamo i dati da inviare al server
   let dataToSend = {
     searchTextInput: searchTextInput,
   };
+
+  console.log(dataToSend);
 
 
 
@@ -28,7 +26,7 @@ function performSearch(params) {
       success: function(results) {
 
         // se non troviamo nulla, solleviamo un'eccezione. Stampiamo i risultati altrimenti
-      !$.trim(results)?  document.querySelector('.wildCards').innerHTML= '<p class="error">nessun elemento trovato</p>'+ console.log(results) : displayResults(results);
+      !$.trim(results)?  document.querySelector('.wildCards').innerHTML= '<p class="error">nessun corso trovato</p>' : displayResults(results);
     
       
       },
@@ -52,7 +50,7 @@ function performSearch(params) {
 // definiamo "gli eventi in ascolto"
 
 $(document).ready(function() {
-  performSearch(null); // Call performSearch with an empty string on page load
+  performSearch(""); // Call performSearch with an empty string on page load
 });
 
 
