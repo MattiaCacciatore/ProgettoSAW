@@ -3,7 +3,7 @@
 include_once '../../configuration/databaseHandler.php';
 
 // Extract search parameters from $_POST
-$query = isset($_POST['searchTextInput']) && $_POST['searchTextInput'] !="" ? queryBuilder() : 'SELECT * FROM course WHERE :search';
+$query = isset($_POST['searchTextInput']) && $_POST['searchTextInput'] != null ? queryBuilder() : 'SELECT * FROM course WHERE :search';
 $searchInput = isset($_POST['searchTextInput']) && $_POST['searchTextInput'] !="" ? $_POST['searchTextInput'] : 1;
 
 // Remove commented-out line (security risk)

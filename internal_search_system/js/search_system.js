@@ -10,7 +10,7 @@ function performSearch(params) {
   
 
 
-
+  document.querySelector('.wildCards').innerHTML= '<p class="error"params:</p>'+ console.log(searchTextInput);
 
   // prepariamo i dati da inviare al server
   let dataToSend = {
@@ -27,7 +27,8 @@ function performSearch(params) {
       dataType: "json",
       success: function(results) {
 
-      (!$.trim(results))? console.log("nessun elemento trovato") && displayResults(results) : displayResults(results);
+        // se non troviamo nulla, solleviamo un'eccezione. Stampiamo i risultati altrimenti
+      !$.trim(results)?  document.querySelector('.wildCards').innerHTML= '<p class="error">nessun elemento trovato</p>'+ console.log(results) : displayResults(results);
     
       
       },
@@ -51,7 +52,7 @@ function performSearch(params) {
 // definiamo "gli eventi in ascolto"
 
 $(document).ready(function() {
-  performSearch(""); // Call performSearch with an empty string on page load
+  performSearch(null); // Call performSearch with an empty string on page load
 });
 
 
