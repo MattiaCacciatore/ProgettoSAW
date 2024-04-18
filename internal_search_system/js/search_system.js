@@ -1,23 +1,36 @@
 
-//----------------------------------------------------------------------------------------------------
-// perform search
-
-
 function performSearch(params) {
+
+  document.querySelector('.price-filter-error').innerHTML = '';
+
+
+  /******************** RACCOLTA DEI DATI *****************************/
+  
+  let minPrice = getPriceFilterValue('#input-min');
+  let maxPrice = getPriceFilterValue('#input-max');
+
+  if (minPrice > maxPrice) {
+    document.querySelector('.price-filter-error').innerHTML = '<p class="error"> il minimo non può essere più grande del massimo </p>';
+    return;
+  }
 
 
   let searchTextInput = params;
+
+
+  /******************* PREPARAZIONE DEI DATI *************************** */
   
   // prepariamo i dati da inviare al server
   let dataToSend = {
     searchTextInput: searchTextInput,
+    minPrice:minPrice,
+    maxPrice:maxPrice
+
   };
 
-  console.log(dataToSend);
 
 
-
-  // inviamo una richiesta ajax
+  // inviamo una richiesta ajax------------------------------------------
   $.ajax({
       url: "../php/search_script.php",
       type: "POST",
@@ -53,7 +66,7 @@ $(document).ready(function() {
   performSearch(""); // Call performSearch with an empty string on page load
 });
 
-
+// ad ogni input dell'utente viene efftettuata una ricerca, molto più dinamico
 $("#searchInput").keyup(function(event) {
     if (event.isComposing || event.keyCode === 229) {
           return;
@@ -63,14 +76,10 @@ $("#searchInput").keyup(function(event) {
   });
 
 
-
-
-      /*note:
-        .on e' la versione jquery di addEventListener
-        doc: https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event
-*/
-
-    
+  // se venissero inpostati dei valori ai campi del filtro dei prezzi allora,
+  $("#searchButton").click(function() {
+    performSearch($("#searchInput").val()); // Trigger search with current search input
+  });
 
 
     
@@ -78,9 +87,41 @@ $("#searchInput").keyup(function(event) {
 //----------------------------------------------------------------------------------------------------
 // show the results
 
+function getPriceFilterValue(priceFilterId) {
+
+  let priceValue = $(priceFilterId).val();
+  let result;
+
+  // sanity check
+  if (priceValue < 0 ) {
+    document.querySelector('.price-filter-error').innerHTML = '<p class="error">Il prezzo non può essere negativo</p>';
+    return;
+
+  }
+
+   
+  // verifichiamo a quale campo ci refriamo e se percaso il campo e' vuoto impostiamo dei valori di default 0 e 10.000 rispettivamente
+  if (priceFilterId === "#input-min") {
+    result = priceValue ? parseFloat(priceValue) : 0; 
+  } else {
+    result = priceValue ? parseFloat(priceValue) : 10000; 
+  }
+
+  console.log(result);
+  
+  return result;
+}
+
+
+
+
+
 function displayResults(results) {
   // Parse the JSON data into a JavaScript object
   let courses = JSON.parse(JSON.stringify(results));
+
+  // siccome noi facciamo un parsing dei dati in JSON, possimao sfruttarlo per esegurie il filtraggio dei dati
+
 
 
   // Get the DOM element where the results will be displayed

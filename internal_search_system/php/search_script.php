@@ -4,14 +4,13 @@ include_once '../../configuration/databaseHandler.php';
 
 // Estraggo i parametri di ricerca da $_POST
 $searchInput = isset($_POST['searchTextInput']) ? $_POST['searchTextInput'] : "";
+$minPrice = isset($_POST['minPrice']) ? $_POST['minPrice'] : 0;
+$maxPrice = isset($_POST['maxPrice']) ? $_POST['maxPrice'] : 10000;
 
-$query = "SELECT * FROM course";
 
-// Se l'input di ricerca non è vuoto, aggiungo la clausola WHERE per filtrare i risultati
-// TODO: da modificare quando aggiorniamo ol db
-if (!empty($searchInput)) {
-  $query .= " WHERE (name_course LIKE :search OR description_of_course LIKE :search)";
-}
+
+
+$query = queryBuilder($searchInput, $minPrice, $maxPrice);
 
 try {
 
@@ -20,8 +19,17 @@ try {
   // Assocoa il parametro di ricerca solo se non è vuoto
   if (!empty($searchInput)) {
     $searchWithWildcards = "%$searchInput%";
-    $stmt->bindParam(":search", $searchWithWildcards);
+    $stmt->bindParam(":search", $searchWithWildcards, PDO::PARAM_STR);
   }
+
+
+  if (!empty($minPrice) && !empty($maxPrice)) {
+
+    $stmt->bindParam(":minPrice", $minPrice, PDO::PARAM_INT);
+    $stmt->bindParam(":maxPrice", $maxPrice, PDO::PARAM_INT);
+  }
+
+
 
   $stmt->execute();
 
@@ -31,18 +39,33 @@ try {
 
 } catch (PDOException $e) {
 
-  echo "Errore: " . $e->getMessage();
+  echo json_encode(array("error" => "Database Error: " . $e->getMessage()));
 }
 
 /************************************** METODI ******************************************/
 
-function queryBuilder() {
-  $whereClause = "WHERE ((name_course LIKE :search) OR (description_of_course LIKE :search))";
+function queryBuilder($searchInput, $minPrice, $maxPrice) {
 
-  // Costruisci la query finale
-  $query = "SELECT * FROM course $whereClause";
+  $whereClause = "";
+
+  if (!empty($searchInput)) {
+      $whereClause .= " (name_course LIKE :search OR description_of_course LIKE :search) AND ";
+  }
+
+  if (!empty($minPrice) && !empty($maxPrice)) {
+      $whereClause .= " (price BETWEEN :minPrice AND :maxPrice) ";
+  }
+
+  // controlliamo ed eliminamo nel caso ci fossero degli AND non necessari
+  $whereClause = rtrim($whereClause, "AND ");
+
+  $query = "SELECT * FROM course";
+
+  // se ci fosse qualche opzione, allora
+  if (!empty($whereClause)) {
+      $query .= " WHERE " . $whereClause;
+  }
 
   return $query;
 }
-
 ?>
