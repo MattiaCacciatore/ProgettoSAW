@@ -6,8 +6,14 @@ function performSearch(params) {
 
   /******************** RACCOLTA DEI DATI *****************************/
   
-  let minPrice = getPriceFilterValue('#input-min');
-  let maxPrice = getPriceFilterValue('#input-max');
+  //nota: toFixed aggiunge a un input intero la virgola con due zeri. 80 -> 80,00
+  let minPrice = getPriceFilterValue('#input-min').toFixed(2); 
+  let maxPrice = getPriceFilterValue('#input-max').toFixed(2);
+
+  console.log(maxPrice);
+  console.log(maxPrice);
+
+  
 
   if (minPrice > maxPrice) {
     document.querySelector('.price-filter-error').innerHTML = '<p class="error"> il minimo non può essere più grande del massimo </p>';
