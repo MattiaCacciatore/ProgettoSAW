@@ -7,11 +7,10 @@ function performSearch(params) {
   /******************** RACCOLTA DEI DATI *****************************/
   
   //nota: toFixed aggiunge a un input intero la virgola con due zeri. 80 -> 80,00
-  let minPrice = getPriceFilterValue('#input-min').toFixed(2); 
-  let maxPrice = getPriceFilterValue('#input-max').toFixed(2);
+  let minPrice = getPriceFilterValue('#input-min'); 
+  let maxPrice = getPriceFilterValue('#input-max');
 
-  console.log(maxPrice);
-  console.log(maxPrice);
+
 
   
 
@@ -112,8 +111,6 @@ function getPriceFilterValue(priceFilterId) {
   } else {
     result = priceValue ? parseFloat(priceValue) : 10000; 
   }
-
-  console.log(result);
   
   return result;
 }
