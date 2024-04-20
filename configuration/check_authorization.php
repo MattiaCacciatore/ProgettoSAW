@@ -21,8 +21,6 @@
 			$user_name     = $res[1];
 			$user_lastname = $res[2];
 			$user_is_admin = $res[4];
-            /* It can be NULL. */
-			$user_expire   = $res[6];
 
             if(!empty($user_expire) && $user_expire > date('Y-m-d H:i:s')){
                 $_SESSION['name']           = $user_name;

@@ -8,8 +8,8 @@
 			$query       = 'SELECT * FROM user WHERE user.email=?;';
 			$params      = array($email);
 			$param_types = 's';
-			/* The result of the query is stored in rows. Since user.email is the primary key the result is supposed to be 0 or 1 row. */
-			/* $res stores the result of the query called in database_handler.php */
+			/* Since user.email is the primary key the result is supposed to be 0 or 1 row.
+			   $res stores the result of the query called in database_handler.php */
 			$res;
 			
 			require '../../configuration/database_handler.php';
@@ -23,32 +23,29 @@
 				$user_is_admin = $res[4];
 
 				if(password_verify($password, $user_pwd)){
-					/* Session variables. */
-					$_SESSION['name'] = $user_name;
-					$_SESSION['surname'] = $user_lastname;
-					$_SESSION['email'] = $user_email;
+					/* Setting session variables. */
+					$_SESSION['name']           = $user_name;
+					$_SESSION['surname']        = $user_lastname;
+					$_SESSION['email']          = $user_email;
 					$_SESSION['authentication'] = 'true';
 					/* A boolean TRUE value is converted to the string '1'. Boolean FALSE is converted to '' (the empty string). 
 					This allows conversion back and forth between boolean and string values. Therefore boolean values are NOT
 					reliable. */
-					if($user_is_admin == 1){
+					if($user_is_admin == 1)
 						$_SESSION['admin'] = 'true';
-					}
-					else{
+					else
 						$_SESSION['admin'] = 'false';
-					}
-					/* Cookie variables. */
+					/* Setting cookie variables. */
 					require '../../configuration/setcookies.php';
 				}
 			}
 		}
-		else{
+		else
 			exit('Wrong credentials.');
-		}
 	}
-	else{
+	else
 		exit('Empty credentials.');
-	}
+
     /* Redirect to the homepage. */
 	header('Location: ../../index.php');
 ?>
