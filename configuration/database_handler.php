@@ -7,12 +7,13 @@
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
     $db_connection;
-    $host = 'localhost'; 
-    $dbname ='S4850100'; 
-    $dbusername = 'S4850100'; 
-    $dbpassword = 'pHpIs50DeCeNt'; 
+    $host          = 'localhost'; 
+    $dbname        ='S4850100'; 
+    $dbusername    = 'S4850100'; 
+    $dbpassword    = 'pHpIs50DeCeNt'; 
     $error_occured = false;
-    $result = false;
+    $result        = false;
+    $res           = null;
     
     if(!($db_connection = mysqli_connect($host, $dbusername, $dbpassword, $dbname))
         || !mysqli_set_charset($db_connection, 'utf8mb4')){
@@ -31,14 +32,12 @@
             $sql_stmt = mysqli_prepare($db_connection, $query);
             mysqli_stmt_bind_param($sql_stmt, $param_types, ...$params);
             mysqli_stmt_execute($sql_stmt);
-            if(($result = mysqli_stmt_get_result($sql_stmt)) === false)
-                $rows = null;
-            else
-                $rows = mysqli_fetch_array($result, MYSQLI_NUM);
+            if(($result = mysqli_stmt_get_result($sql_stmt)) !== false)
+                $res = mysqli_fetch_array($result, MYSQLI_NUM);
         }
         else{ /* I HATE PHP FOR THIS. Fatto a causa del fatto che la bind_param esige almeno un parametro, altrimenti genera warning. */
             $result = mysqli_query($db_connection, $query);
-            $rows = mysqli_fetch_all($result, MYSQLI_NUM);
+            $res = mysqli_fetch_all($result, MYSQLI_NUM);
         }
     }
     catch(mysqli_sql_exception $e){

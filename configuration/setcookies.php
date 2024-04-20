@@ -15,11 +15,12 @@
         }
         $expire = date_format($expire_date, 'Y-m-d H:i:s');
         $query = 'UPDATE user SET user.id_cookie = ?, user.expire = ? WHERE user.email=?;';
+        /* $user_email is checked in login.php. */
         $params = array($value, $expire, $user_email);
         $param_types = 'sss';
         /* $res stores the result of the query called in database_handler.php */
         $res;
-        /* $user_email is checked in login.php. */
+        
         require './database_handler.php';
 
         $expire = time() + (60*60*24*30);
