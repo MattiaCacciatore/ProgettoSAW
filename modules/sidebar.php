@@ -1,0 +1,17 @@
+<?php
+	print(
+	'
+	<aside class = \'my_sidebar\'>
+		<h2>Contenuti</h2>
+		<ul>
+            <a href = \'../index.php\'>Homepage</a> <br>
+            <a href = \'#\'>Scopri di pi&ugrave;</a> <br>
+            <a href = \'#\'>Area tematica</a> <br>
+            <a href = \'#\'>La struttura</a> <br>
+            <a href = \'#\'>I corsi</a> <br>
+            <a href = \'#\'>Il personale</a> <br>
+        </ul>
+	</aside>
+	'
+	);
+?>

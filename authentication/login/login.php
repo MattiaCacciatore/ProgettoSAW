@@ -1,81 +1,54 @@
 <?php
+	require '../../configuration/check_auth_token.php';
 
+	if(!isset($_SESSION['authentication']) && isset($_POST['submit'])){
+		$email    = $_POST['email'];
+		$password = $_POST['pass'];
+		if(!empty($email) && !empty($password)){
+			$query       = 'SELECT * FROM user WHERE user.email=?;';
+			$params      = array($email);
+			$param_types = 's';
+			/* The result of the query is stored in rows. Since user.email is the primary key the result is supposed to be 0 or 1 row. */
+			/* $res stores the result of the query called in database_handler.php */
+			$res;
+			
+			require '../../configuration/database_handler.php';
 
-if (!$_SERVER["REQUEST_METHOD"] == "POST") {
-    header("Location: ../../index.php" );
-    die(); // 1- Meglio impostazione con if($SERVER){} header()?
-}
+			if(!(empty($res))){
+				/* The user exists in the database. */
+				$user_email    = $res[0];
+				$user_name     = $res[1];
+				$user_lastname = $res[2];
+				$user_pwd      = $res[3];
+				$user_is_admin = $res[4];
 
-
-$email = $_POST["email"];
-$password = $_POST["pass"];
-
-
-try {
-
-    require_once '../../configuration/databaseHandler.php'; // 2- Aprire adesso la connessione con il database non è ottimale.
-    require_once './login_datab.php';                       // 3- Richiamo delle funzioni, quindi ci sta, ma serve un file a parte?
-    require_once './login_control.php';                     // 4- Controlli ripetuti ma ci stanno se usati sia per login che per registration. Letto commento.
-
-
-    /******* ERROR HANDLERS ******* */ 
-
-
-    $errors = [];
-
-
-    //NOTA: per il progetto dovremmo generalizzare gli errori per questioni di sicurezza es. "input non corretto"
-    
-
-    if ( is_input_empty( $email,  $password )){
-    
-        $errors["empty_input"] = "Fill in all filelds"; // 5- Anche qui, non è meglio schematizzare con degli if(){}else{}?
-    }
-
-    // nota: pdo la prendimo dal file: databasehandler.inc.php
-    $result = get_user($pdo, $email);                   // 6-  La preparazione e l'esecuzione della query non è all'interno di un try-catch! -> il try parte alla riga 14, what?
-
-    if (!is_email_exsist($result["email"])) {
-        $errors["login_error_email"] = "email is incorrect or not exsist";
-    }
-
-
-    /* ricordo che result e' un'array in caso l'utente esista all'interno del db 
-    potendo cosi' accedere alla password hashed come qui di seguito*/
-    if (!password_verify($password, $result["pwd"])) {
-        $errors["login_error_pwd"] = "password is incorrect";
-    }
-
-
-    
-
-
-    require_once ('../../configuration/config_session.php');
-   
-
-    // nota: si e' corretto fare cosi' altrimenti non potremmos
-    // scrivere all'interno di $_SESSION
-    if($errors) {
-
-
-        $_SESSION["errors_login"] = $errors; // 7- Gli errori dovuti alla connessione di un utente NON vanno inserite nell'array super globale, ma su un file di .log
-        header("Location: '../pages/login.phplogin=failed");
-        die(); 
-
-        
-    }
-    
-
-    header("Location: ../pages/login.phplogin=success"); // 8- Il reindirizzamento dovrebbe avvenire verso la homepage index.php
-    $pdo = null;
-    $statement = null ;
-
-    die(); // 9- Perchè chiamare die()?
-
-    
-} catch (PDOException $e) {
-    die("Query has failed: ". $e->getMessage());
-}
-
-
+				if(password_verify($password, $user_pwd)){
+					/* Session variables. */
+					$_SESSION['name'] = $user_name;
+					$_SESSION['surname'] = $user_lastname;
+					$_SESSION['email'] = $user_email;
+					$_SESSION['authentication'] = 'true';
+					/* A boolean TRUE value is converted to the string '1'. Boolean FALSE is converted to '' (the empty string). 
+					This allows conversion back and forth between boolean and string values. Therefore boolean values are NOT
+					reliable. */
+					if($user_is_admin == 1){
+						$_SESSION['admin'] = 'true';
+					}
+					else{
+						$_SESSION['admin'] = 'false';
+					}
+					/* Cookie variables. */
+					require '../../configuration/setcookies.php';
+				}
+			}
+		}
+		else{
+			exit('Wrong credentials.');
+		}
+	}
+	else{
+		exit('Empty credentials.');
+	}
+    /* Redirect to the homepage. */
+	header('Location: ../../index.php');
 ?>

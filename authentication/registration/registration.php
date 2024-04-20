@@ -1,71 +1,38 @@
 <?php
+	require '../../configuration/check_auth_token.php';
 
+	if(!isset($_SESSION['authentication']) && isset($_POST['submit'])){
+		$name             = $_POST['firstname'];
+		$surname          = $_POST['lastname'];
+		$email            = $_POST['email'];
+		$password         = $_POST['pass'];
+		$confirm_password = $_POST['confirm'];
 
+		if(!empty($name) && !empty($surname) && !empty($email) && !empty($password) && !empty($confirm_password)){
+			if(strcmp('$password','$confirm_password') === 0){
+				/*
+				pepper va configurato nel file config.conf del server.
+				$pepper = getConfigVariable('pepper');
+				$pwd_peppered = hash_hmac('sha256', $password, $pepper);
+				$hashed_password = password_hash($pwd_peppered, PASSWORD_ARGON2ID);
+				*/
+				$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+				$query = 'INSERT INTO user(email, firstname, lastname, pwd) VALUES (?, ?, ?, ?);';
+				$params = array($email, $name, $surname, $hashed_password);
+				$param_types = 'ssss';
+                /* $res stores the result of the query called in database_handler.php */
+				$res;
 
-// Redirect if not a POST request
-    if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-        header("Location: ../index.php");
-        exit();
-    }
-
-// Retrieve form data
-    $firstname = $_POST["firstname"];
-    $lastname = $_POST["lastname"];
-    $email = $_POST["email"];
-    $password = $_POST["pass"];
-    $confirm_password = $_POST['confirm']; // 1- Notato adesso, inconsistenza tra '' e "".
-    $is_admin = FALSE;                     // 2- Necessario?
-
-// Include necessary files and functions
-    require_once '../../configuration/config_session.php';
-    require_once '../../configuration/databaseHandler.php';
-    require_once './registration_datab.php'; // 3- Queste 2 require andrebbero invertite? Incosistenza con login per $error = [] e $error = array();
-    require_once './registration_control.php'; // 4- Necessario controllare che nomi e cognomi siano alfabetici? ATTENZXIONE ALLA VALIDAZIONE DELL'EMAIL.
-
-
-
-
-
-try {
-
-    // proviamo a registrare il nuovo utente
-    $registration_result = register_user($pdo, $firstname, $lastname, $email, $password, $confirm_password, $is_admin);
-
-    // se tutto va a buon fine
-    if (empty($registration_result)) {
-        header("Location: ../pages/registration.php?registration=success");
-        unset($_SESSION["registration_data"]);
-        exit();
-
-
-    } else {
-        // Altrimenti... 
-
-        $_SESSION["registration_errors"] = $registration_result;
-
-
-        /* Ora, anche se ci sono stati degli errori,con  signin data, 
-            voglio mantenere i dati di quei campi che sono stati compilati correttamente dell-utente in modo tale
-            che lui non debba reinserirli. eccezion fatta per la password per ovvie
-            questioni di sicurezza*/
-
-            $registration_data = [
-                "firstname" => $firstname,
-                "lastname" => $lastname,
-                "email" => $email,
-            ];
-
-            $_SESSION["registration_data"] = $registration_data;
-
-
-        header("Location: ../pages/registration.php?registration=failed");
-        exit();
-    }
-} catch (PDOException $e) {
-
-    // Se per puro caso insorgessero alti errori lato database
-    die("Query has failed: ". $e->getMessage());
-
-}
-
+				require '../../configuration/database_handler.php';
+			}
+			else{
+				exit('ERROR: Password and confirm password are different.');
+			}
+		}
+		else{
+			exit('ERROR: Empty credentials.');
+		}
+	}
+    /* Redirect to the homepage. */
+	header('Location: ../../index.php');
 ?>
