@@ -1,7 +1,3 @@
-<?php
-  require_once ('../../configuration/config_session.php'); 
-?>
-
 <!DOCTYPE html>
 <html lang='it'>
 

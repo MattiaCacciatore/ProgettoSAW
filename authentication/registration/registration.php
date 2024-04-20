@@ -1,5 +1,5 @@
 <?php
-	require '../../configuration/check_auth_token.php';
+	require '../../configuration/check_authorization.php';
 
 	if(!isset($_SESSION['authentication']) && isset($_POST['submit'])){
 		$name             = $_POST['firstname'];
