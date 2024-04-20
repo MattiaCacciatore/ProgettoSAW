@@ -3,7 +3,7 @@
 	
 	print(
 	'
-	<nav class = \'my_navbar\'>
+	<nav>
 	'
 	);
 

@@ -8,6 +8,7 @@
            Golden rule: NEVER trust users and their cookies. */
         $query       = 'SELECT * FROM user WHERE user.id_cookie=?;';
         $params      = array($_COOKIE['user_remember']);
+        /* 's' means that the param is bounded as a string. */
         $param_types = 's';
         /* The result of the query is stored in rows. Since user.id_cookie is unique the result is supposed to be 0 or 1 row. */
         /* $res stores the result of the query called in database_handler.php */

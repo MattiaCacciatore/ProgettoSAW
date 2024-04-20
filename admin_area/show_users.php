@@ -6,21 +6,22 @@
 <!DOCTYPE html>
 <html lang = 'en'>
 
-<?php
-    include '../configuration/head_style.php';
-?>
+<head>
+    <?php include '../configuration/head_style.php'; ?>
+</head>
 
 <body>
     <?php
         $query = 'SELECT * FROM user ORDER BY lastname;';
         $params = null;
+        /* 's' means that the param is bounded as a string. */
         $param_types = 's';
         /* The result of the query is stored in res. */
         $res;
 
         require '../configuration/database_handler.php';
 
-        if(!(empty($rows))){
+        if(!(empty($res))){
             print('
             <table>
                 <tr>
@@ -31,7 +32,7 @@
                     <th>Ban</th>
                     <th>Unban</th>
                 </tr>');
-            foreach($rows as $row){
+            foreach($res as $row){
                 printf('
                 <tr>
                     <th>%s</th>

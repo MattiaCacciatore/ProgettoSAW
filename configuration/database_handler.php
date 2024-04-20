@@ -2,15 +2,15 @@
     /* ---------------------------------------------------------------------------------------------------
         OPEN THE CONNECTION TO THE DATABASE.
        --------------------------------------------------------------------------------------------------- */
-    /* Enable error reporting and set the desired charset after establishing 
+    /* Enable error reporting and set the desired charset after establishing
 	a connection for the encoding. Mandatory for the try-catch statement. */
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
     $db_connection;
-    $host          = 'localhost'; 
-    $dbname        ='S4850100'; 
-    $dbusername    = 'S4850100'; 
-    $dbpassword    = 'pHpIs50DeCeNt'; 
+    $host          = 'localhost';
+    $dbname        = 'S4850100';
+    $dbusername    = 'S4850100';
+    $dbpassword    = 'pHpIs50DeCeNt';
     $error_occured = false;
     $result        = false;
     $res           = null;

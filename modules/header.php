@@ -1,7 +1,7 @@
 <?php
 	print(
 	'
-	<header class = \'my_header\'>
+	<header>
 		Real Udemy
 	</header>
 	'
