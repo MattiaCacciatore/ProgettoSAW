@@ -20,7 +20,7 @@
         mysqli_close($db_connection);
         if(mysqli_connect_errno()){
             $error = sprintf('%s - Connect failed: %s\n', date('Y-m-d H:i:s'), mysqli_connect_error());
-            error_log($error, 3, '../../../errors/errors.log');
+            error_log($error, 3, dirname(__FILE__).'/../../../errors/errors.log');
         }
         die('ERROR: Couldn\'t connect to the database or set the encoding.');
     }
@@ -42,7 +42,7 @@
     }
     catch(mysqli_sql_exception $e){
         $error = sprintf('%s - %s: %s\n', date('Y-m-d H:i:s'), $query, $e->getMessage());
-        error_log($error, 3, '../../../errors/errors.log');
+        error_log($error, 3, dirname(__FILE__).'/../../../errors/errors.log');
         $error_occured = true;
         goto close_connection;
     }

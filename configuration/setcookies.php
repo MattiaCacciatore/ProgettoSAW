@@ -25,7 +25,7 @@
         require dirname(__FILE__).'/ProgettoSAW/configuration/database_handler.php';
 
         $expire = time() + (60*60*24*30);
-        if(!setcookie($cookie_name, $value, $expire, '/', '', false, true))){
+        if(!setcookie($cookie_name, $value, $expire, '/', '', false, true)){
             exit('Couldn\'t set the persistent cookie.');
         }
     }

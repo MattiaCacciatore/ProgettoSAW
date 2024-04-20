@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../configuration/databaseHandler.php';
+			require dirname(__FILE__).'/../../configuration/database_handler.php';
 
 // Estraggo i parametri di ricerca da $_POST
 $searchInput = isset($_POST['searchTextInput']) ? $_POST['searchTextInput'] : "";

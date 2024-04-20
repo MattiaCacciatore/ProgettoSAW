@@ -1,5 +1,5 @@
 <?php
-	require dirname(__FILE__).'/ProgettoSAW/configuration/check_authorization.php';
+	require dirname(__FILE__).'/../../configuration/check_authorization.php';
 
 	if(!isset($_SESSION['authentication']) && isset($_POST['submit'])){
 		$name             = $_POST['firstname'];
@@ -9,7 +9,7 @@
 		$confirm_password = $_POST['confirm'];
 
 		if(!empty($name) && !empty($surname) && !empty($email) && !empty($password) && !empty($confirm_password)){
-			if(strcmp('$password','$confirm_password') === 0){
+			if(strcmp($password,$confirm_password) === 0){
 				/*
 				pepper va configurato nel file config.conf del server.
 				$pepper = getConfigVariable('pepper');
@@ -23,7 +23,7 @@
                 /* $res stores the result of the query called in database_handler.php */
 				$res;
 
-				require dirname(__FILE__).'/ProgettoSAW/configuration/database_handler.php';
+				require dirname(__FILE__).'/../../configuration/database_handler.php';
 			}
 			else{
 				exit('ERROR: Password and confirm password are different.');
