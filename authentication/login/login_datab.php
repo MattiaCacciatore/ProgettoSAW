@@ -13,18 +13,18 @@ function get_user(object $pdo, string $email) {
     $query = "SELECT * FROM user WHERE email = :email;";
 
     // Preparazione della query
-        $stmt = $pdo->prepare($query);
+    $stmt = $pdo->prepare($query);
 
     // Associazione del parametro :email con il valore della variabile $email
-        $stmt->bindParam(":email", $email);
+    $stmt->bindParam(":email", $email);
 
     // Esecuzione della query
-        $stmt->execute();
+    $stmt->execute();
 
     // Recupero della riga risultante come un array associativo
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $result;
+    return $result;
 }
 
 

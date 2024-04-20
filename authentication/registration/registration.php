@@ -13,14 +13,14 @@
     $lastname = $_POST["lastname"];
     $email = $_POST["email"];
     $password = $_POST["pass"];
-    $confirm_password = $_POST['confirm'];
-    $is_admin = FALSE;
+    $confirm_password = $_POST['confirm']; // 1- Notato adesso, inconsistenza tra '' e "".
+    $is_admin = FALSE;                     // 2- Necessario?
 
 // Include necessary files and functions
     require_once '../../configuration/config_session.php';
     require_once '../../configuration/databaseHandler.php';
-    require_once './registration_datab.php';
-    require_once './registration_control.php';
+    require_once './registration_datab.php'; // 3- Queste 2 require andrebbero invertite? Incosistenza con login per $error = [] e $error = array();
+    require_once './registration_control.php'; // 4- Necessario controllare che nomi e cognomi siano alfabetici? ATTENZXIONE ALLA VALIDAZIONE DELL'EMAIL.
 
 
 

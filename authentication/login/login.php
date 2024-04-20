@@ -3,7 +3,7 @@
 
 if (!$_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: ../../index.php" );
-    die();
+    die(); // 1- Meglio impostazione con if($SERVER){} header()?
 }
 
 
@@ -13,9 +13,9 @@ $password = $_POST["pass"];
 
 try {
 
-    require_once '../../configuration/databaseHandler.php';
-    require_once './login_datab.php';
-    require_once './login_control.php';
+    require_once '../../configuration/databaseHandler.php'; // 2- Aprire adesso la connessione con il database non è ottimale.
+    require_once './login_datab.php';                       // 3- Richiamo delle funzioni, quindi ci sta, ma serve un file a parte?
+    require_once './login_control.php';                     // 4- Controlli ripetuti ma ci stanno se usati sia per login che per registration. Letto commento.
 
 
     /******* ERROR HANDLERS ******* */ 
@@ -29,11 +29,11 @@ try {
 
     if ( is_input_empty( $email,  $password )){
     
-        $errors["empty_input"] = "Fill in all filelds";
+        $errors["empty_input"] = "Fill in all filelds"; // 5- Anche qui, non è meglio schematizzare con degli if(){}else{}?
     }
 
     // nota: pdo la prendimo dal file: databasehandler.inc.php
-    $result = get_user($pdo, $email);
+    $result = get_user($pdo, $email);                   // 6-  La preparazione e l'esecuzione della query non è all'interno di un try-catch! -> il try parte alla riga 14, what?
 
     if (!is_email_exsist($result["email"])) {
         $errors["login_error_email"] = "email is incorrect or not exsist";
@@ -58,7 +58,7 @@ try {
     if($errors) {
 
 
-        $_SESSION["errors_login"] = $errors;
+        $_SESSION["errors_login"] = $errors; // 7- Gli errori dovuti alla connessione di un utente NON vanno inserite nell'array super globale, ma su un file di .log
         header("Location: '../pages/login.phplogin=failed");
         die(); 
 
@@ -66,11 +66,11 @@ try {
     }
     
 
-    header("Location: ../pages/login.phplogin=success");
+    header("Location: ../pages/login.phplogin=success"); // 8- Il reindirizzamento dovrebbe avvenire verso la homepage index.php
     $pdo = null;
     $statement = null ;
 
-    die();
+    die(); // 9- Perchè chiamare die()?
 
     
 } catch (PDOException $e) {
