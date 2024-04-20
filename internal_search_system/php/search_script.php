@@ -1,59 +1,38 @@
 <?php
 
-			require dirname(__FILE__).'/../../configuration/database_handler.php';
-
 // Estraggo i parametri di ricerca da $_POST
 $searchInput = isset($_POST['searchTextInput']) ? $_POST['searchTextInput'] : "";
-$minPrice = isset($_POST['minPrice']) ? $_POST['minPrice'] : 0;
-$maxPrice = isset($_POST['maxPrice']) ? $_POST['maxPrice'] : 10000;
-
-
-
+$minPrice    = isset($_POST['minPrice']) ? $_POST['minPrice'] : 0;
+$maxPrice    = isset($_POST['maxPrice']) ? $_POST['maxPrice'] : 10000;
 
 $query = queryBuilder($searchInput, $minPrice, $maxPrice);
 
-try {
-
-  $stmt = $pdo->prepare($query);
-
-  // Assocoa il parametro di ricerca solo se non è vuoto
-  if (!empty($searchInput)) {
-    $searchWithWildcards = "%$searchInput%";
-    $stmt->bindParam(":search", $searchWithWildcards, PDO::PARAM_STR);
-  }
-
-
-  if (!empty($minPrice) && !empty($maxPrice)) {
-
-    $stmt->bindParam(":minPrice", $minPrice, PDO::PARAM_INT);
-    $stmt->bindParam(":maxPrice", $maxPrice, PDO::PARAM_INT);
-  }
-
-
-
-  $stmt->execute();
-
-  $results = $stmt->fetchAll(PDO::FETCH_ASSOC); // Recupero tutte le righe come array associativi
-
-  echo json_encode($results); // codifico i risultati in JSON e invia al client
-
-} catch (PDOException $e) {
-
-  echo json_encode(array("error" => "Database Error: " . $e->getMessage()));
+if(!strpos($query, 'name_course')){
+  $params      = array($minPrice, $maxPrice);
+  $param_types = 'ff';
 }
+else{
+  $params      = array($searchInput, $minPrice, $maxPrice);
+  $param_types = 'sff';
+}
+/* $res stores the result of the query called in database_handler.php */
+$res;
+
+require dirname(__FILE__).'/../../configuration/database_handler.php';
+
+echo json_encode($res); // codifico i risultati in JSON e invia al client.
 
 /************************************** METODI ******************************************/
-
-function queryBuilder($searchInput, $minPrice, $maxPrice) {
+function queryBuilder($searchInput, $minPrice, $maxPrice){
 
   $whereClause = "";
 
   if (!empty($searchInput)) {
-      $whereClause .= " (name_course LIKE :search OR description_of_course LIKE :search) AND ";
+      $whereClause .= " (name_course LIKE ? OR description_of_course LIKE ?) AND ";
   }
 
   if (!empty($minPrice) && !empty($maxPrice)) {
-      $whereClause .= " (price BETWEEN :minPrice AND :maxPrice) ";
+      $whereClause .= " (price BETWEEN ? AND ?) ";
   }
 
   // controlliamo ed eliminamo nel caso ci fossero degli AND non necessari

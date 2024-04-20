@@ -18,11 +18,18 @@
 
 			if(!(empty($res))){
 				/* The user exists in the database. */
+				/*
 				$user_email    = $res[0];
 				$user_name     = $res[1];
 				$user_lastname = $res[2];
 				$user_pwd      = $res[3];
 				$user_is_admin = $res[4];
+				*/
+				$user_email    = $res['email'];
+				$user_name     = $res['firstname'];
+				$user_lastname = $res['lastname'];
+				$user_pwd      = $res['pwd'];
+				$user_is_admin = $res['is_admin'];
 
 				if(password_verify($password, $user_pwd)){
 					/* Setting session variables. */

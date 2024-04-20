@@ -41,7 +41,7 @@
                     <th><button type=\'button\'>DELETE</button></th>
                     <th><button type=\'button\'>BAN</button></th>
                     <th><button type=\'button\'>UNBAN</button></th>
-                </tr>', $row[1], $row[2], $row[0]); /* Array associativo? */
+                </tr>', $row['firstname'], $row['lastname'], $row['email']); /* Array associativo? */
             }
             print('</table>');
         }

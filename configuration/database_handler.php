@@ -33,11 +33,11 @@
             mysqli_stmt_bind_param($sql_stmt, $param_types, ...$params);
             mysqli_stmt_execute($sql_stmt);
             if(($result = mysqli_stmt_get_result($sql_stmt)) !== false)
-                $res = mysqli_fetch_array($result, MYSQLI_NUM);
+                $res = mysqli_fetch_array($result, MYSQLI_ASSOC);
         }
         else{ /* I HATE PHP FOR THIS. Fatto a causa del fatto che la bind_param esige almeno un parametro, altrimenti genera warning. */
             $result = mysqli_query($db_connection, $query);
-            $res = mysqli_fetch_all($result, MYSQLI_NUM);
+            $res = mysqli_fetch_all($result, MYSQLI_ASSOC);
         }
     }
     catch(mysqli_sql_exception $e){
