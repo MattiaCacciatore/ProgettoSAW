@@ -9,7 +9,7 @@
 
 <body>
 
-  <?php dirname(__FILE__).'/ProgettoSAW/modules/navbar.php'; ?>
+  <?php require dirname(__FILE__).'/ProgettoSAW/modules/navbar.php'; ?>
 
   <h2>Crea il tuo account</h2>
 
