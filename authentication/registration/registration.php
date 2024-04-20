@@ -1,5 +1,5 @@
 <?php
-	require '../../configuration/check_authorization.php';
+	require dirname(__FILE__).'/ProgettoSAW/configuration/check_authorization.php';
 
 	if(!isset($_SESSION['authentication']) && isset($_POST['submit'])){
 		$name             = $_POST['firstname'];
@@ -23,7 +23,7 @@
                 /* $res stores the result of the query called in database_handler.php */
 				$res;
 
-				require '../../configuration/database_handler.php';
+				require dirname(__FILE__).'/ProgettoSAW/configuration/database_handler.php';
 			}
 			else{
 				exit('ERROR: Password and confirm password are different.');

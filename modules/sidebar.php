@@ -1,7 +1,7 @@
 <?php
 	print(
 	'
-	<aside class = \'my_sidebar\'>
+	<aside>
 		<h2>Contenuti</h2>
 		<ul>
             <a href = \'../index.php\'>Homepage</a> <br>

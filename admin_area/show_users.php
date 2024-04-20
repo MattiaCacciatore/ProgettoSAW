@@ -1,13 +1,13 @@
 <?php
-    require '../configuration/check_session.php';
-    require './check_admin.php';
+    require dirname(__FILE__).'/ProgettoSAW/configuration/check_session.php';
+    require dirname(__FILE__).'/ProgettoSAW/admin_area/check_admin.php';
 ?>
 
 <!DOCTYPE html>
 <html lang = 'en'>
 
 <head>
-    <?php include '../configuration/head_style.php'; ?>
+    <?php include dirname(__FILE__).'/ProgettoSAW/configuration/head_style.php'; ?>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
         /* The result of the query is stored in res. */
         $res;
 
-        require '../configuration/database_handler.php';
+        require dirname(__FILE__).'/ProgettoSAW/configuration/database_handler.php';
 
         if(!(empty($res))){
             print('

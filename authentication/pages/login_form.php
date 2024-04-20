@@ -9,7 +9,7 @@
 
 <body>
 
-  <?php require '../../modules/navbar.php'; ?>
+  <?php require dirname(__FILE__).'/ProgettoSAW/modules/navbar.php'; ?>
 
   <h2>Accedi</h2>
 

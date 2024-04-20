@@ -1,5 +1,5 @@
 <?php
-	require '../../configuration/check_session.php';
+	require dirname(__FILE__).'/ProgettoSAW/configuration/check_session.php';
 
 	/* Unset cookies. */
 	$cookie_name = 'user_remember';
@@ -14,7 +14,7 @@
         /* $res stores the result of the query called in database_handler.php */
 		$res;
 		
-		require '../../configuration/database_handler.php';
+		require dirname(__FILE__).'/ProgettoSAW/configuration/database_handler.php';
 	}
 
 	/* Unset all session variables. */

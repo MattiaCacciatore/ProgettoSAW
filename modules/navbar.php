@@ -1,5 +1,5 @@
 <?php
-	require '../configuration/check_authorization.php';
+	require dirname(__FILE__).'/ProgettoSAW/configuration/check_authorization.php';
 	
 	print(
 	'
