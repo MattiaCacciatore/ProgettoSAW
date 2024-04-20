@@ -44,6 +44,7 @@ function performSearch(params) {
       success: function(results) {
 
         // se non troviamo nulla, solleviamo un'eccezione. Stampiamo i risultati altrimenti
+        console.log(results);
       !$.trim(results)?  document.querySelector('.wildCards').innerHTML= '<p class="error">nessun corso trovato</p>' : displayResults(results);
     
       
@@ -93,35 +94,32 @@ $("#searchInput").keyup(function(event) {
 // show the results
 
 function getPriceFilterValue(priceFilterId) {
-
-  let priceValue = $(priceFilterId).val();
+  let priceValue = parseFloat($(priceFilterId).val()); // Parse the input value to a float
   let result;
 
-  // sanity check
-  if (priceValue < 0 ) {
+  // Sanity check
+  if (priceValue < 0) {
     document.querySelector('.price-filter-error').innerHTML = '<p class="error">Il prezzo non può essere negativo</p>';
-    return;
-
+    return; // Return or throw an error
   }
 
-   
-  // verifichiamo a quale campo ci refriamo e se percaso il campo e' vuoto impostiamo dei valori di default 0 e 10.000 rispettivamente
+  // Check which input field we are referring to and if the field is empty, set default values ​​of 0 and 10,000 respectively
   if (priceFilterId === "#input-min") {
-    result = priceValue ? parseFloat(priceValue) : 0; 
+    result = priceValue ? priceValue : 0; 
   } else {
-    result = priceValue ? parseFloat(priceValue) : 10000; 
+    result = priceValue ? priceValue : 10000; 
   }
-  
+
   return result;
 }
-
-
 
 
 
 function displayResults(results) {
   // Parse the JSON data into a JavaScript object
   let courses = JSON.parse(JSON.stringify(results));
+
+  console.log(courses);
 
   // siccome noi facciamo un parsing dei dati in JSON, possimao sfruttarlo per esegurie il filtraggio dei dati
 
@@ -155,12 +153,11 @@ function renderCourseCard(course) {
 
   return `
   <div class="course-card">
-  <h2>${course.name_course}</h2>
+  <h2>${course.name}</h2>
           <p>By: ${course.teacher}</p>
-          <p>${course.description_of_course}</p>
+          <p>${course.description}</p>
           <div class="course-details">
               <span class="price">Price: ${course.price}</span>
-              <span class="ambit">Ambit: ${course.ambit}</span>
               <span class="rating">Rating: ${course.average_evaluation}</span>
           </div>
       </div>
