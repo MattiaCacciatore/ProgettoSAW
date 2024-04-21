@@ -15,7 +15,7 @@ $data = null;
 try {
   $db_connection = new mysqli($host, $dbusername, $dbpassword, $dbname);
   if ($db_connection->connect_errno != 0) {
-    throw new Exception("Failed to connect to database: " . $db_connection->connect_error);
+    error_log("Failed to connect to database: " . $db_connection->connect_error, 3, dirname(__FILE__) . '/../../../../errors/errors.log');
   }
 } catch (Exception $e) {
   error_log($e->getMessage(), 3, dirname(__FILE__) . '/../../../../errors/errors.log');
