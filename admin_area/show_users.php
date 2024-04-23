@@ -7,13 +7,13 @@
 <html lang = 'en'>
 
 <head>
-    <?php include dirname(__FILE__).'/../configuration/head_style.php'; ?>
+    <?php include dirname(__FILE__).'/../modules/head_style.php'; ?>
 </head>
 
 <body>
     <?php
         $query = 'SELECT * FROM user ORDER BY lastname;';
-        $params = null;
+        $params = array("null");
         /* 's' means that the param is bounded as a string. */
         $param_types = 's';
         /* The result of the query is stored in res. */
@@ -33,6 +33,7 @@
                     <th>Delete</th>
                     <th>Ban</th>
                     <th>Unban</th>
+                    <th>Grant Privilegies</th>
                 </tr>');
             foreach($res as $row){
                 printf('
