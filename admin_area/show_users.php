@@ -4,19 +4,20 @@
 ?>
 
 <!DOCTYPE html>
-<html lang = 'en'>
+<html lang = 'it'>
 
 <head>
     <?php include dirname(__FILE__).'/../modules/head_style.php'; ?>
+    <title>Lista utenti</title>
 </head>
 
 <body>
     <?php
+        require dirname(__FILE__).'/../modules/navbar.php';
+
         $query = 'SELECT * FROM user ORDER BY lastname;';
-        $params = array("null");
-        /* 's' means that the param is bounded as a string. */
-        $param_types = 's';
-        /* The result of the query is stored in res. */
+        $params = null;
+        $param_types = null;
         $res;
 
         require dirname(__FILE__).'/../configuration/database_connect.php';
@@ -27,13 +28,13 @@
             print('
             <table>
                 <tr>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Email</th>
-                    <th>Delete</th>
-                    <th>Ban</th>
-                    <th>Unban</th>
-                    <th>Grant Privilegies</th>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Indirizzo email</th>
+                    <th>Elimina</th>
+                    <th>Banna</th>
+                    <th>Sbanna</th>
+                    <th>Concedi permessi</th>
                 </tr>');
             foreach($res as $row){
                 printf('
@@ -41,15 +42,14 @@
                     <th>%s</th>
                     <th>%s</th>
                     <th>%s</th>
-                    <th><button type=\'button\'>DELETE</button></th>
-                    <th><button type=\'button\'>BAN</button></th>
-                    <th><button type=\'button\'>UNBAN</button></th>
-                    <th><button type=\'button\'>GRANT ADMIN PRIVILEGES</button></th>
-                </tr>', $row['firstname'], $row['lastname'], $row['email']); /* Array associativo? */
+                    <th><button type=\'button\'>ELIMINA</button></th>
+                    <th><button type=\'button\'>BANNA</button></th>
+                    <th><button type=\'button\'>SBANNA</button></th>
+                    <th><button type=\'button\'>CONCEDI PERMESSI DA AMMINISTRATORE</button></th>
+                </tr>', $row['firstname'], $row['lastname'], $row['email']);
             }
             print('</table>');
         }
-        print('<br>To return to the homepage: <a href = \'../../index.php\'>Homepage</a><br>');
     ?>
 </body>
 </html>

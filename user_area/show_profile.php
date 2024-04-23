@@ -19,10 +19,10 @@
 			print('
 			<table>
 				<tr>
-					<th>Name</th>
-					<th>Surname</th>
-					<th>Email</th>
-					<th>Admin</th>
+					<th>Nome</th>
+					<th>Cognome</th>
+					<th>Indirizzo email</th>
+					<th>Amministratore</th>
 				</tr>
 				<tr>
 					<th>'.$_SESSION['name'].'</th>
