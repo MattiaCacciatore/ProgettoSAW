@@ -26,29 +26,33 @@
 
         if(!(empty($res))){
             print('
-            <table>
-                <tr>
-                    <th>Nome</th>
-                    <th>Cognome</th>
-                    <th>Indirizzo email</th>
-                    <th>Elimina</th>
-                    <th>Banna</th>
-                    <th>Sbanna</th>
-                    <th>Concedi permessi</th>
-                </tr>');
+            <form action = \'update_users.php\' method = \'post\'>
+                <table>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Indirizzo email</th>
+                        <th>Elimina</th>
+                        <th>Banna</th>
+                        <th>Sbanna</th>
+                        <th>Concedi permessi</th>
+                    </tr>');
             foreach($res as $row){
                 printf('
-                <tr>
-                    <th>%s</th>
-                    <th>%s</th>
-                    <th>%s</th>
-                    <th><button type=\'button\'>ELIMINA</button></th>
-                    <th><button type=\'button\'>BANNA</button></th>
-                    <th><button type=\'button\'>SBANNA</button></th>
-                    <th><button type=\'button\'>CONCEDI PERMESSI DA AMMINISTRATORE</button></th>
-                </tr>', $row['firstname'], $row['lastname'], $row['email']);
+                    <tr>
+                        <th>%s</th>
+                        <th>%s</th>
+                        <th>%s</th>
+                        <th><button type = \'submit\' name = \'delete\' value = \''.$row['email'].'\' > ELIMINA                            </button></th>
+                        <th><button type = \'submit\' name = \'ban\'    value = \''.$row['email'].'\' > BANNA                              </button></th>
+                        <th><button type = \'submit\' name = \'unban\'  value = \''.$row['email'].'\' > SBANNA                             </button></th>
+                        <th><button type = \'submit\' name = \'grant\'  value = \''.$row['email'].'\' > CONCEDI PERMESSI DA AMMINISTRATORE </button></th>
+                    </tr>', $row['firstname'], $row['lastname'], $row['email']);
             }
-            print('</table>');
+            print('
+                </table>
+            </form>
+            ');
         }
     ?>
 </body>

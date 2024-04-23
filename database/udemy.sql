@@ -5,6 +5,7 @@ CREATE TABLE user(
     lastname VARCHAR(50) NOT NULL,
     pwd VARCHAR(255) NOT NULL,
     is_admin BOOLEAN NOT NULL DEFAULT 0, /* di base è false. */
+    is_banned BOOLEAN NOT NULL DEFAULT 0,
     id_cookie VARCHAR(768) DEFAULT NULL, /* 768 perchè base64_encode espande la byte-string di 512 byte di circa il 33% */
     expire DATETIME DEFAULT NULL,
     UNIQUE KEY (`id_cookie`)
