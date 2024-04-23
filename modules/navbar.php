@@ -1,33 +1,36 @@
 <?php
-require dirname(__FILE__).'/../configuration/check_authorization.php';
+	require dirname(__FILE__).'/../configuration/check_authorization.php';
+	require dirname(__FILE__).'/set_path.php';
 	
-print('
-<nav>
-');
-
-if(isset($_SESSION['admin']) && $_SESSION['admin'] === 'true'){
 	print('
-	<a href = \'/~S4850100/ProgettoSAW/admin_area/show_users.php\'>Utenti</a> |
+	<nav>
 	');
-}
-
-if(isset($_SESSION['authentication'])){
-	print('
-	<a href = \'/~S4850100/ProgettoSAW/user_area/update_profile.php\'>Modifica profilo</a> |
-	<a href = \'/~S4850100/ProgettoSAW/authentication/logout/logout.php\'>Logout</a> |
-	');
-}
-else{
-	print('
-	<a href = \'/~S4850100/ProgettoSAW/authentication/pages/registration_form.php\'>Registrati</a> |
-	<a href = \'/~S4850100/ProgettoSAW/authentication/pages/login_form.php\'>Accedi</a> |
-	');
-}
 	
-print('
-	<a href = \'#\'>Servizi</a> |
-	<a href = \'#\'>Lavora con noi</a> |
-	<a href = \'#\'>Contatti</a>
-</nav>
-');
+	if(isset($_SESSION['admin']) && $_SESSION['admin'] === 'true'){
+		print('
+		<a href ='.$MYROOT.'/admin_area/show_users.php >Utenti</a> |
+		');
+	}
+	
+	if(isset($_SESSION['authentication'])){
+		print('
+		<a href = '.$MYROOT.'/user_area/show_profile.php >Mostra profilo</a> |
+		<a href = '.$MYROOT.'/user_area/update_profile.php >Modifica profilo</a> |
+		<a href = '.$MYROOT.'/authentication/logout/logout.php >Logout</a> |
+		');
+	}
+	else{
+		print('
+		<a href = '.$MYROOT.'/authentication/pages/registration_form.php >Registrati</a> |
+		<a href = '.$MYROOT.'/authentication/pages/login_form.php >Accedi</a> |
+		');
+	}
+		
+	print('
+		<a href = '.$MYROOT.'/index.php >Homepage</a> |
+		<a href = \'#\'>Servizi</a> |
+		<a href = \'#\'>Lavora con noi</a> |
+		<a href = \'#\'>Contatti</a>
+	</nav>
+	');
 ?>
