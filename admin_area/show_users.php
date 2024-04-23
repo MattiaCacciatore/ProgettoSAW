@@ -1,13 +1,13 @@
 <?php
-    require dirname(__FILE__).'/ProgettoSAW/configuration/check_session.php';
-    require dirname(__FILE__).'/ProgettoSAW/admin_area/check_admin.php';
+    require dirname(__FILE__).'/../configuration/check_session.php';
+    require dirname(__FILE__).'/check_admin.php';
 ?>
 
 <!DOCTYPE html>
 <html lang = 'en'>
 
 <head>
-    <?php include dirname(__FILE__).'/ProgettoSAW/configuration/head_style.php'; ?>
+    <?php include dirname(__FILE__).'/../configuration/head_style.php'; ?>
 </head>
 
 <body>
@@ -19,9 +19,9 @@
         /* The result of the query is stored in res. */
         $res;
 
-        require dirname(__FILE__).'/ProgettoSAW/configuration/database_connect.php';
-        require dirname(__FILE__).'/ProgettoSAW/configuration/database_query.php';
-        require dirname(__FILE__).'/ProgettoSAW/configuration/database_disconnect.php';
+        require dirname(__FILE__).'/../configuration/database_connect.php';
+        require dirname(__FILE__).'/../configuration/database_query.php';
+        require dirname(__FILE__).'/../configuration/database_disconnect.php';
 
         if(!(empty($res))){
             print('
@@ -43,6 +43,7 @@
                     <th><button type=\'button\'>DELETE</button></th>
                     <th><button type=\'button\'>BAN</button></th>
                     <th><button type=\'button\'>UNBAN</button></th>
+                    <th><button type=\'button\'>GRANT ADMIN PRIVILEGES</button></th>
                 </tr>', $row['firstname'], $row['lastname'], $row['email']); /* Array associativo? */
             }
             print('</table>');

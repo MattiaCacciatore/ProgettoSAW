@@ -8,7 +8,7 @@
 	
 	if(isset($_SESSION['admin']) && $_SESSION['admin'] === 'true'){
 		print('
-		<a href ='.$MYROOT.'/admin_area/show_users.php >Utenti</a> |
+		<a href ='.$MYROOT.'/admin_area/show_users.php > Mostra utenti</a> |
 		');
 	}
 	
