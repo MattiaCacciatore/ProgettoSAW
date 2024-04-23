@@ -24,7 +24,9 @@
 				/* $res stores the result of the query called in database_handler.php */
 				$res;
 
-				require dirname(__FILE__).'/../configuration/database_handler.php';
+				require dirname(__FILE__).'/../configuration/database_connect.php';
+				require dirname(__FILE__).'/../configuration/database_query.php';
+				require dirname(__FILE__).'/../configuration/database_disconnect.php';
 				/* If everything went well the session variables will be updated. */
 				$_SESSION['name']    = $_POST['firstname'];
 				$_SESSION['surname'] = $_POST['lastname'];

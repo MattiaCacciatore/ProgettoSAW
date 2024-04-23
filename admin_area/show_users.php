@@ -19,7 +19,9 @@
         /* The result of the query is stored in res. */
         $res;
 
-        require dirname(__FILE__).'/ProgettoSAW/configuration/database_handler.php';
+        require dirname(__FILE__).'/ProgettoSAW/configuration/database_connect.php';
+        require dirname(__FILE__).'/ProgettoSAW/configuration/database_query.php';
+        require dirname(__FILE__).'/ProgettoSAW/configuration/database_disconnect.php';
 
         if(!(empty($res))){
             print('

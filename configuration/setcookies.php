@@ -22,7 +22,9 @@
         /* $res stores the result of the query called in database_handler.php */
         $res;
         
-        require dirname(__FILE__).'/database_handler.php';
+        require dirname(__FILE__).'/database_connect.php';
+        require dirname(__FILE__).'/database_query.php';
+        require dirname(__FILE__).'/database_disconnect.php';
 
         $expire = time() + (60*60*24*30);
         if(!setcookie($cookie_name, $value, $expire, '/', '', false, true)){

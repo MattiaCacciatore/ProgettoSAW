@@ -23,7 +23,9 @@
                 /* $res stores the result of the query called in database_handler.php */
 				$res;
 
-				require dirname(__FILE__).'/../../configuration/database_handler.php';
+				require dirname(__FILE__).'/../../configuration/database_connect.php';
+				require dirname(__FILE__).'/../../configuration/database_query.php';
+				require dirname(__FILE__).'/../../configuration/database_disconnect.php';
 			}
 			else{
 				exit('Campi password diversi.');
