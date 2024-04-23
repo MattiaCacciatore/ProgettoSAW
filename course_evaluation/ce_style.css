@@ -1,0 +1,33 @@
+html, body,header,h1{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+body{
+    background: rgb(153,217,140);
+    background: linear-gradient(90deg, rgba(153,217,140,1) 0%, rgba(118,200,147,1) 50%, rgba(82,182,154,1) 100%);
+}
+
+header {  
+    background:blanchedalmond;
+    border-bottom: solid seagreen;
+    height: 120px;
+    text-align: center;
+}
+
+
+
+.evaluation-courses-wrapper {
+    padding: 50px;
+    border: slategray solid;
+
+    margin-top: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 50px;
+
+    border-radius: 28px;
+    box-shadow: 1px 1px 10px slategray;
+
+}
