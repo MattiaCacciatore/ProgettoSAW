@@ -5,7 +5,7 @@ CREATE TABLE user(
     lastname VARCHAR(50) NOT NULL,
     pwd VARCHAR(255) NOT NULL,
     is_admin BOOLEAN NOT NULL DEFAULT 0, /* di base è false. */
-    id_cookie TEXT DEFAULT NULL,
+    id_cookie VARCHAR(768) DEFAULT NULL, /* 768 perchè base64_encode espande la byte-string di 512 byte di circa il 33% */
     expire DATETIME DEFAULT NULL,
     UNIQUE KEY (`id_cookie`)
 );
@@ -16,7 +16,7 @@ CREATE TABLE course(
   description VARCHAR(1500) NOT NULL,
   duration INT UNSIGNED NOT NULL,
   price DECIMAL(4,2) UNSIGNED NOT NULL,
-  average_evaluation DECIMAL(2,1) UNSIGNED NOT NULL CHECK (average_evaluation <= 5.0) /* trigger da implementare. */
+  average_evaluation DECIMAL(2,1) UNSIGNED NOT NULL CHECK (average_evaluation <= 5.0)
 );
 
 CREATE TABLE video(
