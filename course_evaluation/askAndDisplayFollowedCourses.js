@@ -38,6 +38,24 @@ function followedCoursesByUser() {
 
 // This method provides to display results dinamically
 function displayResults(resultsFromAjaxRequest) {
-    // ---
+    
+    let follwedCourses = JSON.parse(JSON.stringify(resultsFromAjaxRequest));
+    let sectionToInjectResult = document.querySelector('.evaluation-courses-wrapper');
+    let html = "";
+
+    // Iterate for each course inside followedCourse
+    follwedCourses.foreEach(function(followedCourse) {
+        html += followedCoursesTemplate(followedCourse);
+    });
+
+    // check if section to inject results exsist inside the page
+    sectionToInjectResult? sectionToInjectResult.innerHTML = html : console.error("Element not found.");
+
+}
+
+
+
+function followedCoursesTemplate(followedCourse) {
+    //--
 }
 
