@@ -22,7 +22,7 @@
             $error = sprintf('%s - Connect failed: %s\n', date('Y-m-d H:i:s'), mysqli_connect_error());
             error_log($error, 3, dirname(__FILE__).'/../../../errors/errors.log');
         }
-        die('ERROR: Couldn\'t connect to the database or set the encoding.');
+        die('HTTP 500 Internal Server Error');
     }
     /* ---------------------------------------------------------------------------------------------------
         EXECUTE THE QUERY.
@@ -57,5 +57,5 @@ close_connection:
 	mysqli_close($db_connection);
     
     if($error_occured)
-        die('ERROR: Couldn\'t recover the user from the database.');
+        die('HTTP 500 Internal Server Error');
 ?>

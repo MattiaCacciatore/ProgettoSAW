@@ -50,10 +50,10 @@
 			}
 		}
 		else
-			exit('Wrong credentials.');
+			exit('Credenziali sbagliate.');
 	}
 	else
-		exit('Empty credentials.');
+		exit('Credenziali vuote.');
 }
     /* Redirect to the homepage. */
 	header('Location: ../../index.php');

@@ -26,11 +26,11 @@
 				require dirname(__FILE__).'/../../configuration/database_handler.php';
 			}
 			else{
-				exit('ERROR: Password and confirm password are different.');
+				exit('Campi password diversi.');
 			}
 		}
 		else{
-			exit('ERROR: Empty credentials.');
+			exit('Credenziali vuote.');
 		}
 	}
     /* Redirect to the homepage. */

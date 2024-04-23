@@ -75,10 +75,9 @@ CREATE TABLE teach(
     FOREIGN KEY (email_user) REFERENCES user (email) ON DELETE CASCADE,
     FOREIGN KEY (id_course) REFERENCES course (id) ON DELETE CASCADE
 );
-
-/* TRIGGERS. -----------------------------------------------------------------------------------------------*/
-
-/* TRIGGERS. -----------------------------------------------------------------------------------------------*/
+/* --------------------------------------------------------------------------------------------------------- */
+/* TRIGGERS. */
+/* --------------------------------------------------------------------------------------------------------- */
 /* Vincolo V1. */
 DELIMITER //
 CREATE OR REPLACE TRIGGER update_average_evaluation

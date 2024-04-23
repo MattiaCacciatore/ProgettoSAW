@@ -5,7 +5,7 @@
 	$cookie_name = 'user_remember';
 	if(isset($_COOKIE[$cookie_name])){
 		if(!setcookie($cookie_name, '', time() - 1)){
-			die('Couldn\'t unset the cookie.');
+			die('HTTP 500 Internal Server Error');
 		}
 
 		$query       = 'UPDATE user SET user.id_cookie = NULL, user.expire = NULL WHERE user.email=?;';
@@ -21,7 +21,7 @@
 	$_SESSION = array();
 
 	if(!session_destroy()){
-		die('Couldn\'t close the user session.');
+		die('HTTP 500 Internal Server Error');
 	}
 
 	header('Location: ../../index.php');

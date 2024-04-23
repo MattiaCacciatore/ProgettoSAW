@@ -11,7 +11,7 @@
         catch(DateMalformedStringException $e){
             $error = sprintf('%s - date_modify(): %s\n', date('Y-m-d H:i:s'), $e->getMessage());
             error_log($error, 3, '../../../errors/errors.log');
-            exit('<br>ERROR: Couldn\'t set the remember me.');
+            exit('HTTP 500 Internal Server Error');
         }
         $expire = date_format($expire_date, 'Y-m-d H:i:s');
         $query = 'UPDATE user SET user.id_cookie = ?, user.expire = ? WHERE user.email=?;';
@@ -26,7 +26,7 @@
 
         $expire = time() + (60*60*24*30);
         if(!setcookie($cookie_name, $value, $expire, '/', '', false, true)){
-            exit('Couldn\'t set the persistent cookie.');
+            exit('HTTP 500 Internal Server Error');
         }
     }
     /* Redirect to the homepage. */
