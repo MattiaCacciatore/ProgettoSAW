@@ -30,7 +30,7 @@
 				$_SESSION['surname'] = $_POST['lastname'];
 				$_SESSION['email']   = $_POST['email'];
 				/* Redirect to the homepage. */
-				header('Location: ../../index.php');
+				header('Location: ../index.php');
 			}
 			else{
 				print('
