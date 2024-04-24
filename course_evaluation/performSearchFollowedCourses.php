@@ -1,6 +1,6 @@
 <?php
-require dirname(__FILE__).'../configuration/database_connect.php';
-require dirname(__FILE__).'../configuration/check_session.php';
+require dirname(__FILE__).'/../configuration/database_connect.php';
+require dirname(__FILE__).'/../configuration/check_session.php';
 
 
 if (!$_SESSION['authentication']) {
@@ -10,6 +10,7 @@ if (!$_SESSION['authentication']) {
 
 $user_email = isset($_SESSION['email']) ? $_SESSION['email']: exit('email non presente nella variabile globale');
 
+// rquire only those course that user don't evaluate yet
 $query = 'SELECT * FROM evaluate WHERE email_user = ? AND feedback IS NULL AND vote = 0.0 ';
 $type_param = 's';
 
@@ -40,12 +41,14 @@ try {
     }else {
         echo json_encode(array("error" => "Error preparing statement: " . mysqli_error($db_connection)));
     }
-} catch (\Throwable $th) {
+
+
+} catch (Exception $e) {
     error_log($e->getMessage(), 3, dirname(__FILE__) . '/../../../../errors/errors.log');
     echo json_encode(array("error" => "Database Error"));
 }
 
 
-require dirname(__FILE__).'../configuration/database_disconnect.php';
+require dirname(__FILE__).'/../configuration/database_disconnect.php';
 
 ?>

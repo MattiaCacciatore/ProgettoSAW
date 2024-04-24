@@ -7,7 +7,6 @@ $(document).ready(function() {
 
 
 
-
 // METHODS ===============================================
 
 // This method provides to send ajax request in post and elaborate results
@@ -15,14 +14,15 @@ function followedCoursesByUser() {
 
 
     $.ajax({
-        url: './course_evaluation.php',
+        url: './performSearchFollowedCourses.php',
         method:'POST',
         dataType:'json',
 
         success: function(result) {
             
+            console.log(result);
             // check if there is some result from request to database: if there is no result display a message, displayrResult() otherwise
-            !$.trim(result)?  document.querySelector('.evaluation-courses-wrapper').innerHTML= '<p class="error">Non segui nessun corso</p>' : displayResults(result);
+            // !$.trim(result)?  document.querySelector('.evaluation-courses-wrapper').innerHTML= '<p class="error">Non segui nessun corso</p>' : displayResults(result);
 
         },
 
