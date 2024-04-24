@@ -31,7 +31,7 @@ try {
             $data    =  mysqli_fetch_all($results, MYSQLI_ASSOC);
 
             // encoding result as JSON
-            echo json_encode($data);
+            echo json_encode('sborrevole');
         }else {
             echo json_encode(array("error" => "Error executing statement: " . mysqli_stmt_error($stmt)));
         }

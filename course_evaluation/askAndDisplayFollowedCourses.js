@@ -56,6 +56,6 @@ function displayResults(resultsFromAjaxRequest) {
 
 
 function followedCoursesTemplate(followedCourse) {
-    //--
+    // ---
 }
 
