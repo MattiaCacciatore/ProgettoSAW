@@ -83,7 +83,7 @@ try {
     echo json_encode(array("error" => "Database Error"));
   }
 
- // forse dovremmo chiudere la connessione, idk
+  require dirname(__FILE__).'../configuration/database_connect.php';
 
 /***************************************************************************************************** */
 
