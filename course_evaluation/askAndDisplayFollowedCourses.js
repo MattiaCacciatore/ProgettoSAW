@@ -20,7 +20,7 @@ function followedCoursesByUser() {
 
         success: function(result) {
 
-            console.log("ciao");
+            
             console.log(result);
 
             // check if there is some result from request to database: if there is no result display a message, displayrResult() otherwise
@@ -42,11 +42,12 @@ function followedCoursesByUser() {
 // This method provides to display results dinamically
 function displayFollowedCourses(result) {
 
-    console.log('ciao');
-    let follwedCourses = JSON.parse(result);
-    let sectionToInjectResult = document.querySelector('.evaluation-courses-wrapper');
+    let follwedCourses = JSON.parse(JSON.stringify(result));
+    let sectionToInjectResult = document.querySelector('tbody');
     let html = "";
 
+    
+    console.log("followerCourse");
     console.log(follwedCourses);
 
     // Iterate for each course inside followedCourse

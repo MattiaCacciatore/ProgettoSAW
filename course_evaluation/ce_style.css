@@ -20,7 +20,6 @@ header {
 
 .evaluation-courses-wrapper {
     padding: 50px;
-    border: slategray solid;
 
     margin-top: 50px;
     margin-left: 200px;
@@ -28,6 +27,42 @@ header {
     margin-top: 50px;
 
     border-radius: 28px;
-    box-shadow: 1px 1px 10px slategray;
 
 }
+
+/* Stili per la tabella */
+#coursesTable {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 28px;
+    box-shadow: 1px 1px 24px grey;
+  }
+  
+  #coursesTable th, #coursesTable td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  #coursesTable th {
+    background-color: #ffffff;
+  }
+  
+  #coursesTable tbody tr {
+    background-color: #ffffff;
+  }
+  
+  /* Stili per il pulsante Feedback */
+  #coursesTable button {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+  }
+  
+  #coursesTable button:hover {
+    background-color: #007bff;
+    color: #ffffff;
+  }
