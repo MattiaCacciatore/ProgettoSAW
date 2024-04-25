@@ -19,10 +19,12 @@ function followedCoursesByUser() {
         dataType:'json',
 
         success: function(result) {
-            
+
+            console.log("ciao");
             console.log(result);
+
             // check if there is some result from request to database: if there is no result display a message, displayrResult() otherwise
-            // !$.trim(result)?  document.querySelector('.evaluation-courses-wrapper').innerHTML= '<p class="error">Non segui nessun corso</p>' : displayResults(result);
+            !$.trim(result)?  document.querySelector('.evaluation-courses-wrapper').innerHTML= '<p class="error">Non segui nessun corso</p>' : displayFollowedCourses(result);
 
         },
 
@@ -38,14 +40,17 @@ function followedCoursesByUser() {
 
 
 // This method provides to display results dinamically
-function displayResults(resultsFromAjaxRequest) {
-    
-    let follwedCourses = JSON.parse(JSON.stringify(resultsFromAjaxRequest));
+function displayFollowedCourses(result) {
+
+    console.log('ciao');
+    let follwedCourses = JSON.parse(result);
     let sectionToInjectResult = document.querySelector('.evaluation-courses-wrapper');
     let html = "";
 
+    console.log(follwedCourses);
+
     // Iterate for each course inside followedCourse
-    follwedCourses.foreEach(function(followedCourse) {
+    follwedCourses.forEach(function(followedCourse) {
         html += followedCoursesTemplate(followedCourse);
     });
 
@@ -57,7 +62,13 @@ function displayResults(resultsFromAjaxRequest) {
 
 
 function followedCoursesTemplate(followedCourse) {
-    // ---
+    // Costruisci il template HTML per il corso seguito
+    return `
+        <tr>
+            <td>${followedCourse.course_name}</td>
+            <td><button onclick="showFeedbackModal('${followedCourse.course_name}')">Feedback</button></td>
+        </tr>
+    `;
 }
 
 

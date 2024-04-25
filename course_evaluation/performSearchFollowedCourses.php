@@ -11,11 +11,12 @@ if (!$_SESSION['authentication']) {
 $user_email = isset($_SESSION['email']) ? $_SESSION['email']: exit('email non presente nella variabile globale');
 
 // rquire only those course that user don't evaluate yet
-$query = 'SELECT f.email_user, f.id_course, e.vote, e.feedback
+$query = 'SELECT c.name AS course_name, e.vote, e.feedback
 FROM follow f
+INNER JOIN course c ON f.id_course = c.id
 LEFT JOIN evaluate e ON f.email_user = e.email_user AND f.id_course = e.id_course
 WHERE e.email_user IS NULL
-AND f.email_user = ? ';
+AND f.email_user = ?;';
 $type_param = 's';
 
 try {
