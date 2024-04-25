@@ -38,20 +38,19 @@ function followedCoursesByUser() {
 
 
 
-
 // This method provides to display results dinamically
 function displayFollowedCourses(result) {
 
-    let follwedCourses = JSON.parse(JSON.stringify(result));
+    let followedCourses = JSON.parse(JSON.stringify(result));
     let sectionToInjectResult = document.querySelector('tbody');
     let html = "";
 
     
     console.log("followerCourse");
-    console.log(follwedCourses);
+    console.log(followedCourses);
 
     // Iterate for each course inside followedCourse
-    follwedCourses.forEach(function(followedCourse) {
+    followedCourses.forEach(function(followedCourse) {
         html += followedCoursesTemplate(followedCourse);
     });
 
@@ -77,4 +76,16 @@ function followedCoursesTemplate(followedCourse) {
 function performUpdateEvaluation() {
     //-- ajax post
 }
+
+
+// Function to show the feedback modal
+function showFeedbackModal(courseName) {
+    document.getElementById('courseName').textContent = courseName;
+    document.getElementById('feedbackModal').style.display = 'block';
+  }
+  
+  // Function to close the feedback modal
+  function closeFeedbackModal() {
+    document.getElementById('feedbackModal').style.display = 'none';
+  }
 

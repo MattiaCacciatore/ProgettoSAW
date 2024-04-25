@@ -37,5 +37,21 @@
 
         </div>
 
+
+         <!-- Modal for the feedback form -->
+        <div id="feedbackModal" class="modal">
+            <div class="modal-content">
+            <span class="close" onclick="closeFeedbackModal()">&times;</span>
+            <h3>Feedback for Course <span id="courseName"></span></h3>
+            <form id="feedbackForm">
+                <label for="vote">Vote:</label>
+                <input type="number" id="vote" name="vote" min="1.0" max="5.0" required><br><br>
+                <label for="feedbackText">Feedback:</label><br>
+                <textarea id="feedbackText" name="feedbackText" rows="4" cols="50" required></textarea><br><br>
+                <input type="submit" value="Submit your Feedback">
+            </form>
+            </div>
+        </div>
+
     </body>
 </html>
