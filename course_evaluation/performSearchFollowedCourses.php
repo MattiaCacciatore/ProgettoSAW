@@ -11,7 +11,11 @@ if (!$_SESSION['authentication']) {
 $user_email = isset($_SESSION['email']) ? $_SESSION['email']: exit('email non presente nella variabile globale');
 
 // rquire only those course that user don't evaluate yet
-$query = 'SELECT * FROM evaluate WHERE email_user = ? AND feedback IS NULL AND vote = 0.0 ';
+$query = 'SELECT f.email_user, f.id_course, e.vote, e.feedback
+FROM follow f
+LEFT JOIN evaluate e ON f.email_user = e.email_user AND f.id_course = e.id_course
+WHERE e.email_user IS NULL
+AND f.email_user = ? ';
 $type_param = 's';
 
 try {
@@ -31,7 +35,7 @@ try {
             $data    =  mysqli_fetch_all($results, MYSQLI_ASSOC);
 
             // encoding result as JSON
-            echo json_encode('sborrevole');
+            echo json_encode($data);
         }else {
             echo json_encode(array("error" => "Error executing statement: " . mysqli_stmt_error($stmt)));
         }

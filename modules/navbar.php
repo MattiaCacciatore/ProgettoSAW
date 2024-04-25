@@ -14,6 +14,7 @@
 	
 	if(isset($_SESSION['authentication'])){
 		print('
+		<a href = '.$MYROOT.'/course_evaluation/course_evaluation.html  >Valuta il tuo corso</a> |
 		<a href = '.$MYROOT.'/user_area/show_profile.php >Mostra profilo</a> |
 		<a href = '.$MYROOT.'/user_area/update_profile.php >Modifica profilo</a> |
 		<a href = '.$MYROOT.'/authentication/logout/logout.php >Logout</a> |

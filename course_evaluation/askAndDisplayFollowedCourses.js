@@ -36,6 +36,7 @@ function followedCoursesByUser() {
 
 
 
+
 // This method provides to display results dinamically
 function displayResults(resultsFromAjaxRequest) {
     
@@ -57,5 +58,11 @@ function displayResults(resultsFromAjaxRequest) {
 
 function followedCoursesTemplate(followedCourse) {
     // ---
+}
+
+
+
+function performUpdateEvaluation() {
+    //-- ajax post
 }
 
