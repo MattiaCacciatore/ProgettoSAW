@@ -6,6 +6,13 @@ $(document).ready(function() {
 
 
 
+  // se venissero inpostati dei valori ai campi del filtro dei prezzi allora,
+  $("#feedbackButton").click(function() {
+    performUpdateEvaluation($("#vote").val(), $("#feedbackText").val() ); // Trigger search with current search input
+  });
+
+
+
 
 // METHODS ===============================================
 
@@ -39,20 +46,37 @@ function followedCoursesByUser() {
 
 
 
-function performUpdateEvaluation(email_user,id_course) {
+function performUpdateEvaluation(vote, feedback) {
 
-    if (empty(email_user) || empty(id_course)) {
-        console.error('courseName or courseId cannot be empty');
+    let id_course = document.getElementById('courseId').innerHTML;
+    let convertedVote = parseFloat(vote);
+    console.log(id_course,convertedVote,feedback);
+
+
+    try {
+
+        updateEvaluationSanityCheck(id_course,convertedVote,feedback);
+
+        let dataToSend = {
+            id_course:id_course,
+            vote:vote,
+            feedback:feedback,
+        
+          };
+
+
+        console.log(dataToSend);
+
+        
+    } catch (error) {
+        console.error("Errore:", error.message);
     }
 
-    let vote = document.getElementById('vote');
-    let feedback = document.getElementById('feedbackText');
-
-
+ /*
   let dataToSend = {
-    courseId:id_course,
+    id_course:id_course,
+    vote:vote,
     feedback:feedback,
-    vote:vote
 
   };
 
@@ -76,7 +100,23 @@ function performUpdateEvaluation(email_user,id_course) {
             console.error("Error:", textStatus, errorThrown);
             $("#search-results").html("Error: Search failed!");
         },
-    });
+    })*/
+}
+
+
+function updateEvaluationSanityCheck(id_course,vote) {
+    
+    if (id_course === '' || isNaN(vote)) {
+        throw new Error('Uno dei parametri non è valido.');
+    }
+
+    if (vote < 0.0 || vote > 5.0) {
+        throw new Error('il voto deve essere compreso tra 0.0 e 5.0');
+
+    }
+
+
+    
 }
 
 
@@ -121,7 +161,7 @@ function followedCoursesTemplate(followedCourse) {
 function showFeedbackModal(course_name, course_id) {
   
     document.getElementById('courseName').textContent = course_name;
-    document.getElementById('courseId').textContent = '[course code id:' + course_id + ']';
+    document.getElementById('courseId').textContent = course_id;
     document.getElementById('feedbackModal').style.display = 'block';
   }
   

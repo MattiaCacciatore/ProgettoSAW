@@ -56,7 +56,7 @@
                 <input type="number" id="vote" name="vote" min="1.0" max="5.0" required><br><br>
                 <label for="feedbackText">Feedback:</label><br>
                 <textarea id="feedbackText" name="feedbackText" rows="4" cols="50" required></textarea><br><br>
-                <input type="button" value="Invia il tuo Feedback">
+                <input type="button" id="feedbackButton" value="Invia il tuo Feedback">
             </form>
             </div>
         </div>
