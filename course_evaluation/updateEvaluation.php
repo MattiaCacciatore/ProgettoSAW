@@ -50,12 +50,40 @@ try {
     $stmt = mysqli_prepare($db_connection, $query);
 
     if ($stmt) {
+
+        // binding statement ************************************************
+        if (!empty($param_type)) {
+            mysqli_stmt_bind_param($stmt, $param_type, ...$param_array);
+          }
+
+          // Execute statement **********************************************
+        if (mysqli_stmt_execute($stmt)) {
+            $result = mysqli_stmt_get_result($stmt);
+            $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    
+            // Encode results as JSON ***************************************
+            echo json_encode($data);
+        } else {
+            echo json_encode(array("error" => "Error executing statement: " . mysqli_stmt_error($stmt)));
+        }
+
+
+        // Close statement **************************************************
+        mysqli_stmt_close($stmt);
         
-        mysqli_stmt_bind_param()
+    } else {
+    echo json_encode(array("error" => "Error preparing statement: " . mysqli_error($db_connection)));
     }
-} catch (\Throwable $th) {
-    //throw $th;
+        
+    
+} catch (Exception $e) {
+    error_log($e->getMessage(), 3, dirname(__FILE__) . '/../../../../errors/errors.log');
+    echo json_encode(array("error" => "Database Error"));
 }
+
+
+require dirname(__FILE__).'../configuration/database_disconnect.php';
+
 
 
 

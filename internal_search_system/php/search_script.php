@@ -83,7 +83,7 @@ try {
     echo json_encode(array("error" => "Database Error"));
   }
 
-  require dirname(__FILE__).'../configuration/database_connect.php';
+  require dirname(__FILE__).'../configuration/database_disconnect.php';
 
 /***************************************************************************************************** */
 
