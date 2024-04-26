@@ -50,7 +50,6 @@ function performUpdateEvaluation(email_user,id_course) {
 
 
   let dataToSend = {
-    email_user:email_user,
     courseId:id_course,
     feedback:feedback,
     vote:vote
@@ -110,7 +109,7 @@ function followedCoursesTemplate(followedCourse) {
     return `
         <tr>
             <td>${followedCourse.course_name}</td>
-            <td><button onclick="showFeedbackModal('${followedCourse.course_name}')">Feedback</button></td>
+            <td><button onclick="showFeedbackModal('${followedCourse.course_name}',' ${followedCourse.course_id}')">Feedback</button></td>
         </tr>
     `;
 }
@@ -119,8 +118,10 @@ function followedCoursesTemplate(followedCourse) {
 
 
 // Function to show the feedback modal
-function showFeedbackModal(courseName) {
-    document.getElementById('courseName').textContent = courseName;
+function showFeedbackModal(course_name, course_id) {
+  
+    document.getElementById('courseName').textContent = course_name;
+    document.getElementById('courseId').textContent = '[course code id:' + course_id + ']';
     document.getElementById('feedbackModal').style.display = 'block';
   }
   
