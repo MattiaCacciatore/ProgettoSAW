@@ -1,3 +1,7 @@
+<?php
+    require dirname(__FILE__).'../configuration/check_session.php';
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
