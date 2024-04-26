@@ -54,15 +54,9 @@ try {
           }
 
           // Execute statement **********************************************
-        if (mysqli_stmt_execute($stmt)) {
-            $result = mysqli_stmt_get_result($stmt);
-            $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    
-            // Encode results as JSON ***************************************
-            echo json_encode($data);
-        } else {
+        if (!mysqli_stmt_execute($stmt)) {
             echo json_encode(array("error" => "Error executing statement: " . mysqli_stmt_error($stmt)));
-        }
+        } 
 
 
         // Close statement **************************************************

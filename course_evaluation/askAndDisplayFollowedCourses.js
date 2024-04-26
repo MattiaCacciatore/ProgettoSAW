@@ -64,8 +64,29 @@ function performUpdateEvaluation(vote, feedback) {
         
           };
 
+          
+    $.ajax({
+        url: './updateEvaluation.php',
+        method:'POST',
+        data: dataToSend,
+        dataType:'json',
 
-        console.log(dataToSend);
+        success: function(result) {
+
+            
+            console.log(result);
+
+            // check if there is some result from request to database: if there is no result display a message, displayrResult() otherwise
+            !$.trim(result)?  document.querySelector('.evaluation-courses-wrapper').innerHTML= '<p class="error">Non segui nessun corso</p>' : displayFollowedCourses(result);
+
+        },
+
+        error: function(textStatus, errorThrown) {
+            console.error("Error:", textStatus, errorThrown);
+            $("#search-results").html("Error: Search failed!");
+        },
+    })
+
 
         
     } catch (error) {
@@ -73,12 +94,7 @@ function performUpdateEvaluation(vote, feedback) {
     }
 
  /*
-  let dataToSend = {
-    id_course:id_course,
-    vote:vote,
-    feedback:feedback,
 
-  };
 
     $.ajax({
         url: './performSearchFollowedCourses.php',
