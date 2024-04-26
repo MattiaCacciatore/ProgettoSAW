@@ -38,6 +38,50 @@ function followedCoursesByUser() {
 
 
 
+
+function performUpdateEvaluation(email_user,id_course) {
+
+    if (empty(email_user) || empty(id_course)) {
+        console.error('courseName or courseId cannot be empty');
+    }
+
+    let vote = document.getElementById('vote');
+    let feedback = document.getElementById('feedbackText');
+
+
+  let dataToSend = {
+    email_user:email_user,
+    courseId:id_course,
+    feedback:feedback,
+    vote:vote
+
+  };
+
+    $.ajax({
+        url: './performSearchFollowedCourses.php',
+        method:'POST',
+        data: dataToSend,
+        dataType:'json',
+
+        success: function(result) {
+
+            
+            console.log(result);
+
+            // check if there is some result from request to database: if there is no result display a message, displayrResult() otherwise
+            !$.trim(result)?  document.querySelector('.evaluation-courses-wrapper').innerHTML= '<p class="error">Non segui nessun corso</p>' : displayFollowedCourses(result);
+
+        },
+
+        error: function(textStatus, errorThrown) {
+            console.error("Error:", textStatus, errorThrown);
+            $("#search-results").html("Error: Search failed!");
+        },
+    });
+}
+
+
+
 // This method provides to display results dinamically
 function displayFollowedCourses(result) {
 
@@ -72,10 +116,6 @@ function followedCoursesTemplate(followedCourse) {
 }
 
 
-
-function performUpdateEvaluation() {
-    //-- ajax post
-}
 
 
 // Function to show the feedback modal

@@ -9,7 +9,7 @@ if (!$_SESSION['authentication']) {
 }
 
 // gathering variables
-$user_email = isset($_SESSION['email']) ? $_SESSION['email']: exit('email non presente nella variabile globale');
+$user_email = isset($_SESSION['user_email']) ? $_SESSION['user_email']: exit('email non presente nella variabile globale');
 $id_course  = isset($_POST['id_course']) ? $_POST['id_course']: exit('id_course non presente nella variabile globale');
 $vote       = isset($_POST['vote']) ? $_POST['vote']: exit('voto non presente nella variabile globale post');
 $feedback   = isset($_POST['feedback']) ? $_POST['feedback']: null;
