@@ -69,21 +69,15 @@ function performUpdateEvaluation(vote, feedback) {
         url: './updateEvaluation.php',
         method:'POST',
         data: dataToSend,
-        dataType:'json',
 
-        success: function(result) {
-
-            
-            console.log(result);
-
-            // check if there is some result from request to database: if there is no result display a message, displayrResult() otherwise
-            !$.trim(result)?  document.querySelector('.evaluation-courses-wrapper').innerHTML= '<p class="error">Non segui nessun corso</p>' : displayFollowedCourses(result);
+        success: function() {
+            location.reload(); // refresh della pagina
 
         },
 
         error: function(textStatus, errorThrown) {
             console.error("Error:", textStatus, errorThrown);
-            $("#search-results").html("Error: Search failed!");
+            $(".search-evaluation-courses-wrapper").html("Error: Search failed!");
         },
     })
 

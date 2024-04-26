@@ -6,7 +6,7 @@ require dirname(__FILE__).'/../configuration/check_session.php';
 
 
 // gathering variables
-$user_email = isset($_SESSION['user_email']) ? $_SESSION['user_email']: exit('email non presente nella variabile globale');
+$user_email = isset($_SESSION['email']) ? $_SESSION['email']: exit('email non presente nella variabile globale');
 $id_course  = isset($_POST['id_course']) ? $_POST['id_course']: exit('id_course non presente nella variabile globale');
 $vote       = isset($_POST['vote']) ? floatval($_POST['vote']): exit('voto non presente nella variabile globale post');
 $feedback   = isset($_POST['feedback']) ? $_POST['feedback']: null;
@@ -18,9 +18,9 @@ $feedback   = strcmp($feedback,'') != 0 ? null : $feedback;  // set $feedback as
 $param_type  = '';
 $param_array = [];
 
-if ($feedback == null) {
+if ($feedback == null || strcmp($feedback, '')) {
     $query = 'INSERT INTO evaluate (email_user, id_course, vote) VALUES (?, ?, ?) ';
-    $param_type='ssi';
+    $param_type='ssd';
 
     $param_array[] = &$user_email;
     $param_array[] = &$id_course;
@@ -28,13 +28,13 @@ if ($feedback == null) {
 
 
 }else {
-    $query = 'INSERT INTO evaluate (email_user, id_course, feedback, vote) VALUES (?, ?, ?, ?) ';
-    $param_type = 'sssi';
+    $query = 'INSERT INTO evaluate (email_user, id_course,vote, feedback) VALUES (?, ?, ?, ?) ';
+    $param_type = 'sssd';
 
     $param_array[] = &$user_email;
     $param_array[] = &$id_course;
-    $param_array[] = &$feedback;
     $param_array[] = &$vote;
+    $param_array[] = &$feedback;
 
 }
 // =====================================================================================
@@ -73,7 +73,7 @@ try {
 }
 
 
-require dirname(__FILE__).'../configuration/database_disconnect.php';
+require dirname(__FILE__).'/../configuration/database_disconnect.php';
 
 
 
