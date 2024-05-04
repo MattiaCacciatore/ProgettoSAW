@@ -45,73 +45,46 @@ function followedCoursesByUser() {
 
 
 
-
 function performUpdateEvaluation(vote, feedback) {
-
     let id_course = document.getElementById('courseId').innerHTML;
     let convertedVote = parseFloat(vote);
-    console.log(id_course,convertedVote,feedback);
+    console.log(id_course, convertedVote, feedback);
+
 
 
     try {
-
-        updateEvaluationSanityCheck(id_course,convertedVote,feedback);
+        updateEvaluationSanityCheck(id_course, convertedVote, feedback);
 
         let dataToSend = {
-            id_course:id_course,
-            vote:vote,
-            feedback:feedback,
-        
-          };
+            id_course: id_course,
+            vote: convertedVote,
+            feedback: feedback,
+        };
 
-          
-    $.ajax({
-        url: './updateEvaluation.php',
-        method:'POST',
-        data: dataToSend,
+        console.log("data to send:", dataToSend);
 
-        success: function() {
-            location.reload(); // refresh della pagina
+        $.ajax({
+            url: './updateEvaluation.php',
+            method: 'POST',
+            data: dataToSend,
 
-        },
+            success: function(results) {
+                console.log(results);
+                location.reload();
+            },
 
-        error: function(textStatus, errorThrown) {
-            console.error("Error:", textStatus, errorThrown);
-            $(".search-evaluation-courses-wrapper").html("Error: Search failed!");
-        },
-    })
-
-
-        
+            error: function(xhr, textStatus, errorThrown) {
+                console.error("Error:", textStatus, errorThrown);
+                $(".search-evaluation-courses-wrapper").html("Error: Search failed!");
+            },
+        });
     } catch (error) {
-        console.error("Errore:", error.message);
+        console.error("Error:", error.message);
     }
-
- /*
-
-
-    $.ajax({
-        url: './performSearchFollowedCourses.php',
-        method:'POST',
-        data: dataToSend,
-        dataType:'json',
-
-        success: function(result) {
-
-            
-            console.log(result);
-
-            // check if there is some result from request to database: if there is no result display a message, displayrResult() otherwise
-            !$.trim(result)?  document.querySelector('.evaluation-courses-wrapper').innerHTML= '<p class="error">Non segui nessun corso</p>' : displayFollowedCourses(result);
-
-        },
-
-        error: function(textStatus, errorThrown) {
-            console.error("Error:", textStatus, errorThrown);
-            $("#search-results").html("Error: Search failed!");
-        },
-    })*/
 }
+
+
+
 
 
 function updateEvaluationSanityCheck(id_course,vote) {

@@ -11,14 +11,15 @@ $id_course  = isset($_POST['id_course']) ? intval($_POST['id_course']): exit('id
 $vote       = isset($_POST['vote']) ? floatval($_POST['vote']): exit('voto non presente nella variabile globale post');
 $feedback   = isset($_POST['feedback']) ? $_POST['feedback']: null;
 
-$feedback   = strcmp($feedback,'') != 0 ? null : $feedback;  // set $feedback as null if is ''
+$feedback   = strcmp($feedback,'') != 0 ? $feedback : null;  // set $feedback as null if is ''
+
 
 
 // QUERY BUILDING ========================================================================
 $param_type  = '';
 $param_array = [];
 
-if ($feedback == null || strcmp($feedback, '')) {
+if ($feedback == null) {
     $query = 'INSERT INTO evaluate (email_user, id_course, vote) VALUES (?, ?, ?) ';
     $param_type='sid';
 
@@ -43,7 +44,6 @@ if ($feedback == null || strcmp($feedback, '')) {
 
 
 
-
 try {
     $stmt = mysqli_prepare($db_connection, $query);
 
@@ -61,6 +61,8 @@ try {
 
 
         // Close statement **************************************************
+        // encoding result as JSON
+        echo json_encode($param_array);
         mysqli_stmt_close($stmt);
         
     } else {
