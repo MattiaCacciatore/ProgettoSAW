@@ -126,9 +126,8 @@ function displayFollowedCourses(result) {
 }
 
 
-
+// template for each row of the user's followed courses table
 function followedCoursesTemplate(followedCourse) {
-    // Costruisci il template HTML per il corso seguito
     return `
         <tr>
             <td>${followedCourse.course_name}</td>
