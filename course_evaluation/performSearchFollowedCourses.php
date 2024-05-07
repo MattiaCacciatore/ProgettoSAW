@@ -19,6 +19,15 @@ WHERE e.email_user IS NULL
 AND f.email_user = ?;';
 $type_param = 's';
 
+
+
+/*$query = 'SELECT c.id AS course_id, c.name AS course_name
+FROM follow f 
+INNER JOIN course c ON f.id_course = c.id
+WHERE f.email_user = ? AND f.email_user NOT IN (SELECT email_user FROM evaluate WHERE vote IS NOT NULL)';
+
+$type_param = 's';*/
+
 try {
     
     $stmt = mysqli_prepare($db_connection, $query);
@@ -49,7 +58,7 @@ try {
 
 
 } catch (Exception $e) {
-    error_log($e->getMessage(), 3, dirname(__FILE__) . '/../../../../errors/errors.log');
+    error_log($e->getMessage(), 3, dirname(__FILE__) . '/../../../errors/errors.log');
     echo json_encode(array("error" => "Database Error"));
 }
 
