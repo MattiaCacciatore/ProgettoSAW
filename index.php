@@ -11,7 +11,7 @@
 
 	<!-- Corpo della pagina. -->
 	<main>
-		<?php require dirname(__FILE__).'/.//modules/sidebar.php'; ?>
+		<?php require dirname(__FILE__).'/./modules/sidebar.php'; ?>
 
 		<section>
 			<p>
@@ -20,6 +20,6 @@
 		</section>
 	</main>
 
-	<?php require dirname(__FILE__).'/.//modules/footer.php'; ?>
+	<?php require dirname(__FILE__).'/./modules/footer.php'; ?>
 </body>
 </html>
