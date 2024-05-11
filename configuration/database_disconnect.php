@@ -8,6 +8,6 @@ CLOSE THE CONNECTION TO THE DATABASE.
 
     mysqli_close($db_connection);
 
-    if($error_occured)
+    if($error_occurred)
         die('HTTP 500 Internal Server Error');
 ?>
