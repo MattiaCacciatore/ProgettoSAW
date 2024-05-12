@@ -1,12 +1,11 @@
 <?php
   require dirname(__FILE__).'/../../configuration/database_connect.php';
-
 // PERFORMING WITH SEARCH ====================================================
 
-// Extract search parameters from $_POST
+  // Extract search parameters from $_POST
   $searchInput = isset($_POST['searchTextInput']) ? trim($_POST['searchTextInput']) : "";
-  $minPrice = isset($_POST['minPrice']) ? intval($_POST['minPrice']) : 0;
-  $maxPrice = isset($_POST['maxPrice']) ? intval($_POST['maxPrice']) : 10000;
+  $minPrice    = isset($_POST['minPrice'])        ? intval($_POST['minPrice'])      : 0;
+  $maxPrice    = isset($_POST['maxPrice'])        ? intval($_POST['maxPrice'])      : 10000;
 
   $query = buildQuery($searchInput, $minPrice, $maxPrice);
 
@@ -14,18 +13,18 @@
     $stmt = mysqli_prepare($db_connection, $query);
     if($stmt){
       // Binding statement *********************************
-      $param_type = "";
+      $param_type  = "";
       $param_array = [];
   
       if(!empty($searchInput)){
-        $param_type .= "ss";
+        $param_type         .= "ss";
         $searchWithWildcards = "%" . $searchInput . "%";
-        $param_array[] = &$searchWithWildcards;
-        $param_array[] = &$searchWithWildcards;
+        $param_array[]       = &$searchWithWildcards;
+        $param_array[]       = &$searchWithWildcards;
       }
   
       if(!empty($minPrice) && !empty($maxPrice)){
-        $param_type .= "ii";
+        $param_type   .= "ii";
         $param_array[] = &$minPrice;
         $param_array[] = &$maxPrice;
       }
@@ -36,7 +35,7 @@
       // Execute statement **********************************************
       if(mysqli_stmt_execute($stmt)){
         $result = mysqli_stmt_get_result($stmt);
-        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $data   = mysqli_fetch_all($result, MYSQLI_ASSOC);
         // Encode results as JSON ***************************************
         echo json_encode($data);
       }
@@ -56,9 +55,7 @@
   }
 
   require dirname(__FILE__).'/../../configuration/database_disconnect.php';
-
 /***************************************************************************************************** */
-
 // Method to build the complete query string
 function buildQuery($searchInput, $minPrice, $maxPrice){
     $whereClause = "";

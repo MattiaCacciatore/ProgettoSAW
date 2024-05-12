@@ -29,7 +29,7 @@
 		
 	print('
 		<a href = '.$MYROOT.'/index.php >Homepage</a> |
-		<a href = '.$MYROOT.'/internal_search_system/page/search_system.beta.0.html >Cerca i corsi</a> |
+		<a href = '.$MYROOT.'/internal_search_system/page/search_system.php >Cerca i corsi</a> |
 		<a href = \'#\'>Servizi</a> |
 		<a href = \'#\'>Lavora con noi</a> |
 		<a href = \'#\'>Contatti</a>
