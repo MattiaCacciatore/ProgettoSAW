@@ -29,6 +29,6 @@
 
 	</main>
 
-	<?php require dirname(__FILE__).'/.//modules/footer.php'; ?>
+	<?php require dirname(__FILE__).'/./modules/footer.php'; ?>
 </body>
 </html>

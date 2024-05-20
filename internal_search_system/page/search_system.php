@@ -24,6 +24,10 @@
 
 <body>
 
+<?php
+  require dirname(__FILE__).'/../../modules/navbar.php';
+?>
+
 <div class="background-header">
 
     <header>

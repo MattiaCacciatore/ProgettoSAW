@@ -7,13 +7,13 @@
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
     $db_connection;
-    $host          = 'localhost';
-    $dbname        = 'S4850100';
-    $dbusername    = 'S4850100';
-    $dbpassword    = 'pHpIs50DeCeNt';
-    $error_occured = false;
-    $result        = false;
-    $res           = null;
+    $host           = 'localhost';
+    $dbname         = 'S4850100';
+    $dbusername     = 'S4850100';
+    $dbpassword     = 'pHpIs50DeCeNt';
+    $error_occurred = false;
+    $result         = false;
+    $res            = null;
     
     if(!($db_connection = mysqli_connect($host, $dbusername, $dbpassword, $dbname))
         || !mysqli_set_charset($db_connection, 'utf8mb4')){

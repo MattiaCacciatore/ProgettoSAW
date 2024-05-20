@@ -18,6 +18,6 @@
     catch(mysqli_sql_exception $e){
         $error = sprintf('%s - %s: %s\n', date('Y-m-d H:i:s'), $query, $e->getMessage());
         error_log($error, 3, dirname(__FILE__).'/../../../errors/errors.log');
-        $error_occured = true;
+        $error_occurred = true;
     }
 ?>
