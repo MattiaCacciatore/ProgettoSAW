@@ -10,7 +10,9 @@
 		<!-- Note: putting "/" before the relative path transform it to absolute path from the document root. -->
 		<link rel = \'icon\' href = '.$MYROOT.'/css/images/school.svg type = \'image/svg+xml\'>
 		<link rel = \'apple-touch-icon\' href = '.$MYROOT.'/css/images/school.png>
-		<link rel = \'stylesheet\' href = '.$MYROOT.'/css/style.css>
+		<link rel = \'stylesheet\' href = ./css/style.css>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 	'
 	);
 ?>

@@ -27,10 +27,12 @@
 				require dirname(__FILE__).'/../configuration/database_connect.php';
 				require dirname(__FILE__).'/../configuration/database_query.php';
 				require dirname(__FILE__).'/../configuration/database_disconnect.php';
+
 				/* If everything went well the session variables will be updated. */
 				$_SESSION['name']    = $_POST['firstname'];
 				$_SESSION['surname'] = $_POST['lastname'];
 				$_SESSION['email']   = $_POST['email'];
+				
 				/* Redirect to the homepage. */
 				header('Location: ../index.php');
 			}
