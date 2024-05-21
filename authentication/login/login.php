@@ -35,9 +35,11 @@
 						$_SESSION['surname']        = $user_lastname;
 						$_SESSION['email']          = $user_email;
 						$_SESSION['authentication'] = 'true';
-						/* A boolean TRUE value is converted to the string '1'. Boolean FALSE is converted to '' (the empty string). 
-						This allows conversion back and forth between boolean and string values. Therefore boolean values are NOT
-						reliable. */
+						/* 
+							A boolean TRUE value is converted to the string '1'. Boolean FALSE is converted 
+							to '' (the empty string). This allows conversion back and forth between boolean 
+							and string values. Therefore boolean values are NOT reliable in PHP. 
+						*/
 						if($user_is_admin == 1)
 							$_SESSION['admin'] = 'true';
 						else

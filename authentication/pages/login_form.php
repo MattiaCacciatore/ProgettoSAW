@@ -4,7 +4,9 @@
 <head>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <title>Modulo di Login</title>
+  <title>
+    Modulo di Login
+  </title>
 </head>
 
 <body>
@@ -13,8 +15,10 @@
 
   <h2>Accedi</h2>
 
-  <!-- Scheletro del form di registrazione. Non cambiate i nomi dei campi e il nome dello script che viene invocato una volta inseriti i dati richiesti.
-  Il form può stare in un file a parte oppure nello stesso file registration.php (come abbiamo visto in classe) -->
+  <!-- Scheletro del form di registrazione. Non cambiate i nomi dei campi e il nome 
+  dello script che viene invocato una volta inseriti i dati richiesti.
+  Il form può stare in un file a parte oppure nello stesso file registration.php (
+  come abbiamo visto in classe) -->
   <form form action='../login/login.php' method='post'>
 
     <label for='email'>Email</label><br>
