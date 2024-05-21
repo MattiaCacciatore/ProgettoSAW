@@ -10,7 +10,7 @@
 				$params      = array($email);
 				$param_types = 's';
 				/* Since user.email is the primary key the result is supposed to be 0 or 1 row.
-				$res stores the result of the query called in database_handler.php */
+				$res stores the result of the query called in database_query.php */
 				$res;
 				
 				require dirname(__FILE__).'/../../configuration/database_connect.php';

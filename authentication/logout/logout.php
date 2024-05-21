@@ -11,7 +11,7 @@
 		$query       = 'UPDATE user SET user.id_cookie = NULL, user.expire = NULL WHERE user.email=?;';
 		$params      = array($_SESSION['email']);
 		$param_types = 's';
-        /* $res stores the result of the query called in database_handler.php */
+        /* $res stores the result of the query called in database_query.php */
 		$res;
 		
 		require dirname(__FILE__).'/../../configuration/database_connect.php';

@@ -20,7 +20,7 @@
 				$query = 'INSERT INTO user(email, firstname, lastname, pwd) VALUES (?, ?, ?, ?);';
 				$params = array($email, $name, $surname, $hashed_password);
 				$param_types = 'ssss';
-                /* $res stores the result of the query called in database_handler.php */
+                /* $res stores the result of the query called in database_query.php */
 				$res;
 
 				require dirname(__FILE__).'/../../configuration/database_connect.php';
@@ -28,7 +28,7 @@
 				require dirname(__FILE__).'/../../configuration/database_disconnect.php';
 			}
 			else{
-				exit('Campi password diversi.');
+				exit('Password diverse.');
 			}
 		}
 		else{
