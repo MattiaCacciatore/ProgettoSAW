@@ -5,6 +5,8 @@
 	print('
 	<nav>
 		<ul>
+		<li class="nav-elmnt"><a href="'.$MYROOT.'/index.php">Homepage</a></li>
+		<li class="nav-elmnt"><a href = '.$MYROOT.'/internal_search_system/page/search_system.php >Cerca i corsi</a></li> 
 	');
 	
 	if(isset($_SESSION['admin']) && $_SESSION['admin'] === 'true'){
@@ -28,8 +30,6 @@
 	}
 		
 	print('
-		<li class="nav-elmnt"><a href="'.$MYROOT.'/index.php">Homepage</a></li>
-		<li class="nav-elmnt"><a href = '.$MYROOT.'/internal_search_system/page/search_system.php >Cerca i corsi</a></li> 
 		<li class="nav-elmnt"><a href="#">Servizi</a></li>
 		<li class="nav-elmnt"><a href="#">Lavora con noi</a></li>
 		<li class="nav-elmnt"><a href="#">Contatti</a></li>
