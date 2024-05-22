@@ -4,6 +4,8 @@
 <head>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../registration/registration.css">
 
   <title>
     Modulo di Registrazione
@@ -12,15 +14,17 @@
 
 <body>
 
-  <?php require dirname(__FILE__).'/../../modules/navbar.php'; ?>
+  <?php require dirname(__FILE__).'/../../modules/header.php';?>
 
-  <h2>Crea il tuo account</h2>
 
   <!-- Scheletro del form di registrazione. Non cambiate i nomi dei campi e il nome 
   dello script che viene invocato una volta inseriti i dati richiesti.
   Il form può stare in un file a parte oppure nello stesso file registration.php 
   (come abbiamo visto in classe) -->
   <form form action='../registration/registration.php' method='post'>
+
+    <h2>Crea il tuo account</h2>
+
 
     <label for = 'firstname'>Nome:</label><br>
     <input type = 'text' id = 'firstname' name = 'firstname' required><br>

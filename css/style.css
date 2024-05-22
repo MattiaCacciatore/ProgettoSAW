@@ -1,8 +1,125 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+
+}
+
+/* HEADER*/
+/****************************************************************************************************/
+header{
+    display:flex;
+    border-bottom: 2px solid rgb(172, 93, 106);
+
+    margin: 0 50px ;
+}
+
+header #title {
+    text-align: left;
+    color: #b66879; 
+    font-size: 25px; 
+    font-weight: bold; 
+    font-family: 'Roboto', sans-serif; 
+
+}
+
+
+nav{
+    margin-left: 20px;
+    margin-top: 13.5px;
+    
+
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    
+}
+
+
+.nav-elmnt {
+    display: inline-block; /* or display: inline-block; */
+}
+
+.nav-elmnt a {
+    font-family: 'Roboto', sans-serif; 
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 28px;
+    color: steelblue;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
+    
+}
+
+
+.nav-elmnt a:link {
+    text-decoration: none;
+}
+
+.nav-elmnt a:hover {
+    color: antiquewhite;
+    background-color: rgb(226, 106, 126);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add a subtle box shadow on hover */
+
+}
+
+
+
+/* MAIN*/
+/****************************************************************************************************/
+
+main{
+    padding: 30px 0 ;
+    border: 0;
+    margin: 0 50px ;
+
+}
+
+
+#welcome-wrapper {
+    padding: 30px;
+    border-radius:11px;
+    background-color: transparent;
+    font-family: 'Roboto', sans-serif; 
+
+}
+
+/* Button Styles */
+.btn-start-here {
+    display: inline-block;
+    padding: 15px 30px;
+    background:transparent;
+    color: steelblue;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #b66879;
+    transition: background 0.3s ease;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.btn-start-here:hover {
+    color: antiquewhite;
+    background-color: rgb(226, 106, 126);
+}
+
+
+
+/* FOOTER */
+/****************************************************************************************************/
 footer {
     background: #333;
     color: #fff;
     padding: 10px 0; /* Reduced padding */
     width: 100%;
+    position: fixed; /* Fixed positioning */
+    bottom: 0; /* Align to the bottom */
+    left: 0;
 }
 
 .footer-content {

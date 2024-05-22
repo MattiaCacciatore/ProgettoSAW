@@ -4,6 +4,9 @@
 <head>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../login/login.style.css">
+
   
   <title>
     Modulo di Login
@@ -12,15 +15,18 @@
 
 <body>
 
-  <?php require dirname(__FILE__).'/../../modules/navbar.php'; ?>
+  <?php 
+  require dirname(__FILE__).'/../../modules/header.php';
+  ?>
 
-  <h2>Accedi</h2>
 
   <!-- Scheletro del form di registrazione. Non cambiate i nomi dei campi e il nome 
   dello script che viene invocato una volta inseriti i dati richiesti.
   Il form può stare in un file a parte oppure nello stesso file registration.php (
   come abbiamo visto in classe) -->
   <form form action='../login/login.php' method='post'>
+
+    <h2>Accedi</h2>
 
     <label for='email'>Email</label><br>
     <input type='email' id='email' name='email'><br><br>
