@@ -110,37 +110,38 @@ main{
 
 /* FOOTER*/
 /****************************************************************************************************/
+/* FOOTER */
+/****************************************************************************************************/
 footer {
     background: #333;
     color: #fff;
     padding: 20px 0;
-    margin: 0;
-
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    color: white;
 }
-
 
 .footer-content {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+    justify-content: space-around; /* Adjust alignment */
 }
 
 .footer-section {
-    flex: 1;
+    flex: 1 1 250px; /* Flex basis for responsiveness */
     padding: 20px;
-    min-width: 200px;
+    max-width: 300px; /* Adjust maximum width */
+    text-align: center; /* Center content */
 }
 
 .footer-section h3 {
     margin-bottom: 15px;
 }
 
-.footer-section p, .footer-section a, .footer-section ul {
+.footer-section p,
+.footer-section a,
+.footer-section ul {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -157,7 +158,7 @@ footer {
 
 .socials a {
     display: inline-block;
-    margin-right: 10px;
+    margin: 0 5px; /* Adjust margin */
     color: #fff;
 }
 
