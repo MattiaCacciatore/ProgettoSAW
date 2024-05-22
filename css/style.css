@@ -67,7 +67,23 @@ nav ul {
 
 }
 
+/* COOKIE BANNER */
+/****************************************************************************************************/
+#hide:checked ~ :is(input, div, label, section, p, a, form){
+    --show_banner: none;
+    --hold_banner: static;
+}
 
+#show:checked ~ :is(input, div, label, section, p, a, form){
+    --show_banner: block;
+    --hold_banner: sticky;
+}
+
+.hideable-content{
+	display: var(--show_banner) !important;
+    --hold_banner: sticky;
+    position: var(--hold_banner) !important;
+}
 
 /* MAIN*/
 /****************************************************************************************************/
@@ -117,7 +133,7 @@ footer {
     color: #fff;
     padding: 10px 0; /* Reduced padding */
     width: 100%;
-    position: fixed; /* Fixed positioning */
+    position: static; /* (Fixed) now static positioning */
     bottom: 0; /* Align to the bottom */
     left: 0;
 }

@@ -25,6 +25,7 @@
 <body>
 
 <?php
+  require dirname(__FILE__).'/../../modules/cookies_banner.php';
   require dirname(__FILE__).'/../../modules/navbar.php';
 ?>
 

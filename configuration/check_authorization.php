@@ -1,7 +1,5 @@
 <?php
-    if(session_status() !== PHP_SESSION_ACTIVE){
-        session_start();
-    }
+    require dirname(__FILE__).'/../modules/start_session.php';
 
     if(!isset($_SESSION['authentication']) && isset($_COOKIE['user_remember'])){
         /* User has already set the remember me option, let's check if it's true.
@@ -40,6 +38,7 @@
                 else{
                     $_SESSION['admin'] = 'false';
                 }
+                
                 $_SESSION['authentication'] = 'true'; /* Mandatory. */
             }
         }

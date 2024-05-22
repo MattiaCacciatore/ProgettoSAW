@@ -1,5 +1,7 @@
 <?php
-    if(isset($_POST['remember']) && $_POST['remember'] === 'yes'){
+    require dirname(__FILE__).'/../modules/start_session.php';
+
+    if(isset($_POST['remember'])){
         $cookie_name = 'user_remember';
         /* Generate random token. */
         $value = random_bytes(512);
@@ -30,6 +32,29 @@
         if(!setcookie($cookie_name, $value, $expire, '/', '', false, true)){
             exit('HTTP 500 Internal Server Error');
         }
+    }
+    else if(isset($_POST['cookie_agreement'])){
+        $cookie_consent = 'cookies_banner_agreement';
+        /* Cookie expire: 6 months. */
+        $expire = time() + (60*60*24*30*6);
+
+        if($_POST['accettazione'] === 'Sì'){
+            $cookie_profilazione = 'profilazione';
+            $cookie_marketing    = 'marketing';
+            
+            if(!setcookie($cookie_profilazione, $_POST['profilazione'], $expire, '/', '', false, true) ||
+                !setcookie($cookie_marketing, $_POST['marketing'], $expire, '/', '', false, true) ||
+                !setcookie($cookie_consent, 'yes', $expire, '/', '', false, true)){
+                exit('HTTP 500 Internal Server Error');
+            }
+        }
+        else{
+            if(!setcookie($cookie_consent, 'no', $expire, '/', '', false, true)){
+                exit('HTTP 500 Internal Server Error');
+            }
+        }
+
+        $_SESSION['cookies_banner_agreement'] = $_POST['accettazione'];
     }
     /* Redirect to the homepage. */
     header('Location: ../index.php');

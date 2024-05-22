@@ -1,6 +1,6 @@
-<?php require dirname(__FILE__).'/set_path.php'; ?>
-
-<?php
+<?php 
+	require dirname(__FILE__).'/set_path.php';
+	
 	print(
 	'
 	<aside>

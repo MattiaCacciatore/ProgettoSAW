@@ -1,6 +1,7 @@
-<?php require dirname(__FILE__).'/set_path.php'; ?>
+<?php 
+    require dirname(__FILE__).'/set_path.php';
+    require dirname(__FILE__).'/cookies_banner.php';
 
-<?php
     print('
     <header>
         <p id="title">STEMazing Education</p>

@@ -27,7 +27,7 @@
 					$user_is_banned = $res['is_banned'];
 
 					if($user_is_banned == 1)
-						exit('You\'re banned from this site forever. If you think this is a misteak please contact the administrator.');
+						exit('Sei stato permabannato. Se pensi che ci sia stato un errore perfavore contatta l\'amministratore.');
 
 					if(password_verify($password, $user_pwd)){
 						/* Setting session variables. */
