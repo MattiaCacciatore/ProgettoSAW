@@ -119,25 +119,8 @@ main{
 
 }
 
-/* Button Styles */
-.btn-start-here {
-    display: inline-block;
-    padding: 15px 30px;
-    background:transparent;
-    color: steelblue;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 2px solid #b66879;
-    transition: background 0.3s ease;
-    text-align: center;
-    margin: 20px 0;
-}
 
-.btn-start-here:hover {
-    color: antiquewhite;
-    background-color: rgb(226, 106, 126);
-}
+
 
 
 

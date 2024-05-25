@@ -37,10 +37,8 @@
 				Impara ovunque e in qualsiasi momento con STEMazing!
 			</p>
         </div>
-
-		<a href="#courses" class="btn-start-here">Inizia da qui!</a>
-
 	</main>
+
 
 	<?php require dirname(__FILE__).'/./modules/footer.php'; ?>
 </body>
