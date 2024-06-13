@@ -8,7 +8,6 @@
 <body>
 	<?php
 		require dirname(__FILE__).'/../modules/header.php';
-		require dirname(__FILE__).'/../modules/navbar.php';
 	?>
 
 	<!-- Corpo della pagina. -->
