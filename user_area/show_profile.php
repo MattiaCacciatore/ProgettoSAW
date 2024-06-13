@@ -2,13 +2,17 @@
 
 <!DOCTYPE html>
 <html lang = 'it'>
-    
+
+<head>
+
 <?php include dirname(__FILE__).'/../modules/head_style.php'; ?>
+
+</head>
+    
 
 <body>
 	<?php
 		require dirname(__FILE__).'/../modules/header.php';
-		require dirname(__FILE__).'/../modules/navbar.php';
 	?>
 
 	<!-- Corpo della pagina. -->

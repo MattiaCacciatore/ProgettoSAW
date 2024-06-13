@@ -104,51 +104,42 @@ function updateEvaluationSanityCheck(id_course,vote) {
 
 
 
-// This method provides to display results dinamically
+// This method provides to display results dynamically
 function displayFollowedCourses(result) {
-
     let followedCourses = JSON.parse(JSON.stringify(result));
-    let sectionToInjectResult = document.querySelector('tbody');
+    let sectionToInjectResult = document.querySelector('#coursesContainer');
     let html = "";
 
-    
-    console.log("followerCourse");
+    console.log("followedCourses");
     console.log(followedCourses);
 
-    // Iterate for each course inside followedCourse
+    // Iterate for each course inside followedCourses
     followedCourses.forEach(function(followedCourse) {
         html += followedCoursesTemplate(followedCourse);
     });
 
-    // check if section to inject results exsist inside the page
-    sectionToInjectResult? sectionToInjectResult.innerHTML = html : console.error("Element not found.");
-
+    // Check if section to inject results exists inside the page
+    sectionToInjectResult ? sectionToInjectResult.innerHTML = html : console.error("Element not found.");
 }
 
-
-// template for each row of the user's followed courses table
-function followedCoursesTemplate(followedCourse) {
+// Template for followed courses
+function followedCoursesTemplate(course) {
     return `
-        <tr>
-            <td>${followedCourse.course_name}</td>
-            <td><button onclick="showFeedbackModal('${followedCourse.course_name}',' ${followedCourse.course_id}')">Feedback</button></td>
-        </tr>
+        <div class="course-item">
+            <h2>${course.course_name}</h2>
+            <button onclick="openFeedbackModal('${course.course_id}', '${course.course_name}')">Valuta il corso</button>
+        </div>
     `;
 }
 
-
-
-
-// Function to show the feedback modal
-function showFeedbackModal(course_name, course_id) {
-  
-    document.getElementById('courseName').textContent = course_name;
-    document.getElementById('courseId').textContent = course_id;
+// Function to open the feedback modal
+function openFeedbackModal(courseId, courseName) {
+    document.getElementById('courseName').textContent = courseName;
+    document.getElementById('courseId').textContent = courseId;
     document.getElementById('feedbackModal').style.display = 'block';
-  }
-  
-  // Function to close the feedback modal
-  function closeFeedbackModal() {
-    document.getElementById('feedbackModal').style.display = 'none';
-  }
+}
 
+// Function to close the feedback modal
+function closeFeedbackModal() {
+    document.getElementById('feedbackModal').style.display = 'none';
+}

@@ -1,0 +1,64 @@
+/* Contenitore griglia */
+.wildCards {
+    padding-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1.5fr));
+    gap: 25px;
+  
+    margin-left: 300px;
+    margin-right: 300px;
+  }
+  
+  .course-card {
+    background: rgba(247,247,247,1);
+    border: 1px solid #585f85;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .course-card:hover{
+    border: 2px solid black;
+  }
+  
+  .course-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  
+    --s: 0.1em;  
+    --c: rgb(226, 106, 126); 
+    
+    color: rgb(226, 106, 126);
+    padding-bottom: var(--s);
+    background: 
+      linear-gradient(90deg,var(--c) 50%,#000 0) calc(100% - var(--_p,0%))/200% 100%,
+      linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
+    -webkit-background-clip: text,padding-box;
+            background-clip: text,padding-box;
+    transition: 0.5s;
+  }
+  
+  .course-card p {
+    margin-bottom: 10px;
+  }
+  
+  .course-details {
+    margin-top: 10px;
+  }
+  
+  .course-details span {
+    margin-right: 10px;
+  }
+  
+  .price {
+    color: #585f85; /* blue */
+  }
+  
+  .ambit {
+    color: #585f85; /* green */
+  }
+  
+  .rating {
+    color: #585f85; /* yellow */
+  }
+  

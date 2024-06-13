@@ -1,11 +1,8 @@
-
 body, html {
     margin: 0;
     padding: 0;
     background-color: whitesmoke;
     font-family: 'Roboto', sans-serif; 
-
-
 }
 
 /* Flexbox container to ensure the footer is at the bottom */
@@ -15,13 +12,13 @@ body {
     min-height: 100vh;
 }
 
-/* HEADER*/
+/* HEADER */
 /****************************************************************************************************/
-header{
-    display:flex;
+header {
+    display: flex;
     border-bottom: 2px solid rgb(172, 93, 106);
-
-    margin: 0 50px ;
+    margin: 0 50px;
+    align-items: center; /* Align items vertically center */
 }
 
 header #title {
@@ -30,49 +27,47 @@ header #title {
     font-size: 25px; 
     font-weight: bold; 
     font-family: 'Roboto', sans-serif; 
-
 }
 
-
-nav{
-    margin-left: 20px;
-    margin-top: 13.5px;
-    
-
+nav {
+    margin-left: 10px;
+    flex: 1;
 }
 
 nav ul {
+    display: flex;
+    flex-wrap: nowrap; /* Ensure items do not wrap to the next line */
     list-style-type: none;
     padding: 0;
-    text-align: center;
-    
+    margin: 0;
+    justify-content: left; /* Center the items horizontally */
+    gap: 7px; /* Add gap between items */
 }
 
-
 .nav-elmnt {
-    display: inline-block; /* or display: inline-block; */
+    display: flex; 
+    align-items: center;
+    min-width: 0; /* Allow flex items to shrink below their content width */
 }
 
 .nav-elmnt a {
+    display: block;
     font-family: 'Roboto', sans-serif; 
-    font-size: 20px;
-    padding: 8px;
+    font-size: 1.1vw; /* Use viewport width to make text size dynamic */
+    padding: 7px;
     border-radius: 28px;
     color: steelblue;
     transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
-    
-}
-
-
-.nav-elmnt a:link {
-    text-decoration: none;
+    text-decoration: none; /* Ensure no underline */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis for overflowing text */
 }
 
 .nav-elmnt a:hover {
     color: antiquewhite;
     background-color: rgb(226, 106, 126);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add a subtle box shadow on hover */
-
 }
 
 /* COOKIE BANNER */
@@ -87,31 +82,21 @@ nav ul {
     --hold_banner: sticky;
 }
 
-.hideable-content{
-	display: var(--show_banner) !important;
+.hideable-content {
+    display: var(--show_banner) !important;
     --hold_banner: sticky;
     position: var(--hold_banner) !important;
 }
 
-/* MAIN*/
+/* MAIN */
 /****************************************************************************************************/
-
-
-
-main{
-    padding: 30px 0 ;
+main {
+    padding: 30px 0;
     border: 0;
-    margin: 0 50px ;
-    flex: 1;  /*takes all space available*/
+    margin: 0 50px;
+    flex: 1;  /* Takes all space available */
     display: flex;
     justify-content: center; /* Center the form horizontally */
     align-items: center; /* Center the form vertically */
     padding: 20px;
-
 }
-
-
-
-
-
-

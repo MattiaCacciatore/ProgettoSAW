@@ -5,7 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/search-page.css">
+  <link rel="stylesheet" href="../css/courses-cards.css">
+  <link rel="stylesheet" href="../../modules/css/header.css">
+  <link rel="stylesheet" href="../../modules/css/footer.css">
+
 
 
   <!-- link per le icone: google matireal -->
@@ -17,7 +21,7 @@
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <script src="../js/search_system.js" defer></script>
     
-   <title>Search System Beta</title>
+   <title>Cerca il tuo prossimo corso</title>
 </head>
 
 
@@ -26,14 +30,11 @@
 
 <?php
   require dirname(__FILE__).'/../../modules/cookies_banner.php';
-  require dirname(__FILE__).'/../../modules/navbar.php';
+  require dirname(__FILE__).'/../../modules/header.php';
 ?>
 
-<div class="background-header">
 
-    <header>
-      <h1>Search System Beta</h1>
-    </header>
+      <h1>Cerca il tuo prossimo corso</h1>
  
 
     <!-- ******************************************************************************************************** -->
@@ -75,13 +76,8 @@
           <div class="price-filter-error"></div>
 
       </div>
-
-
-
-
     </div>
 
-</div>
 
  
       
@@ -109,4 +105,9 @@
   
 
 </body>
+<?php
+  require dirname(__FILE__).'/../../modules/footer.php';
+?>
+
+
 </html>

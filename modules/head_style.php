@@ -10,8 +10,8 @@
 		
 		<link rel = \'icon\' href = '.$MYROOT.'/css/images/school.svg type = \'image/svg+xml\'>
 		<link rel = \'apple-touch-icon\' href = '.$MYROOT.'/css/images/school.png>
-		<link rel = \'stylesheet\' href="./modules/css/header.css">
-		<link rel = \'stylesheet\' href="./modules/css/footer.css">
+		<link rel = \'stylesheet\' href="'.$MYROOT.'/modules/css/header.css">
+		<link rel = \'stylesheet\' href="'.$MYROOT.'/modules/css/footer.css">
 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 	'

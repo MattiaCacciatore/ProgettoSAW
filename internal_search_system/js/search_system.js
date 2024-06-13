@@ -60,6 +60,12 @@ function performSearch(params) {
 }
 
 
+// method that performs a preliminary search for courses to show the user when he opens the page
+function performSearchOperningPage(){
+    //ckal
+}
+
+
 
 
 
@@ -91,7 +97,6 @@ $("#searchInput").keyup(function(event) {
     
 
 //----------------------------------------------------------------------------------------------------
-// show the results
 
 function getPriceFilterValue(priceFilterId) {
   let priceValue = parseFloat($(priceFilterId).val()); // Parse the input value to a float

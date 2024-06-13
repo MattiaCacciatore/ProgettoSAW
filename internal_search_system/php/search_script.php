@@ -55,6 +55,8 @@
   }
 
   require dirname(__FILE__).'/../../configuration/database_disconnect.php';
+
+  
 /***************************************************************************************************** */
 // Method to build the complete query string
 function buildQuery($searchInput, $minPrice, $maxPrice){

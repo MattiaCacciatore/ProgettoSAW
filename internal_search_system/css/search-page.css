@@ -1,0 +1,128 @@
+h1 {
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+/*search bar & filters*/
+
+.search-system {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1.5fr));
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 200px;
+  padding: 30px;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 15px;
+  background-color: #fff;
+  width: max-content;
+  border-radius: 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.25s;
+}
+
+.search-wrapper:hover {
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
+}
+
+.search-wrapper:focus-within {
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.3);
+}
+
+.search-wrapper > #searchInput {
+  border-radius: 28px;
+  margin-left: 14px;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  width: 400px;
+  height: 2rem;
+  text-align: left;
+}
+
+.search-wrapper::placeholder {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+/* clears the ‘X’ from Internet Explorer and Chrome */
+input[type=search]::-ms-clear,
+input[type=search]::-ms-reveal,
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+/*--------------------------------------------------------------------------------------------------------------*/
+/* filter price */
+
+.price-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.price-filter .field, 
+.price-filter .button {
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.25s;
+}
+
+.price-filter .field:hover, 
+.price-filter .button:hover {
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
+}
+
+.price-filter .field {
+  display: flex;
+  align-items: center;
+}
+
+.price-filter input {
+  border: none;
+  background-color: #fff;
+  outline: none;
+  width: 120px; /* Increased width to align with "Eur" */
+  font-size: 1rem;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+/* Remove arrows from number input */
+.price-filter input[type=number]::-webkit-outer-spin-button,
+.price-filter input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
+.price-filter .button {
+  cursor: pointer;
+  background-color: rgb(226, 106, 126);
+  color: #fff;
+  font-size: large;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 28px;
+  transition: background-color 0.25s;
+}
+
+.price-filter .button:hover {
+  background-color: #f33d71; 
+}
