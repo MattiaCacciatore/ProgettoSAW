@@ -2,8 +2,10 @@
 
 <!DOCTYPE html>
 <html lang = 'it'>
-    
+<head>
 <?php include dirname(__FILE__).'/../modules/head_style.php'; ?>
+<link rel="stylesheet" href="./css/upadte_profile.css">
+</head>
 
 <body>
 	<?php
