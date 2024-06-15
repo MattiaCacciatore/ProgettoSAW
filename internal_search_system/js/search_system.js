@@ -1,31 +1,24 @@
 
-function performSearch(params) {
+function performSearch(params){
 
   document.querySelector('.price-filter-error').innerHTML = '';
 
-
   /******************** RACCOLTA DEI DATI *****************************/
   
-  //nota: toFixed aggiunge a un input intero la virgola con due zeri. 80 -> 80,00
+  // Nota: toFixed aggiunge a un input intero la virgola con due zeri. 80 -> 80,00
   let minPrice = getPriceFilterValue('#input-min'); 
   let maxPrice = getPriceFilterValue('#input-max');
-
-
-
-  
 
   if (minPrice > maxPrice) {
     document.querySelector('.price-filter-error').innerHTML = '<p class="error"> il minimo non può essere più grande del massimo </p>';
     return;
   }
 
-
   let searchTextInput = params;
-
 
   /******************* PREPARAZIONE DEI DATI *************************** */
   
-  // prepariamo i dati da inviare al server
+  // Si preparano i dati da inviare al server.
   let dataToSend = {
     searchTextInput: searchTextInput,
     minPrice:minPrice,
@@ -33,24 +26,18 @@ function performSearch(params) {
 
   };
 
-
-
-  // inviamo una richiesta ajax------------------------------------------
+  // Si invia una richiesta ajax ------------------------------------------
   $.ajax({
       url: "../php/search_script.php",
       type: "POST",
       data: dataToSend,
       dataType: "json",
       success: function(results) {
-
-        // se non troviamo nulla, solleviamo un'eccezione. Stampiamo i risultati altrimenti
+        // Se non si trova nulla si solleva un'eccezione altrimenti si stampano i risultati.
         console.log(results);
-      !$.trim(results)?  document.querySelector('.wildCards').innerHTML= '<p class="error">nessun corso trovato</p>' : displayResults(results);
+        !$.trim(results) ?  document.querySelector('.wildCards').innerHTML= '<p class="error">nessun corso trovato</p>' : displayResults(results);
     
-      
       },
-
-
 
       error: function(textStatus, errorThrown) {
           console.error("Error:", textStatus, errorThrown);
@@ -59,56 +46,48 @@ function performSearch(params) {
   });
 }
 
+//----------------------------------------------------------------------------------------------------
+// Method that performs a preliminary search for courses to show the user when he opens the page.
 
-// method that performs a preliminary search for courses to show the user when he opens the page
 function performSearchOperningPage(){
     //ckal
 }
 
-
-
-
-
-
-
 //----------------------------------------------------------------------------------------------------
-// definiamo "gli eventi in ascolto"
+// Si definiscono "gli eventi in ascolto".
 
 $(document).ready(function() {
-  performSearch(""); // Call performSearch with an empty string on page load
+  performSearch(""); // Call performSearch with an empty string on page load.
 });
 
-// ad ogni input dell'utente viene efftettuata una ricerca, molto più dinamico
-$("#searchInput").keyup(function(event) {
-    if (event.isComposing || event.keyCode === 229) {
-          return;
-      }
-      let input = $(this).val();
-      performSearch(input);
+// Ad ogni input dell'utente viene effettuata una ricerca, più dinamico.
+$("#searchInput").keyup(function(event){
+    if(event.isComposing || event.keyCode === 229){
+      return;
+    }
+
+    let input = $(this).val();
+    performSearch(input);
   });
 
-
-  // se venissero inpostati dei valori ai campi del filtro dei prezzi allora,
-  $("#searchButton").click(function() {
-    performSearch($("#searchInput").val()); // Trigger search with current search input
-  });
-
-
-    
+// Se venissero impostati dei valori ai campi del filtro dei prezzi allora...
+$("#searchButton").click(function(){
+  performSearch($("#searchInput").val()); // Trigger search with current search input
+});  
 
 //----------------------------------------------------------------------------------------------------
 
 function getPriceFilterValue(priceFilterId) {
-  let priceValue = parseFloat($(priceFilterId).val()); // Parse the input value to a float
+  let priceValue = parseFloat($(priceFilterId).val()); // Parse the input value to a float.
   let result;
 
-  // Sanity check
+  // Sanity check.
   if (priceValue < 0) {
     document.querySelector('.price-filter-error').innerHTML = '<p class="error">Il prezzo non può essere negativo</p>';
-    return; // Return or throw an error
+    return; // Return or throw an error.
   }
 
-  // Check which input field we are referring to and if the field is empty, set default values ​​of 0 and 10,000 respectively
+  // Check which input field we are referring to and if the field is empty, set default values ​​of 0 and 10,000 respectively.
   if (priceFilterId === "#input-min") {
     result = priceValue ? priceValue : 0; 
   } else {
@@ -118,33 +97,28 @@ function getPriceFilterValue(priceFilterId) {
   return result;
 }
 
-
+//----------------------------------------------------------------------------------------------------
 
 function displayResults(results) {
-  // Parse the JSON data into a JavaScript object
+  // Parse the JSON data into a JavaScript object.
   let courses = JSON.parse(JSON.stringify(results));
 
   console.log(courses);
 
-  // siccome noi facciamo un parsing dei dati in JSON, possimao sfruttarlo per esegurie il filtraggio dei dati
+  // Siccome noi facciamo un parsing dei dati in JSON, possiamo sfruttarlo per eseguire il filtraggio dei dati.
 
-
-
-  // Get the DOM element where the results will be displayed
+  // Get the DOM element where the results will be displayed.
   let resultPosition = document.querySelector('.wildCards');
 
-  // Initialize an empty string to accumulate HTML content
+  // Initialize an empty string to accumulate HTML content.
   let html = '';
 
-  // Iterate through each course in the response
-      courses.forEach(function(course) {
-        html += renderCourseCard(course);
-    });
+  // Iterate through each course in the response.
+  courses.forEach(function(course) {
+    html += renderCourseCard(course);
+  });
 
-
-
-
-  // Set the innerHTML of the result position with the accumulated HTML
+  // Set the innerHTML of the result position with the accumulated HTML.
   if (resultPosition) {
     resultPosition.innerHTML = html;
   } else {
@@ -153,8 +127,9 @@ function displayResults(results) {
 
 }
 
+//----------------------------------------------------------------------------------------------------
 
-function renderCourseCard(course) {
+function renderCourseCard(course){
 
   return `
   <div class="course-card">
