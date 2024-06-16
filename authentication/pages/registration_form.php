@@ -7,7 +7,6 @@
 
   <link rel="stylesheet" href="../../modules/css/header.css">
   <link rel="stylesheet" href="../../modules/css/footer.css">
-
   <link rel="stylesheet" href="../css/registration.css">
 
   <title>
@@ -17,8 +16,9 @@
 
 <body>
 
-  <?php require dirname(__FILE__).'/../../modules/header.php';?>
-
+  <?php 
+    require dirname(__FILE__).'/../../modules/header.php';
+  ?>
 
   <!-- Scheletro del form di registrazione. Non cambiate i nomi dei campi e il nome 
   dello script che viene invocato una volta inseriti i dati richiesti.
@@ -26,10 +26,10 @@
   (come abbiamo visto in classe) -->
 
   <main>
-    <form form action='../registration/registration.php' method='post'>
+
+    <form form action = '../registration/registration.php' method = 'post'>
 
       <h2>Crea il tuo account</h2>
-
 
       <label for = 'firstname'>Nome:</label><br>
       <input type = 'text' id = 'firstname' name = 'firstname' required><br>
@@ -46,13 +46,14 @@
       <label for = 'confirm'>Conferma Password:</label><br>
       <input type = 'password' id = 'confirm' name = 'confirm' required><br><br>
 
-      <input type='submit' name='submit' value='Registrati'>
+      <input type = 'submit' name = 'submit' value = 'Registrati'>
 
     </form>
   </main>
 
-  <?php require dirname(__FILE__).'/../..//modules/footer.php'; ?>
-
+  <?php 
+    require dirname(__FILE__).'/../..//modules/footer.php'; 
+  ?>
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
     require dirname(__FILE__).'/../modules/start_session.php';
 
-    if(isset($_POST['remember'])){
+    if(isset($_POST['remember'])){ /* Remember me cookies. */
         $cookie_name = 'user_remember';
         /* Generate random token. */
         $value = random_bytes(512);
@@ -33,7 +33,7 @@
             exit('HTTP 500 Internal Server Error');
         }
     }
-    else if(isset($_POST['cookie_agreement'])){
+    else if(isset($_POST['cookie_agreement'])){ /* Banner cookies. */
         $cookie_consent = 'cookies_banner_agreement';
         /* Cookie expire: 6 months. */
         $expire = time() + (60*60*24*30*6);
