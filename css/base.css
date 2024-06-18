@@ -1,0 +1,6 @@
+/* Per tutti gli elementi HTML, ossia l'intera pagina. */
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
