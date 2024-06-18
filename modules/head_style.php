@@ -10,6 +10,7 @@
 		
 		<link rel = \'icon\' href = '.$MYROOT.'/css/images/school.svg type = \'image/svg+xml\'>
 		<link rel = \'apple-touch-icon\' href = '.$MYROOT.'/css/images/school.png>
+		<link rel = \'stylesheet\' href="'.$MYROOT.'/css/base.css">
 		<link rel = \'stylesheet\' href="'.$MYROOT.'/modules/css/header.css">
 		<link rel = \'stylesheet\' href="'.$MYROOT.'/modules/css/footer.css">
 
