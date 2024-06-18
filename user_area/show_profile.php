@@ -1,11 +1,15 @@
-<?php require dirname(__FILE__).'/../configuration/check_session.php'; ?>
+<?php 
+	require dirname(__FILE__).'/../configuration/check_session.php'; 
+?>
 
 <!DOCTYPE html>
 <html lang = 'it'>
 
 <head>
 
-<?php include dirname(__FILE__).'/../modules/head_style.php'; ?>
+	<?php 
+		include dirname(__FILE__).'/../modules/head_style.php'; 
+	?>
 
 </head>
     
@@ -17,6 +21,7 @@
 
 	<!-- Corpo della pagina. -->
 	<main>
+
 		<?php
 			/* Non serve interrogare di nuovo il server, i dati dell'utente
 			 sono salvati nell'array superglobale $SESSION di sessione. */
@@ -36,8 +41,12 @@
 				</tr>
 			</table>');
 		?>
+
 	</main>
 
-	<?php require dirname(__FILE__).'/../modules/footer.php'; ?>
+	<?php 
+		require dirname(__FILE__).'/../modules/footer.php'; 
+	?>
+	
 </body>
 </html>

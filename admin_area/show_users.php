@@ -7,14 +7,18 @@
 <html lang = 'it'>
 
 <head>
-    <?php include dirname(__FILE__).'/../modules/head_style.php'; ?>
+    <?php 
+        include dirname(__FILE__).'/../modules/head_style.php'; 
+    ?>
 
     <title>
         Lista utenti
     </title>
+
 </head>
 
 <body>
+
     <?php
         require dirname(__FILE__).'/../modules/navbar.php';
 
@@ -75,5 +79,6 @@
             ');
         }
     ?>
+    
 </body>
 </html>

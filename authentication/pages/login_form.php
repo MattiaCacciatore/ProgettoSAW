@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang='it'>
+<html lang = 'it'>
 
 <head>
-  <meta charset='UTF-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
-  <link rel="stylesheet" href="../../modules/css/header.css">
-  <link rel="stylesheet" href="../../modules/css/footer.css">
-  <link rel="stylesheet" href="../css/login.css">
+  <?php 
+    include dirname(__FILE__).'/../../modules/head_style.php'; 
+  ?>
+
+  <link rel = 'stylesheet' href = '../css/login.css'>
 
   <title>
     Modulo di Accesso
   </title>
+  
 </head>
 
 <body>
@@ -19,7 +20,6 @@
   <?php 
     require dirname(__FILE__).'/../../modules/header.php';
   ?>
-
 
   <!-- Scheletro del form di registrazione. Non cambiate i nomi dei campi e il nome 
   dello script che viene invocato una volta inseriti i dati richiesti.

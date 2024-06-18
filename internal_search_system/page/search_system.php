@@ -1,65 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = 'it'>
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Same style for all pages. -->
+  <?php 
+		include dirname(__FILE__).'/./modules/head_style.php'; 
+	?>
   
-  <link rel="stylesheet" href="../css/search-page.css">
-  <link rel="stylesheet" href="../css/courses-cards.css">
-  <link rel="stylesheet" href="../../modules/css/header.css">
-  <link rel="stylesheet" href="../../modules/css/footer.css">
+  <link rel = 'stylesheet' href = '../css/search-page.css'>
+  <link rel = 'stylesheet' href = '../css/courses-cards.css'>
 
-  <!-- link per le icone: google matireal -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- Icon links: google matireal. -->
+  <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200' />
+  <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200' />
 
-   <!-- Include jQuery -->
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script src="../js/search_system.js" defer></script>
+   <!-- Include jQuery. -->
+   <script src = 'https://code.jquery.com/jquery-3.6.0.min.js'></script>
+   <script src = '../js/search_system.js' defer></script>
     
-   <title>Cerca il tuo prossimo corso</title>
+   <title>
+      Cerca i corsi
+    </title>
+
 </head>
 
 <body>
 
   <?php
-    require dirname(__FILE__).'/../../modules/cookies_banner.php';
     require dirname(__FILE__).'/../../modules/header.php';
   ?>
 
-  <h1>Cerca il tuo prossimo corso</h1>
+  <h1>
+    Cerca il tuo prossimo corso
+  </h1>
  
   <!-- ******************************************************************************************************** -->
-  <!-- search menu -->
-  <div class="search-system">
+  <!-- Search menu. -->
+  <div class = 'search-system'>
 
-    <div class="search-wrapper">
-      <span class="material-symbols-outlined">search </span>
-      <input type="search" id="searchInput" placeholder="Search by id , name , or the conntent of the course">
+    <div class = 'search-wrapper'>
+      <span class = 'material-symbols-outlined'>search </span>
+      <input type = 'search' id = 'searchInput' placeholder = 'Cerca per id, nome o contenuto del corso'>
     </div>
 
   <!-- ******************************************************************************************************** -->
-  <!-- price filter -->
-    <div class="price-filter">
-      <div class="field">
-        <span>Eur</span>
-        <input type="number" id="input-min" placeholder="Min">
+  <!-- Price filter. -->
+    <div class = 'price-filter'>
+      <div class = 'field'>
+        <span>Euro</span>
+        <input type = 'number' id = 'input-min' placeholder = 'Min'>
       </div>
 
-      <div class="field">
-        <span>Eur</span>
-        <input type="number" id="input-max" placeholder="Max">
+      <div class = 'field'>
+        <span>Euro</span>
+        <input type = 'number' id = 'input-max' placeholder = 'Max'>
       </div>
 
-      <button class="button" id="searchButton">vai</button>
+      <button class = 'button' id = 'searchButton'>Vai</button>
 
-      <div class="price-filter-error"></div>
+      <div class = 'price-filter-error'></div>
 
     </div>
   </div>
-  
-  <div class="wildCards"></div>
 
   <!-- ******************************************************************************************************** -->
   <!-- wild cards dei corsi 
@@ -74,6 +76,9 @@
 
        nel metodo: displayResults
   -->   
+  <div class = 'wildCards'></div>
+
+
   <?php
     require dirname(__FILE__).'/../../modules/footer.php';
   ?>

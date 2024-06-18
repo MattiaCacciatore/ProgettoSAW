@@ -1,26 +1,36 @@
-<?php require dirname(__FILE__).'/../configuration/check_session.php'; ?>
+<?php 
+	require dirname(__FILE__).'/../configuration/check_session.php'; 
+?>
 
 <!DOCTYPE html>
 <html lang = 'it'>
+
 <head>
-<?php include dirname(__FILE__).'/../modules/head_style.php'; ?>
-<link rel="stylesheet" href="./css/upadte_profile.css">
+
+	<?php 
+		include dirname(__FILE__).'/../modules/head_style.php'; 
+	?>
+
+	<link rel = 'stylesheet' href = './css/upadte_profile.css'>
+
 </head>
 
 <body>
+
 	<?php
 		require dirname(__FILE__).'/../modules/header.php';
 	?>
 
 	<!-- Corpo della pagina. -->
 	<main>
+
 		<?php
 			/* Let's verify if the current user is */
 			if(isset($_POST['submit'])){
 				$query = 'UPDATE user SET user.email = ?, user.firstname = ?, user.lastname = ? WHERE user.email=?;';
 				/* Note: $user_email is checked in login.php. */
 				$params = array($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_SESSION['email']);
-				/* 'sss' means that all 3 params are bounded as strings. */
+				/* 'ssss' means that all params are bounded as strings. */
 				$param_types = 'ssss';
 				/* $res stores the result of the query called in database_handler.php */
 				$res;
@@ -58,6 +68,9 @@
 		?>
 	</main>
 
-	<?php require dirname(__FILE__).'/../modules/footer.php'; ?>
+	<?php 
+		require dirname(__FILE__).'/../modules/footer.php'; 
+	?>
+
 </body>
 </html>

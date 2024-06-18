@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang = 'it'>
     
-<?php include dirname(__FILE__).'/./modules/head_style.php'; ?>
+<head>
+
+	<?php 
+		include dirname(__FILE__).'/./modules/head_style.php'; 
+	?>
+
+	<title>
+		Homepage
+	</title>
+
+</head>
 
 <body>
+
 	<?php
 		require dirname(__FILE__).'/./modules/header.php';
 	?>
 
 	<!-- Corpo della pagina. -->
 	<main>
-		<!-- <?php // require dirname(__FILE__).'/.//modules/sidebar.php'; ?> -->
 
-		<div id="welcome-wrapper">
+		<div id = 'welcome-wrapper'>
+
             <h3>Benvenuti su STEMazing Education</h3>
 
             <p>
@@ -36,10 +47,14 @@
             <p>
 				Impara ovunque e in qualsiasi momento con STEMazing!
 			</p>
+
         </div>
+
 	</main>
 
-
-	<?php require dirname(__FILE__).'/./modules/footer.php'; ?>
+	<?php 
+		require dirname(__FILE__).'/./modules/footer.php'; 
+	?>
+	
 </body>
 </html>
