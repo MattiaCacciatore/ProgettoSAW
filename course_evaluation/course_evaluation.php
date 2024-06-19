@@ -2,14 +2,12 @@
 <html lang = 'it'>
 
 <head>
-    <meta charset = 'utf-8'>
-    <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
-    <meta name = 'description' content = ''>
-    <meta name = 'viewport' content = 'width=device-width, initial-scale=1'>
+
+    <?php 
+		include dirname(__FILE__).'/../modules/head_style.php'; 
+	?>
 
     <link rel = 'stylesheet' href = './course-evaluation.css'>
-    <link rel = 'stylesheet' href = '../modules/css/header.css'>
-    <link rel = 'stylesheet' href = '../modules/css/footer.css'>
 
     <script src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
     <script src = './askAndDisplayFollowedCourses.js' defer></script>
@@ -17,11 +15,13 @@
     <title>
         Valutazione dei corsi
     </title>
+
 </head>
 
 <body>
 
     <?php
+        /* Note: header includes navbar. */
         require dirname(__FILE__).'/../modules/header.php';
     ?>
 
@@ -30,6 +30,7 @@
     </h1>
 
     <main>
+        
         <div class = 'evaluation-courses-wrapper'>
             <div id = 'coursesContainer'>
                 <!-- Questo spazio verrà riempito dinamicamente con i dati dei corsi -->
