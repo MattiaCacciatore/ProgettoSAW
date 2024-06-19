@@ -140,7 +140,7 @@ function renderCourseCard(course){
       <span class="price">Price: ${course.price}</span>
       <span class="rating">Rating: ${course.average_evaluation}</span>
     </div>
-    <form form action = '../show_course.php' method = 'post'>
+    <form form action = '../php/show_course.php' method = 'post'>
       <h3>Accedi al corso</h3>
       <input type = 'submit' name = 'submit' value = ${course.id}>
     </form>

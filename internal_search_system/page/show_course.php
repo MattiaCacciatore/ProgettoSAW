@@ -44,7 +44,7 @@
 				require dirname(__FILE__).'/../../configuration/database_query.php';
 				require dirname(__FILE__).'/../../configuration/database_disconnect.php';
 				/* To be continued... */
-				print(''.$res['id'].' '.$res['name'].'');
+				print('<br>Corso n. '.$res['id'].' : '.$res['name'].'<br><br>');
 			}
 			else{
 				/* Placeholder. */
