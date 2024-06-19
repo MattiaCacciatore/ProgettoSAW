@@ -11,6 +11,8 @@
 		include dirname(__FILE__).'/../modules/head_style.php'; 
 	?>
 
+	<link rel = 'stylesheet' href = './css/show_profile.css'>
+
 </head>
     
 
@@ -26,20 +28,30 @@
 			/* Non serve interrogare di nuovo il server, i dati dell'utente
 			 sono salvati nell'array superglobale $SESSION di sessione. */
 			print('
-			<table>
-				<tr>
-					<th>Nome</th>
-					<th>Cognome</th>
-					<th>Indirizzo email</th>
-					<th>Amministratore</th>
-				</tr>
-				<tr>
-					<th>'.$_SESSION['name'].'</th>
-					<th>'.$_SESSION['surname'].'</th>
-					<th>'.$_SESSION['email'].'</th>
-					<th>'.$_SESSION['admin'].'</th>
-				</tr>
-			</table>');
+			<section class = "profile">
+            	<div class = "card">
+            		<div class = "card-body">
+                    	<img src = "images/user_icon.png" alt = "Immagine profilo" class = "centered">
+                    	<div class = "table">
+                      		<h4>'.$_SESSION['name'].' '.$_SESSION['surname'].'</h4>
+                      		<p>'.$_SESSION['email'].'</p>
+							<p>
+			');
+
+			if($_SESSION['admin'] === 'true'){
+				print('Amministratore');
+			}
+			else{
+				print('Utente');
+			}
+
+			print('
+                      		</p>
+						</div>
+                    </div>
+                </div>
+            </section>
+			');
 		?>
 
 	</main>
