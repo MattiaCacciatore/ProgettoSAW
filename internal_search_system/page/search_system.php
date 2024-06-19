@@ -4,7 +4,7 @@
 <head>
   <!-- Same style for all pages. -->
   <?php 
-		include dirname(__FILE__).'/./modules/head_style.php'; 
+		include dirname(__FILE__).'../../modules/head_style.php'; 
 	?>
   
   <link rel = 'stylesheet' href = '../css/search-page.css'>
