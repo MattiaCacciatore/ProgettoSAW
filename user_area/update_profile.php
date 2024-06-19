@@ -11,13 +11,14 @@
 		include dirname(__FILE__).'/../modules/head_style.php'; 
 	?>
 
-	<link rel = 'stylesheet' href = './css/upadte_profile.css'>
+	<link rel = 'stylesheet' href = './css/update_profile.css'>
 
 </head>
 
 <body>
 
 	<?php
+		/* Note: header include navbar. */
 		require dirname(__FILE__).'/../modules/header.php';
 	?>
 
@@ -25,9 +26,11 @@
 	<main>
 
 		<?php
-			/* Let's verify if the current user is */
+			/* Let's verify if the current user actual exists. 
+			   Note: users and scripts can reach this script without passing through a login and validation form. 
+			*/
 			if(isset($_POST['submit'])){
-				$query = 'UPDATE user SET user.email = ?, user.firstname = ?, user.lastname = ? WHERE user.email=?;';
+				$query = 'UPDATE user SET user.email = ?, user.firstname = ?, user.lastname = ? WHERE user.email = ?;';
 				/* Note: $user_email is checked in login.php. */
 				$params = array($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_SESSION['email']);
 				/* 'ssss' means that all params are bounded as strings. */
@@ -49,7 +52,7 @@
 			}
 			else{
 				print('
-				<form form action=\'update_profile.php\' method=\'post\'>
+				<form form action = \'update_profile.php\' method = \'post\'>
 
 				<label for = \'firstname\'>Nuovo nome:</label><br>
 				<input type = \'text\' id = \'firstname\' name = \'firstname\' required><br>
