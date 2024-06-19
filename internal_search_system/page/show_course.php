@@ -31,8 +31,25 @@
 	<main>
 
 		<?php
-            /* Placeholder. */
-			print('');
+			if(isset($_POST['submit'])){
+				$query = 'SELECT * FROM course JOIN video ON course.id = video.id WHERE course.id = ?;';
+				/* Note: $user_email is already checked in login.php. */
+				$params = array($_POST['submit']);
+				/* 'i' means that the param is bounded as an integer. */
+				$param_types = 'i';
+				/* $res stores the result of the query. */
+				$res;
+
+				require dirname(__FILE__).'/../../configuration/database_connect.php';
+				require dirname(__FILE__).'/../../configuration/database_query.php';
+				require dirname(__FILE__).'/../../configuration/database_disconnect.php';
+				/* To be continued... */
+				print(''.$res['id'].' '.$res['name'].'');
+			}
+			else{
+				/* Placeholder. */
+				print('Nessun corso selezionato!');
+			}
 		?>
 
 	</main>

@@ -68,9 +68,10 @@ function buildQuery($searchInput, $minPrice, $maxPrice){
     if(!empty($minPrice) && !empty($maxPrice)){
       $whereClause .= " (price BETWEEN ? AND ?) ";
     }
-    // Remove unnecessary trailing AND
+    // Remove unnecessary trailing AND.
     $whereClause = rtrim($whereClause, " AND ");
-    // Construct the query
+    // Construct the query.
+    /* NOTA: estendere la query per poter recuperare l'insegnante. */
     $query = "SELECT * FROM course";
     if (!empty($whereClause)) {
       $query .= " WHERE " . $whereClause;
