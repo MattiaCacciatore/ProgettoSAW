@@ -12,12 +12,12 @@ $("#searchInput").keyup(function(event){
     }
 
     let input = $(this).val();
-    PerformUserSearch(input);
+    performUserSearch(input);
   });
 
 // Se venissero impostati dei valori ai campi del filtro dei prezzi allora...
 $("#searchButton").click(function(){
-  PerformUserSearch($("#searchInput").val()); // Trigger search with current search input
+  performUserSearch($("#searchInput").val()); // Trigger search with current search input
 });  
 
 
@@ -27,7 +27,7 @@ $("#searchButton").click(function(){
 /*----------------------------------------------------------------------------------------------------------------------------------- */
 
 
-function performSearch(params){
+function performUserSearch(params){
 
   document.querySelector('.price-filter-error').innerHTML = '';
 
@@ -53,7 +53,7 @@ function performSearch(params){
 
   // Si invia una richiesta ajax 
   $.ajax({
-      url: "../php/PerformUserSearch.php",
+      url: "../php/performUserSearch.php",
       type: "POST",
       data: dataToSend,
       dataType: "json",
