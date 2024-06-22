@@ -1,9 +1,36 @@
+//----------------------------------------------------------------------------------------------------
+// Si definiscono "gli eventi in ascolto".
+
+$(document).ready(function() {
+  performSearchOperningPage();
+});
+
+// Ad ogni input dell'utente viene effettuata una ricerca, più dinamico.
+$("#searchInput").keyup(function(event){
+    if(event.isComposing || event.keyCode === 229){
+      return;
+    }
+
+    let input = $(this).val();
+    PerformUserSearch(input);
+  });
+
+// Se venissero impostati dei valori ai campi del filtro dei prezzi allora...
+$("#searchButton").click(function(){
+  PerformUserSearch($("#searchInput").val()); // Trigger search with current search input
+});  
+
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------- */
+/*                                                          FUNZIONI PRINCIPAILI                                                      */
+/*----------------------------------------------------------------------------------------------------------------------------------- */
+
 
 function performSearch(params){
 
   document.querySelector('.price-filter-error').innerHTML = '';
 
-  /******************** RACCOLTA DEI DATI *****************************/
   
   // Nota: toFixed aggiunge a un input intero la virgola con due zeri. 80 -> 80,00
   let minPrice = getPriceFilterValue('#input-min'); 
@@ -15,8 +42,6 @@ function performSearch(params){
   }
 
   let searchTextInput = params;
-
-  /******************* PREPARAZIONE DEI DATI *************************** */
   
   // Si preparano i dati da inviare al server.
   let dataToSend = {
@@ -26,9 +51,9 @@ function performSearch(params){
 
   };
 
-  // Si invia una richiesta ajax ------------------------------------------
+  // Si invia una richiesta ajax 
   $.ajax({
-      url: "../php/search_script.php",
+      url: "../php/PerformUserSearch.php",
       type: "POST",
       data: dataToSend,
       dataType: "json",
@@ -46,36 +71,35 @@ function performSearch(params){
   });
 }
 
+
+
 //----------------------------------------------------------------------------------------------------
 // Method that performs a preliminary search for courses to show the user when he opens the page.
 
 function performSearchOperningPage(){
-    //ckal
+    $.ajax({
+      url: "../php/performSearchOperningPage.php",
+      type: "POST",
+      dataType: "json",
+      success: function(results) {
+        // Se non si trova nulla si solleva un'eccezione altrimenti si stampano i risultati.
+        console.log(results);
+        !$.trim(results) ?  document.querySelector('.wildCards').innerHTML= '<p class="error">nessun corso trovato</p>' : displayResults(results);
+    
+      },
+
+      error: function(textStatus, errorThrown) {
+          console.error("Error:", textStatus, errorThrown);
+          $("#search-results").html("Error: Search failed!");
+      }
+  });
 }
 
-//----------------------------------------------------------------------------------------------------
-// Si definiscono "gli eventi in ascolto".
 
-$(document).ready(function() {
-  performSearch(""); // Call performSearch with an empty string on page load.
-});
 
-// Ad ogni input dell'utente viene effettuata una ricerca, più dinamico.
-$("#searchInput").keyup(function(event){
-    if(event.isComposing || event.keyCode === 229){
-      return;
-    }
-
-    let input = $(this).val();
-    performSearch(input);
-  });
-
-// Se venissero impostati dei valori ai campi del filtro dei prezzi allora...
-$("#searchButton").click(function(){
-  performSearch($("#searchInput").val()); // Trigger search with current search input
-});  
-
-//----------------------------------------------------------------------------------------------------
+/*----------------------------------------------------------------------------------------------------------------------------------- */
+/*                                                          FUNZIONI SECONDARIE                                                      */
+/*----------------------------------------------------------------------------------------------------------------------------------- */
 
 function getPriceFilterValue(priceFilterId) {
   let priceValue = parseFloat($(priceFilterId).val()); // Parse the input value to a float.
