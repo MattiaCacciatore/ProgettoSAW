@@ -132,17 +132,16 @@ function displayResults(results) {
 function renderCourseCard(course){
 
   return `
-  <div class="course-card">
+  <div class = 'course-card'>
     <h2>${course.name}</h2>
     <p>By: ${course.teacher}</p>
     <p>${course.description}</p>
-    <div class="course-details">
-      <span class="price">Price: ${course.price}</span>
-      <span class="rating">Rating: ${course.average_evaluation}</span>
+    <div class = 'course-details'>
+      <span class = 'price'>Price: ${course.price}</span>
+      <span class = 'rating'>Rating: ${course.average_evaluation}</span>
     </div>
-    <form form action = '../php/show_course.php' method = 'post'>
-      <h3>Accedi al corso</h3>
-      <input type = 'submit' name = 'submit' value = ${course.id}>
+    <form form action = '../page/show_course.php' method = 'post'>
+      <button type = 'submit' name = 'courseId' value = ${course.id}>Accedi al corso</button>
     </form>
   </div>
   `;

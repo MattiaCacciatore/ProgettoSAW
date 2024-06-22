@@ -1,0 +1,3 @@
+<FilesMatch "^(show_course.php)">
+	Require all denied
+</FilesMatch>
