@@ -73,7 +73,7 @@ function performUserSearch(params){
 
 function performSearchOperningPage(){
     $.ajax({
-      url: "../php/performSearchOperningPage.php",
+      url: "../php/performSearchOpeningPage.php",
       type: "POST",
       dataType: "json",
       success: function(results) {
