@@ -63,11 +63,11 @@
 					');
 				}
 				else{
-					print('<p class = "course-section">Nessun corso selezionato!</p>');
+					print('<p>Nessun corso selezionato!</p>');
 				}
 			}
 			else{
-				print('<p>Nessun corso selezionato!</p>');
+				print('<p>Nessun corso selezionato</p>');
 			}
 		?>
 
