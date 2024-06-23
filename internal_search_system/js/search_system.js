@@ -2,7 +2,7 @@
 // Si definiscono "gli eventi in ascolto".
 
 $(document).ready(function() {
-  performSearchOperningPage();
+  performSearchOpeningPage();
 });
 
 // Ad ogni input dell'utente viene effettuata una ricerca, più dinamico.
@@ -76,9 +76,9 @@ function performUserSearch(params){
 //----------------------------------------------------------------------------------------------------
 // Method that performs a preliminary search for courses to show the user when he opens the page.
 
-function performSearchOperningPage(){
+function performSearchOpeningPage(){
     $.ajax({
-      url: "../php/performSearchOperningPage.php",
+      url: "../php/performSearchOpeningPage.php",
       type: "POST",
       dataType: "json",
       success: function(results) {
