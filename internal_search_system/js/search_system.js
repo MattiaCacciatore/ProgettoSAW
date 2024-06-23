@@ -32,6 +32,7 @@ function performUserSearch(params){
   // Nota: toFixed aggiunge a un input intero la virgola con due zeri. 80 -> 80,00
   let minPrice = getPriceFilterValue('#input-min'); 
   let maxPrice = getPriceFilterValue('#input-max');
+  console.log("minprice "+ minPrice);
 
   if (minPrice > maxPrice) {
     document.querySelector('.price-filter-error').innerHTML = '<p class="error"> il minimo non può essere più grande del massimo </p>';
@@ -106,9 +107,9 @@ function getPriceFilterValue(priceFilterId) {
 
   // Check which input field we are referring to and if the field is empty, set default values ​​of 0 and 10,000 respectively.
   if (priceFilterId === "#input-min") {
-    result = priceValue ? priceValue : 0; 
+    result = priceValue ? priceValue : 1.0; 
   } else {
-    result = priceValue ? priceValue : 10000; 
+    result = priceValue ? priceValue : 10000.0; 
   }
 
   return result;

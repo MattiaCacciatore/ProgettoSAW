@@ -4,8 +4,8 @@
 
   // Extract search parameters from $_POST
   $searchInput = isset($_POST['searchTextInput']) ? trim($_POST['searchTextInput']) : "";
-  $minPrice    = isset($_POST['minPrice'])        ? intval($_POST['minPrice'])      : 0;
-  $maxPrice    = isset($_POST['maxPrice'])        ? intval($_POST['maxPrice'])      : 10000;
+  $minPrice    = isset($_POST['minPrice'])        ? floatval($_POST['minPrice'])      : 1.0;
+  $maxPrice    = isset($_POST['maxPrice'])        ? floatval($_POST['maxPrice'])      : 10000.0;
 
   $query = buildQuery($searchInput, $minPrice, $maxPrice);
 
@@ -59,24 +59,27 @@
   
 /***************************************************************************************************** */
 // Method to build the complete query string
-function buildQuery($searchInput, $minPrice, $maxPrice){
-    $whereClause = "";
-    if(!empty($searchInput)){
-      $whereClause .= " (name LIKE ? OR description LIKE ?) AND";
-    }
-  
-    if(!empty($minPrice) && !empty($maxPrice)){
-      $whereClause .= " (price BETWEEN ? AND ?) ";
-    }
-    // Remove unnecessary trailing AND.
-    $whereClause = rtrim($whereClause, " AND ");
-    // Construct the query.
-    /* NOTA: estendere la query per poter recuperare l'insegnante. */
-    $query = "SELECT * FROM course";
-    if (!empty($whereClause)) {
-      $query .= " WHERE " . $whereClause;
-    }
-  
-    return $query;
+function buildQuery($searchInput, $minPrice, $maxPrice) {
+  $whereClause = [];
+  if ($searchInput !== "") {
+      $whereClause[] = " (name LIKE ? OR description LIKE ?)";
   }
+
+  if ($minPrice !== null && $maxPrice !== null) {
+      $whereClause[] = " (price BETWEEN ? AND ?)";
+  } elseif ($minPrice !== null) {
+      $whereClause[] = " (price >= ?)";
+  } elseif ($maxPrice !== null) {
+      $whereClause[] = " (price <= ?)";
+  }
+
+  $query = "SELECT * FROM course";
+  if (!empty($whereClause)) {
+      $query .= " WHERE " . implode(" AND ", $whereClause);
+  }
+
+  $query .= " ORDER BY average_evaluation DESC LIMIT 10";
+
+  return $query;
+}
 ?>
