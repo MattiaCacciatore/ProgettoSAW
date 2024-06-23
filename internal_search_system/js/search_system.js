@@ -2,7 +2,7 @@
 // Si definiscono "gli eventi in ascolto".
 
 $(document).ready(function() {
-  performSearchOpeningPage();
+  performSearchOperningPage();
 });
 
 // Ad ogni input dell'utente viene effettuata una ricerca, più dinamico.
@@ -20,12 +20,9 @@ $("#searchButton").click(function(){
   performUserSearch($("#searchInput").val()); // Trigger search with current search input
 });  
 
-
-
-/*----------------------------------------------------------------------------------------------------------------------------------- */
-/*                                                          FUNZIONI PRINCIPAILI                                                      */
-/*----------------------------------------------------------------------------------------------------------------------------------- */
-
+/*---------------------------------------------------------------------------------------------------------------------------------- */
+/*                                                          FUNZIONI PRINCIPALI                                                      */
+/*---------------------------------------------------------------------------------------------------------------------------------- */
 
 function performUserSearch(params){
 
@@ -71,14 +68,12 @@ function performUserSearch(params){
   });
 }
 
-
-
 //----------------------------------------------------------------------------------------------------
 // Method that performs a preliminary search for courses to show the user when he opens the page.
 
-function performSearchOpeningPage(){
+function performSearchOperningPage(){
     $.ajax({
-      url: "../php/performSearchOpeningPage.php",
+      url: "../php/performSearchOperningPage.php",
       type: "POST",
       dataType: "json",
       success: function(results) {
@@ -95,11 +90,9 @@ function performSearchOpeningPage(){
   });
 }
 
-
-
-/*----------------------------------------------------------------------------------------------------------------------------------- */
+/*---------------------------------------------------------------------------------------------------------------------------------- */
 /*                                                          FUNZIONI SECONDARIE                                                      */
-/*----------------------------------------------------------------------------------------------------------------------------------- */
+/*---------------------------------------------------------------------------------------------------------------------------------- */
 
 function getPriceFilterValue(priceFilterId) {
   let priceValue = parseFloat($(priceFilterId).val()); // Parse the input value to a float.
@@ -158,11 +151,11 @@ function renderCourseCard(course){
   return `
   <div class = 'course-card'>
     <h2>${course.name}</h2>
-    <p>By: ${course.teacher}</p>
+    <p>Da: ${course.teacher}</p>
     <p>${course.description}</p>
     <div class = 'course-details'>
-      <span class = 'price'>Price: ${course.price}</span>
-      <span class = 'rating'>Rating: ${course.average_evaluation}</span>
+      <span class = 'price'>Prezzo: ${course.price}</span>
+      <span class = 'rating'>Valutazione: ${course.average_evaluation}</span>
     </div>
     <form form action = '../page/show_course.php' method = 'post'>
       <button type = 'submit' name = 'courseId' value = ${course.id}>Accedi al corso</button>
