@@ -70,7 +70,7 @@
 						<br><br>
 					');
 
-					foreach($res as $row){
+					while($row = mysqli_fetch_assoc($res)){
 						print('
 						<section class = "course-section">
 							<h2>Video: '.$row['title'].'</h2>
