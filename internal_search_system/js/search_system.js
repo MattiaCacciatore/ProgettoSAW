@@ -106,9 +106,9 @@ function getPriceFilterValue(priceFilterId) {
 
   // Check which input field we are referring to and if the field is empty, set default values ​​of 0 and 10,000 respectively.
   if (priceFilterId === "#input-min") {
-    result = priceValue ? priceValue : 0; 
+    result = priceValue ? priceValue : 1.0; 
   } else {
-    result = priceValue ? priceValue : 10000; 
+    result = priceValue ? priceValue : 10000.0; 
   }
 
   return result;
