@@ -12,7 +12,7 @@
 		include dirname(__FILE__).'/../modules/head_style.php'; 
 	?>
 
-	<link rel = 'stylesheet' href = './css/update_profile.css'>
+	<link rel = 'stylesheet' href = './css/update-profile.css'>
 
 </head>
 

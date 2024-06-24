@@ -1,4 +1,5 @@
 <?php 
+	/* Only authorized users can see their profiles. */
 	require dirname(__FILE__).'/../configuration/check_session.php'; 
 ?>
 
@@ -11,7 +12,7 @@
 		include dirname(__FILE__).'/../modules/head_style.php'; 
 	?>
 
-	<link rel = 'stylesheet' href = './css/show_profile.css'>
+	<link rel = 'stylesheet' href = './css/show-profile.css'>
 
 </head>
     
