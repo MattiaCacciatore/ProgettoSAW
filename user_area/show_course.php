@@ -70,6 +70,7 @@
 						<br><br>
 					');
 
+					print_r($res);
 					while($row = mysqli_fetch_assoc($res)){
 						print('
 						<section class = "course-section">
