@@ -3,7 +3,7 @@
     require dirname(__FILE__).'/check_admin.php';
 	
 	if(isset($_POST['delete'])){
-		$query = 'DELETE FROM user WHERE user.email=?;';
+		$query = 'DELETE FROM user WHERE user.email = ?;';
 		$params = array($_POST['delete']);
 	}
 	elseif(isset($_POST['ban'])){

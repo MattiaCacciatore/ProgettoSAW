@@ -3,13 +3,16 @@
 
 	/* Unset cookies. */
 	$cookie_name = 'user_remember';
+
 	if(isset($_COOKIE[$cookie_name])){
+		
 		if(!setcookie($cookie_name, '', time() - 1)){
 			die('HTTP 500 Internal Server Error');
 		}
 
 		$query       = 'UPDATE user SET user.id_cookie = NULL, user.expire = NULL WHERE user.email=?;';
 		$params      = array($_SESSION['email']);
+		/* 's' means that the param is bounded as a string. */
 		$param_types = 's';
         /* $res stores the result of the query called in database_query.php */
 		$res;

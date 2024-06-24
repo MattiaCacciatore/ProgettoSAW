@@ -2,6 +2,7 @@
 	require dirname(__FILE__).'/../../configuration/check_authorization.php';
 
 	if(!isset($_SESSION['authentication']) && isset($_POST['submit'])){
+
 		$name             = $_POST['firstname'];
 		$surname          = $_POST['lastname'];
 		$email            = $_POST['email'];
@@ -17,8 +18,11 @@
 				$hashed_password = password_hash($pwd_peppered, PASSWORD_ARGON2ID);
 				*/
 				$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
 				$query = 'INSERT INTO user(email, firstname, lastname, pwd) VALUES (?, ?, ?, ?);';
+
 				$params = array($email, $name, $surname, $hashed_password);
+				/* 'ssss' means that all params are bounded as strings. */
 				$param_types = 'ssss';
                 /* $res stores the result of the query called in database_query.php */
 				$res;

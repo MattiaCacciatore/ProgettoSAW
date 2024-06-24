@@ -35,6 +35,8 @@
 				/* 'ssss' means that all params are bounded as strings. */
 				$param_types = 'ssss';
 
+				$res;
+
 				require dirname(__FILE__).'/../configuration/database_connect.php';
 				require dirname(__FILE__).'/../configuration/database_query.php';
 				require dirname(__FILE__).'/../configuration/database_disconnect.php';

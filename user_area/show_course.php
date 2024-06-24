@@ -52,8 +52,8 @@
 				/* The limit of videos for each course is 5. */
 				$query = 'SELECT c.id, c.name, c.description, c.average_evaluation, v.title, v.type, v.file
 						  FROM course c JOIN video v ON c.id = v.id_course 
-						  WHERE c.id = ?;';
-						  //ORDER BY c.average_evaluation DESC LIMIT 5;';
+						  WHERE c.id = ?;
+						  ORDER BY c.average_evaluation DESC LIMIT 5;';
 
 				$params = array($_POST['courseId']);
 				$param_types = 'i';
@@ -66,7 +66,7 @@
 					print('
 						<div class = "course-section">
 						<section class = "course-section">
-							<h2>Corso: '.$res['name'].'</h2>
+							<h2>Corso: '.$res[0]['name'].'</h2>
 						</section>
 						<br><br>
 					');
@@ -84,9 +84,9 @@
 
 					print('
 						<section class = "course-section">
-							<p>Descrizione: '.$res['description'].'</p>
+							<p>Descrizione: '.$res[0]['description'].'</p>
 							<br><br>
-							<p>Valutazione media: '.$res['average_evaluation'].'</p>
+							<p>Valutazione media: '.$res[0]['average_evaluation'].'</p>
 						</section>
 					</div>
 					');

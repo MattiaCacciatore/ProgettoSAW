@@ -1,12 +1,14 @@
 <?php
     require dirname(__FILE__).'/../modules/start_session.php';
+    /* Remember me cookies. */
+    if(isset($_POST['remember'])){
 
-    if(isset($_POST['remember'])){ /* Remember me cookies. */
         $cookie_name = 'user_remember';
         /* Generate random token. */
         $value = random_bytes(512);
         $value = base64_encode($value); /* MANDATORY. */
         $expire_date = new DateTime(date('Y-m-d H:i:s'));
+
         try{
             date_modify($expire_date, '+30 day');
         }
@@ -15,7 +17,9 @@
             error_log($error, 3, dirname(__FILE__).'/../../../errors/errors.log');
             exit('HTTP 500 Internal Server Error');
         }
+
         $expire = date_format($expire_date, 'Y-m-d H:i:s');
+        
         $query = 'UPDATE user SET user.id_cookie = ?, user.expire = ? WHERE user.email=?;';
         /* Note: $user_email is checked in login.php. */
         $params = array($value, $expire, $user_email);
