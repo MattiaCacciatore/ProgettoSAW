@@ -27,7 +27,7 @@
 		<?php
 			/* Non serve interrogare di nuovo il server, i dati dell'utente
 			 sono salvati nell'array superglobale $SESSION di sessione. */
-			print('
+			print('	
 			<section class = "profile">
             	<div class = "card">
             		<div class = "card-body">
@@ -52,6 +52,7 @@
                 </div>
             </section>
 			');
+			/* Nota: aggiungere tabella/elenco dei corsi seguiti dall'utente e i corsi tenuti. */
 		?>
 
 	</main>
