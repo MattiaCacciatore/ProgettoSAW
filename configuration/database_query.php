@@ -7,15 +7,16 @@
             $sql_stmt = mysqli_prepare($db_connection, $query);
             mysqli_stmt_bind_param($sql_stmt, $param_types, ...$params);
             mysqli_stmt_execute($sql_stmt);
-            if(($result = mysqli_stmt_get_result($sql_stmt)) !== false)
-                $res = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            $result = mysqli_stmt_get_result($sql_stmt);
         }
         else{
             /* I HATE PHP FOR THIS. This must be done because bind_param() requires 
             at least one parameter, otherwise it throws a warning. */
             $result = mysqli_query($db_connection, $query);
-            $res = mysqli_fetch_all($result, MYSQLI_ASSOC);
         }
+
+        if($result !== false)
+            $res = mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
     catch(mysqli_sql_exception $e){
         $error = sprintf('%s - %s: %s\n', date('Y-m-d H:i:s'), $query, $e->getMessage());

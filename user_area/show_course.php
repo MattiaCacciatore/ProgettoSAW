@@ -59,9 +59,6 @@
 				$param_types = 'i';
 				
 				require dirname(__FILE__).'/../configuration/database_query.php';
-
-				print_r($res);
-
 				require dirname(__FILE__).'/../configuration/database_disconnect.php';
 
 				if(!is_null($res)){
@@ -74,11 +71,7 @@
 						<br><br>
 					');
 
-					//while($row = mysqli_fetch_assoc($res)){
 					foreach($res as $row){
-						print('<br><br>');
-						//print($row);
-						/*
 						print('
 						<section class = "course-section">
 							<h2>Video: '.$row['title'].'</h2>
@@ -86,7 +79,7 @@
 								<source src = "videos/'.$row['file'].'.'.$row['type'].'" type = "video/'.$row['type'].'">
 							</video>
 						</section>
-						');*/
+						');
 					}
 
 					print('
