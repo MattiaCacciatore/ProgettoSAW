@@ -50,7 +50,6 @@
 					require dirname(__FILE__).'/../configuration/database_query.php';
 				}
 
-
 				$query = 'SELECT c.id, c.name, c.description, c.average_evaluation, v.title, v.type, v.file
 						  FROM course c JOIN video v ON c.id = v.id_course 
 						  WHERE c.id = ?;';
@@ -61,34 +60,42 @@
 				require dirname(__FILE__).'/../configuration/database_query.php';
 				require dirname(__FILE__).'/../configuration/database_disconnect.php';
 
+				print('	
+					<div class = "course-section">
+						<section class = "course-section">
+							<h2>Corso: '.$res['name'].'</h2>
+						</section>
+						<br><br>
+						<section class = "course-section">
+				');
+				
 				if(!is_null($res)){
-					print('	
-						<div class = "course-section">
-							<section class = "course-section">
-								<h2>Corso: '.$res['name'].'</h2>
-							</section>
-							<br><br>
-							<section class = "course-section">
-								<h2>Video: '.$res['title'].'</h2>
-								<video controls>
-									<source src = "videos/'.$res['file'].'.'.$res['type'].'" type = "video/'.$res['type'].'">
-								</video>
-							</section>
-
-							<section class = "course-section">
-								<p>Descrizione: '.$res['description'].'</p>
-								<br><br>
-								<p>Valutazione media: '.$res['average_evaluation'].'</p>
-							</section>
-						</div>
+					print('
+							<h2>Video: '.$res['title'].'</h2>
+							<video controls>
+								<source src = "videos/'.$res['file'].'.'.$res['type'].'" type = "video/'.$res['type'].'">
+							</video>
 					');
 				}
 				else{
-					print('<p>Nessun corso selezionato!</p>');
+					print('
+							<h2>Corso nuovo - Nessun video disponibile!</h2>
+					');
 				}
+
+				print('
+						</section>
+
+						<section class = "course-section">
+							<p>Descrizione: '.$res['description'].'</p>
+							<br><br>
+							<p>Valutazione media: '.$res['average_evaluation'].'</p>
+						</section>
+					</div>
+				');
 			}
 			else{
-				print('<p>Nessun corso selezionato</p>');
+				print('<p>Corso non disponibile!</p>');
 			}
 		?>
 
