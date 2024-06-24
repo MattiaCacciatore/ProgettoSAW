@@ -10,6 +10,8 @@
     <?php 
         include dirname(__FILE__).'/../modules/head_style.php'; 
     ?>
+    
+    <link rel = 'stylesheet' href = 'css/show-users.css'>
 
     <title>
         Lista utenti
@@ -34,8 +36,9 @@
 
         if(!(empty($res))){
             print('
-            <form action = \'update_users.php\' method = \'post\'>
-                <table>
+            <div class = "table">
+            <form action = \'update_users.php\' method = \'post\' class = "table">
+                <table class = "table">
                     <tr>
                         <th>Nome</th>
                         <th>Cognome</th>
@@ -76,6 +79,7 @@
             print('
                 </table>
             </form>
+            </div>
             ');
         }
     ?>

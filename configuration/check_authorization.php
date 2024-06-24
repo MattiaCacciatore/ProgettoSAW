@@ -17,11 +17,11 @@
 
         if(!(empty($res))){     
 			/* The user exists in the database. */
-            $user_email    = $res['email'];
-			$user_name     = $res['firstname'];
-			$user_lastname = $res['lastname'];
-			$user_is_admin = $res['is_admin'];
-            $user_expire   = $res['expire']; // Missing?
+            $user_email    = $res[0]['email'];
+			$user_name     = $res[0]['firstname'];
+			$user_lastname = $res[0]['lastname'];
+			$user_is_admin = $res[0]['is_admin'];
+            $user_expire   = $res[0]['expire'];
 
             if(!empty($user_expire) && $user_expire > date('Y-m-d H:i:s')){
                 $_SESSION['name']           = $user_name;

@@ -52,7 +52,7 @@
 				/* The limit of videos for each course is 5. */
 				$query = 'SELECT c.id, c.name, c.description, c.average_evaluation, v.title, v.type, v.file
 						  FROM course c JOIN video v ON c.id = v.id_course 
-						  WHERE c.id = ?;
+						  WHERE c.id = ?
 						  ORDER BY c.average_evaluation DESC LIMIT 5;';
 
 				$params = array($_POST['courseId']);

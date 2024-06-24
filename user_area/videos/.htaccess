@@ -1,3 +1,4 @@
-<FilesMatch "^((show|upload)_course.php)">
-	Require all denied
+Order Deny,Allow
+<FilesMatch "^(show_course.php)">
+  Require all denied
 </FilesMatch>
