@@ -52,16 +52,20 @@
 				/* The limit of videos for each course is 5. */
 				$query = 'SELECT c.id, c.name, c.description, c.average_evaluation, v.title, v.type, v.file
 						  FROM course c JOIN video v ON c.id = v.id_course 
-						  WHERE c.id = ?
-						  ORDER BY c.average_evaluation DESC LIMIT 5;';
+						  WHERE c.id = ?;';
+						  //ORDER BY c.average_evaluation DESC LIMIT 5;';
 
 				$params = array($_POST['courseId']);
 				$param_types = 'i';
 				
 				require dirname(__FILE__).'/../configuration/database_query.php';
+
+				print_r($res);
+
 				require dirname(__FILE__).'/../configuration/database_disconnect.php';
-				
+
 				if(!is_null($res)){
+
 					print('
 						<div class = "course-section">
 						<section class = "course-section">
@@ -70,8 +74,11 @@
 						<br><br>
 					');
 
-					print_r($res);
-					while($row = mysqli_fetch_assoc($res)){
+					//while($row = mysqli_fetch_assoc($res)){
+					foreach($res as $row){
+						print('<br><br>');
+						//print($row);
+						/*
 						print('
 						<section class = "course-section">
 							<h2>Video: '.$row['title'].'</h2>
@@ -79,7 +86,7 @@
 								<source src = "videos/'.$row['file'].'.'.$row['type'].'" type = "video/'.$row['type'].'">
 							</video>
 						</section>
-						');
+						');*/
 					}
 
 					print('
