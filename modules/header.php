@@ -3,7 +3,7 @@
 
     print('
     <header>
-        <p id = "title">STEMazing Education</p>
+        <p id = \'title\'>STEMazing Education</p>
     ');
 
     require dirname(__FILE__) . '/navbar.php';

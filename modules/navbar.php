@@ -15,10 +15,11 @@
 	
 	if(isset($_SESSION['authentication'])){
 		print('
-			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/course_evaluation/course_evaluation.php\'>Valuta il tuo corso</a></li>
 			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/user_area/show_profile.php\'>Mostra profilo</a></li>
 			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/user_area/update_profile.php\'>Modifica profilo</a></li>
 			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/authentication/logout/logout.php\'>Disconnetti</a></li>
+			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/user_area/upload_course.php\'>Carica il tuo corso</a></li>
+			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/course_evaluation/course_evaluation.php\'>Valuta i corsi</a></li>
 		');
 	} else {
 		print(' 
@@ -28,9 +29,9 @@
 	}
 		
 	print('
-			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/index.php\'>Homepage</a></li>
 			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/internal_search_system/page/search_system.php\'>Cerca i corsi</a></li>
 			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/info/contact_us.html\'>Contatti</a></li>
+			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/index.php\'>Homepage</a></li>
 		</ul>
 	</nav>
 	');

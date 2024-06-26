@@ -42,20 +42,20 @@
 				$res;
 
 				require dirname(__FILE__).'/../configuration/database_query.php';
-
-				if(is_null($res)){
-					/* Upload the current followed course for this user. */
+				/* If the user is following this course for the first time... */
+				if(empty($res[0])){
+					/* ...upload the current followed course for this user. */
 					$query = 'INSERT INTO follow (email_user, id_course) VALUES (?, ?);';
 
 					require dirname(__FILE__).'/../configuration/database_query.php';
 				}
-				/* The limit of videos for each course is 5. */
+				/* The limit of videos for each course is 1. */
 				$query = 'SELECT c.id, c.name, c.description, c.average_evaluation, v.title, v.type, v.file
 						  FROM course c JOIN video v ON c.id = v.id_course 
-						  WHERE c.id = ?
-						  ORDER BY c.average_evaluation DESC LIMIT 5;';
+						  WHERE c.id = ?;';
 
 				$params = array($_POST['courseId']);
+				
 				$param_types = 'i';
 				
 				require dirname(__FILE__).'/../configuration/database_query.php';
@@ -64,27 +64,21 @@
 				if(!is_null($res)){
 
 					print('
-						<div class = "course-section">
-						<section class = "course-section">
+						<div class = \'course-section\'>
+						<section class = \'course-section\'>
 							<h2>Corso: '.$res[0]['name'].'</h2>
 						</section>
 						<br><br>
-					');
 
-					foreach($res as $row){
-						print('
-						<section class = "course-section">
-							<h2>Video: '.$row['title'].'</h2>
+						<section class = \'course-section\'>
+							<h2>Video: '.htmlspecialchars($res[0]['title']).'</h2>
 							<video controls>
-								<source src = "videos/'.$row['file'].'.'.$row['type'].'" type = "video/'.$row['type'].'">
+								<source src = \'videos/'.$res[0]['file'].'\' type = \''.$res[0]['type'].'\'>
 							</video>
 						</section>
-						');
-					}
 
-					print('
-						<section class = "course-section">
-							<p>Descrizione: '.$res[0]['description'].'</p>
+						<section class = \'course-section\'>
+							<p>Descrizione: '.htmlspecialchars($res[0]['description']).'</p>
 							<br><br>
 							<p>Valutazione media: '.$res[0]['average_evaluation'].'</p>
 						</section>
@@ -93,7 +87,7 @@
 				}
 				else{
 					print('
-							<h2>Corso nuovo - Nessun video disponibile!</h2>
+						<h2>Corso nuovo - Nessun video disponibile!</h2>
 					');
 				}
 			}

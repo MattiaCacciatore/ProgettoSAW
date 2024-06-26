@@ -9,6 +9,7 @@
 		if(!empty($email) && !empty($password)){
 
 			$query       = 'SELECT * FROM user WHERE user.email = ?;';
+			
 			$params      = array($email);
 			/* 's' means that the param is bounded as a string. */
 			$param_types = 's';

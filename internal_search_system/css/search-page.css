@@ -110,8 +110,6 @@ input[type="search"]::-webkit-search-results-decoration {
   margin: 0;
 }
 
-
-
 .price-filter .button {
   cursor: pointer;
   background-color: rgb(226, 106, 126);

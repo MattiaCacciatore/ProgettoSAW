@@ -4,9 +4,9 @@
 	print(
 	'
 	<footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section about">
+        <div class = \'container\'>
+            <div class = \'footer-content\'>
+                <div class = \'footer-section about\'>
                     <h3>
                         Riguardo STEMazing Education
                     </h3>
@@ -16,34 +16,34 @@
                         e Matematica per studenti e professionisti di tutto il mondo.
                     </p>
 
-                    <div class="socials">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    <div class = \'socials\'>
+                        <a href = \'#\'><i class = \'fab fa-facebook-f\'></i></a>
+                        <a href = \'#\'><i class = \'fab fa-twitter\'></i></a>
+                        <a href = \'#\'><i class = \'fab fa-linkedin-in\'></i></a>
+                        <a href = \'#\'><i class = \'fab fa-instagram\'></i></a>
                     </div>
                 </div>
 
-                <div class="footer-section contact">
+                <div class = \'footer-section contact\'>
                     <h3>
                         Contattaci
                     </h3>
 
                     <p>
-                        <i class="fas fa-map-marker-alt"></i> Genova
+                        <i class = \'fas fa-map-marker-alt\'></i> Genova
                     </p>
 
                     <p>
-                        <i class="fas fa-phone"></i> +39 3234 567 8901
+                        <i class = \'fas fa-phone\'></i> +39 3234 567 8901
                     </p>
 
                     <p>
-                        <i class="fas fa-envelope"></i> info@stemazingeducation.com
+                        <i class = \'fas fa-envelope\'></i> info@stemazingeducation.com
                     </p>
                 </div>
             </div>
 
-            <div class="footer-bottom">
+            <div class = \'footer-bottom\'>
                 <p>&copy; 2024 STEMazing Education è un marchio non registrato. I diritti non sono riservati.</p>
             </div>
         </div>

@@ -39,11 +39,11 @@ for i in range(size):
 
 f.write("\n\n")
 
-video = "INSERT INTO video (title, duration, type, file, id_course) VALUES (\'{title}\', {duration}, \'{type}\', \'{file}\', {course_id});\n"
+video = "INSERT INTO video (title, duration, type, filename, id_course) VALUES (\'{title}\', {duration}, \'{type}\', \'{filename}\', {course_id});\n"
 list_types = ['mp4', 'avi', 'mkv', 'flv', 'mov', 'wmv', '3gp', 'webm', 'mpeg']
 for i in range(size):
     # 'url' è un placeholder.
-    f.write(video.format(title = fake.bs(), duration = random.randrange(1, 600), type = random.choice(list_types), file = 'url', course_id = (i+1)))
+    f.write(video.format(title = fake.bs(), duration = random.randrange(1, 600), type = random.choice(list_types), filename = 'url', course_id = (i+1)))
 
 f.write("\n\n")
 

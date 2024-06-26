@@ -25,7 +25,9 @@
         require dirname(__FILE__).'/../modules/navbar.php';
 
         $query = 'SELECT * FROM user ORDER BY lastname;';
+
         $params = null;
+        
         $param_types = null;
         /* $res stores the result of the query called in database_query.php */
         $res;
