@@ -66,14 +66,14 @@
 					print('
 						<div class = \'course-section\'>
 						<section class = \'course-section\'>
-							<h2>Corso: '.$res[0]['name'].'</h2>
+							<h2>Corso: '.htmlspecialchars($res[0]['name']).'</h2>
 						</section>
 						<br><br>
 
 						<section class = \'course-section\'>
 							<h2>Video: '.htmlspecialchars($res[0]['title']).'</h2>
 							<video controls>
-								<source src = \'videos/'.$res[0]['file'].'\' type = \''.$res[0]['type'].'\'>
+								<source src = \'videos/'.htmlspecialchars($res[0]['filename']).'\' type = \''.htmlspecialchars($res[0]['type']).'\'>
 							</video>
 						</section>
 

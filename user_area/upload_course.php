@@ -29,7 +29,7 @@
 			if(isset($_FILES['video']) && isset($_POST['name_course']) && isset($_POST['description']) && isset($_POST['price'])){
 
 				$target_dir = 'videos/';
-		
+				/* videos/myvideo.mp4 */
 				$target_file = $target_dir.basename($_FILES['video']['name']);
 		
 				/* Check if file was uploaded without errors. */
@@ -38,76 +38,107 @@
 					$allowed_ext = array('mp4' => 'video/mp4');
 
 					$finfo = new finfo(FILEINFO_MIME_TYPE);
-					/* Note: the $_FILES variable in PHP (except tmp_name) can be modified.  */
-					$file_name = $_FILES['video']['name'];
+					/* Note: the $_FILES variable in PHP (except tmp_name) can be modified. */
+					$file_name = basename($_FILES['video']['name'], '.mp4');
 					$file_type = $finfo->file($_FILES['video']['tmp_name']);
 					$file_size = filesize($_FILES['video']['tmp_name']);
 
 					/* Verify MIME type of the video and its size. */
 					if(in_array($file_type, $allowed_ext) && $file_size <= (1024*1024*100)){
 						/* Check whether video exists before uploading it. */
-						if(file_exists($target_dir.$file_name)){
+						if(file_exists($target_file)){
 							print('<div><p>Un video con quel titolo e formato esiste già. Cambia il nome del file video e riprova.</p></div>'); 
 						}		 
 						else{ 
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-//                          FIRST QUERY, the insertion of the course.
+//                          FIRST QUERY, check if the course exists.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-							$query = 'INSERT INTO course (name, description, duration, price, average_evaluation) VALUES (?, ?, 0, ?, 0);';
+							$query = 'SELECT c.name 
+									  FROM course c JOIN teach t 
+									  WHERE t.email_user = ? AND c.name = ?;';
 
-							$course_title       = $_POST['name_course'];
-							$course_description = $_POST['description'];
-							$course_price       = floatval($_POST['price']);
-
-							$params = array($course_title, $course_description, $course_price);
-							/* 'ssd' means that the first two params are bounded as strings and the last one as float. */
-							$param_types = 'ssd';
+							$params = array($_SESSION['email'], $_POST['name_course']);
+							/* 's' means that the param is bounded as a string. */
+							$param_types = 's';
 				
 							$res;
 
 							require dirname(__FILE__).'/../configuration/database_connect.php';
 							require dirname(__FILE__).'/../configuration/database_query.php';
+							/* If the course doesn't exist... */
+							if(empty($res)){
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-//                          SECOND QUERY, the course's id.
+//                          	SECOND QUERY, the insertion of the course.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-							$query = 'SELECT c.id FROM course c WHERE c.name = ? AND c.description = ? AND c.price = ?;';
+								/* All four queries are a single transaction. */
+								$query = 'START TRANSACTION;
+										  SET GLOBAL TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+										  SET autocommit=0;
+										  INSERT INTO course (name, description, duration, price, average_evaluation) 
+										  VALUES (?, ?, 0, ?, 0);';
 
-							$params = array($course_title, $course_description, $course_price);
+								$course_title       = $_POST['name_course'];
+								$course_description = $_POST['description'];
+								$course_price       = floatval($_POST['price']);
 
-							$param_types = 'ssd';
+								$params = array($course_title, $course_description, $course_price);
+								/* 'ssd' means that the first two params are bounded as strings and the last one as float. */
+								$param_types = 'ssd';
 
-							require dirname(__FILE__).'/../configuration/database_query.php';
-
-							$id_course = $res[0]['id'];
+								require dirname(__FILE__).'/../configuration/database_query.php';
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-//                          THIRD QUERY, the insertion of the video related to this course.
+//                          	THIRD QUERY, the course's ID.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-							$query = 'INSERT INTO video (title, duration, type, file, id_course) VALUES (?, 10, ?, ?, ?);';
+								$query = 'SELECT c.id 
+										  FROM course c 
+										  WHERE c.name = ? AND c.description = ? AND c.price = ?;';
+
+								$params = array($course_title, $course_description, $course_price);
+
+								$param_types = 'ssd';
+
+								require dirname(__FILE__).'/../configuration/database_query.php';
+
+								$id_course = $res[0]['id'];
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+//                          	FOURTH QUERY, the insertion of the video related to this course.
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+								$query = 'INSERT INTO video (title, duration, type, filename, id_course) 
+										  VALUES (?, 10, ?, ?, ?);';
 								
-							$params = array($file_name, $file_type, $file_name, $id_course);
-							/* 'sssi' means that the first three params are bounded as strings and the last one as an integer. */
-							$param_types = 'sssi';
+								$params = array($file_name, $file_type, $_FILES['video']['name'], $id_course);
+								/* 'sssi' means that the first three params are bounded as strings and the last one as an integer. */
+								$param_types = 'sssi';
 				
-							require dirname(__FILE__).'/../configuration/database_query.php';
+								require dirname(__FILE__).'/../configuration/database_query.php';
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-//                          FOURTH QUERY, the insertion of the teacher.
+//                          	FIFTH QUERY, the insertion of the teacher.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-							$query = 'INSERT INTO teach (email_user, id_course) VALUES (?, ?);';
+								$query = 'INSERT INTO teach (email_user, id_course) 
+										  VALUES (?, ?);
+										  COMMIT;';
 
-							$params = array($_SESSION['email'], $id_course);
-							/* 'si' means that the first param is bounded as a string and the last one as an integer. */
-							$param_types = 'si';
+								$params = array($_SESSION['email'], $id_course);
 
-							require dirname(__FILE__).'/../configuration/database_query.php';
-							require dirname(__FILE__).'/../configuration/database_disconnect.php';
+								$param_types = 'si';
 
-							if(move_uploaded_file($_FILES['video']['tmp_name'], $target_file)){
-								/* Everything went well... */
-								print('<div><p>Il video e il corso sono stati caricati con successo! Visita il tuo profilo per vederli!</p></div>');
-							} 
+								require dirname(__FILE__).'/../configuration/database_query.php';
+								require dirname(__FILE__).'/../configuration/database_disconnect.php';
+
+								if(move_uploaded_file($_FILES['video']['tmp_name'], $target_file)){
+									/* Everything went well... */
+									print('<div><p>Il video e il corso sono stati caricati con successo! Visita il tuo profilo per vederli!</p></div>');
+								} 
+								else{
+									die('Errore: Video non salvato!');
+								}
+							}
 							else{
-								die('Errore: Video non salvato!');
-							} 
+								require dirname(__FILE__).'/../configuration/database_disconnect.php';
+
+								print('<div><p>Questo corso esiste gi&agrave;!</p></div>');
+							}
+ 
 						} 
 					} 
 					else{ 
