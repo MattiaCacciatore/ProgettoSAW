@@ -146,7 +146,7 @@
 					} 
 				} 
 				else{ 
-					die('Errore: Impossibile caricare il video.');
+					die('Errore: Impossibile caricare il video: '.$_FILES['video']['error']);
 				}
 
 			}
