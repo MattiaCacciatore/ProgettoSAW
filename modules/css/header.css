@@ -29,6 +29,7 @@ header #title {
 nav {
     margin-left: 10px;
     flex: 1;
+    overflow-x: scroll;
 }
 
 nav ul {
