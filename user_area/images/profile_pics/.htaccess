@@ -1,5 +1,0 @@
-Require all denied
-
-<FilesMatch "show_profile.php">
-	Require all granted
-</FilesMatch>

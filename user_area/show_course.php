@@ -31,9 +31,12 @@
         
 		<?php
 			if(isset($_POST['courseId'])){
+
 				require dirname(__FILE__).'/../configuration/database_connect.php';
 				/* Check if the current course is already followed by the current user. */
-				$query = 'SELECT * FROM follow WHERE email_user = ? AND id_course = ?;';
+				$query = 'SELECT * 
+				          FROM follow 
+						  WHERE email_user = ? AND id_course = ?;';
 
 				$params = array($_SESSION['email'], $_POST['courseId']);
 				/* 'si' means that the first param is bounded as a string and the second one as an integer. */
@@ -72,9 +75,8 @@
 
 						<section class = \'course-section\'>
 							<h2>Video: '.htmlspecialchars($res[0]['title']).'</h2>
-							<video controls>
-								<source src = \'videos/'.htmlspecialchars($res[0]['filename']).'\' type = \''.htmlspecialchars($res[0]['type']).'\'>
-							</video>
+							<iframe src = \'https://www.youtube.com/embed/'.htmlspecialchars($res[0]['filename']).'>
+							</iframe>
 						</section>
 
 						<section class = \'course-section\'>
