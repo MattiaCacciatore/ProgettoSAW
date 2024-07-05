@@ -8,6 +8,19 @@
   margin-right: 300px;
 }
 
+
+@media only screen 
+and (min-width : 720px) {
+  .wildCards {
+    padding-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 0.5fr));
+    gap: 25px;
+    margin-left: 300px;
+    margin-right: 300px;
+  }
+}
+
 .course-card {
   display: flex;
   flex-direction: column;

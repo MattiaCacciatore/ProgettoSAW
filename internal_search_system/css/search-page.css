@@ -15,18 +15,18 @@ h1 {
   color: #a86486; /* Un colore elegante e sobrio */
   text-align: center; /* Centrato */
   margin: 20px 0; /* Spaziatura sopra e sotto */
-  padding: 10px 20px; /* Padding per dare respiro al testo */
+  padding: 10px 20px; 
   display: inline-block; /* Adatta la larghezza al contenuto */
 }
 
 .search-system {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: 40px;
+  grid-template-columns: 2fr;
+  gap: 20px;
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin: 0 200px;
+  margin: 0 10vw; /* Riduci i margini laterali per una maggiore reattività */
   padding: 30px;
 }
 
@@ -34,7 +34,6 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 100px;
   padding: 15px;
   background-color: #fff;
   width: max-content;
@@ -145,11 +144,38 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* Responsive adjustments */
+@media only screen 
+and (min-width : 1024px) {
+  .search-system {
+    grid-template-columns: 1fr;
+    margin: 0 5vw; /* Riduci i margini laterali per schermi di laptop */
+    padding: 10px;
+    gap: 3vw; /* Maggiore spazio tra elementi */
+  }
+
+  .search-wrapper,
+  .price-filter {
+    width: 100%;
+    justify-content: center;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .search-wrapper > #searchInput {
+    width: 100%;
+  }
+
+  .price-filter input {
+    width: calc(100% - 40px);
+  }
+}
+
 @media (max-width: 768px) {
   .search-system {
     grid-template-columns: 1fr;
-    margin: 0 20px;
+    margin: 0 5vw; /* Mantieni i margini laterali per schermi piccoli */
     padding: 20px;
+    gap: 5vw; /* Maggiore spazio tra elementi per schermi piccoli */
   }
 
   .search-wrapper,
