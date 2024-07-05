@@ -12,6 +12,7 @@ header {
     border-bottom: 2px solid rgb(172, 93, 106);
     margin: 0 50px;
     align-items: center; /* Align items vertically center */
+    vertical-align: center;
     padding: 15px; 
 }
 
@@ -21,12 +22,12 @@ header #title {
     color: #b66879; 
     font-size: 25px; 
     font-weight: bold;
+    vertical-align: center;
 
 }
 
 nav {
     margin-left: 10px;
-    margin-bottom: -10px; /* Compensa con un margin-bottom negativo sugli elementi */
     flex: 1;
 }
 
@@ -34,6 +35,8 @@ nav ul {
     display: flex;
     flex-wrap: nowrap; /* Ensure items do not wrap to the next line */
     list-style-type: none;
+    vertical-align: center;
+
     padding: 0;
     margin: 0;
     justify-content: left; /* Center the items horizontally */
@@ -44,12 +47,12 @@ nav ul {
 .nav-elmnt {
     display: flex; 
     align-items: center;
+    vertical-align: center;
     min-width: 0; /* Allow flex items to shrink below their content width */
 }
 
 .nav-elmnt a {
     display: block;
-    font-size: 1.1vw; /* Use viewport width to make text size dynamic */
     padding: 10px;
     border-radius: 28px;
     color: steelblue;
