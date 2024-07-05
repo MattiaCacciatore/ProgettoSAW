@@ -4,6 +4,7 @@
 
     $navItems = [];
 
+
 	$navItems[] = ['href' => $MYROOT.'/index.php', 'label' => 'Homepage'];
 	$navItems[] = ['href' => $MYROOT.'/internal_search_system/page/search_system.php', 'label' => 'Cerca i corsi'];
 

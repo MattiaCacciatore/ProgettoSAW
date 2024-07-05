@@ -1,25 +1,72 @@
 /* Contenitore griglia */
 .wildCards {
-    padding-top: 50px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1.5fr));
-    gap: 25px;
-  
-    margin-left: 300px;
-    margin-right: 300px;
-  }
-  
-  .course-card {
-    background: rgba(247,247,247,1);
-    border: 1px solid #585f85;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
+  padding-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1.5fr));
+  gap: 25px;
+  margin-left: 300px;
+  margin-right: 300px;
+}
 
-  .course-card:hover{
-    border: 2px solid black;
-  }
+.course-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(247,247,247,1);
+  border: 1px solid #585f85;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.course-card:hover {
+  box-shadow: 1px black;
+  transform: scale(1.05);
+}
+
+/* Bottom card elements */
+.bottom-cards-elements {
+  margin-top: auto;
+}
+
+.course-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Submit button */
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  color: antiquewhite;
+  background-color: rgb(226, 106, 126);
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+/* Submit button */
+ button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  color: antiquewhite;
+  background-color: rgb(226, 106, 126);
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color:rgb(230, 54, 83);
+}
+
   
   .course-card h2 {
     font-size: 1.5rem;

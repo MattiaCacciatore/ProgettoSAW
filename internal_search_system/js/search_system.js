@@ -153,13 +153,16 @@ function renderCourseCard(course){
     <h2>${course.name}</h2>
     <p>Da: ${course.teacher}</p>
     <p>${course.description}</p>
-    <div class = 'course-details'>
-      <span class = 'price'>Prezzo: ${course.price}</span>
-      <span class = 'rating'>Valutazione: ${course.average_evaluation}</span>
+
+    <div class = 'bottom-cards-elements'>
+      <div class = 'course-details'>
+        <span class = 'price'>Prezzo: ${course.price}</span>
+        <span class = 'rating'>Valutazione: ${course.average_evaluation}</span>
+      </div>
+      <form form action = '../../user_area/show_course.php' method = 'post'>
+        <button type='submit' name = 'courseId' value = ${course.id}>Accedi al corso</button>
+      </form>
     </div>
-    <form form action = '../../user_area/show_course.php' method = 'post'>
-      <button type = 'submit' name = 'courseId' value = ${course.id}>Accedi al corso</button>
-    </form>
   </div>
   `;
 }
