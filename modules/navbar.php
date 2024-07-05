@@ -1,37 +1,42 @@
 <?php
-	require dirname(__FILE__).'/../configuration/check_authorization.php';
-	require dirname(__FILE__).'/set_path.php';
-	
-	print('
-	<nav>
-		<ul>
-	');
-	
-	if(isset($_SESSION['admin']) && $_SESSION['admin'] === 'true'){
-		print('
-			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/admin_area/show_users.php\'>Mostra utenti</a></li>
-		');
-	}
-	
-	if(isset($_SESSION['authentication'])){
-		print('
-			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/user_area/show_profile.php\'>Mostra profilo</a></li>
-			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/user_area/update_profile.php\'>Modifica profilo</a></li>
-			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/authentication/logout/logout.php\'>Disconnetti</a></li>
-			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/user_area/upload_course.php\'>Carica il tuo corso</a></li>
-			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/course_evaluation/course_evaluation.php\'>Valuta i corsi</a></li>
-		');
-	} else {
-		print(' 
-			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/authentication/pages/registration_form.php\'>Registrati</a></li>
-			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/authentication/pages/login_form.php\'>Accedi</a></li>
-		');
-	}
-		
-	print('
-			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/internal_search_system/page/search_system.php\'>Cerca i corsi</a></li>
-			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/info/contact_us.html\'>Contatti</a></li>
-			<li class = \'nav-elmnt\'><a href = \''.$MYROOT.'/index.php\'>Homepage</a></li>
-		</ul>
-	</nav>
-	');
+    require dirname(__FILE__).'/../configuration/check_authorization.php';
+    require dirname(__FILE__).'/set_path.php';
+
+    $navItems = [];
+
+	$navItems[] = ['href' => $MYROOT.'/index.php', 'label' => 'Homepage'];
+	$navItems[] = ['href' => $MYROOT.'/internal_search_system/page/search_system.php', 'label' => 'Cerca i corsi'];
+
+
+    if (isset($_SESSION['authentication'])) {
+        // Add authenticated user links
+        $navItems[] = ['href' => $MYROOT.'/user_area/show_profile.php', 'label' => 'Mostra profilo'];
+        $navItems[] = ['href' => $MYROOT.'/user_area/update_profile.php', 'label' => 'Modifica profilo'];
+        $navItems[] = ['href' => $MYROOT.'/user_area/upload_course.php', 'label' => 'Carica il tuo corso'];
+        $navItems[] = ['href' => $MYROOT.'/course_evaluation/course_evaluation.php', 'label' => 'Valuta i corsi'];
+		$navItems[] = ['href' => $MYROOT.'/authentication/logout/logout.php', 'label' => 'Disconnetti'];
+
+        // Admin specific link
+        if (isset($_SESSION['admin']) && $_SESSION['admin'] === 'true') {
+            $navItems[] = ['href' => $MYROOT.'/admin_area/show_users.php', 'label' => 'Mostra utenti'];
+        }
+    } else {
+        // Add non-authenticated user links
+        $navItems[] = ['href' => $MYROOT.'/authentication/pages/registration_form.php', 'label' => 'Registrati'];
+        $navItems[] = ['href' => $MYROOT.'/authentication/pages/login_form.php', 'label' => 'Accedi'];
+    }
+
+    // Add common links
+    $navItems[] = ['href' => $MYROOT.'/info/contact_us.html', 'label' => 'Contatti'];
+  
+
+    // Sort the nav items if needed
+    // usort($navItems, function($a, $b) { return strcmp($a['label'], $b['label']); });
+
+    // Output the nav
+    echo '<nav><ul>';
+    foreach ($navItems as $item) {
+        echo '<li class="nav-elmnt"><a href="' . $item['href'] . '">' . $item['label'] . '</a></li>';
+    }
+    echo '</ul></nav>';
+?>
