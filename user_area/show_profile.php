@@ -32,8 +32,8 @@
 			<section class = \'profile\'>
             	<div class = \'card\'>
             		<div class = \'card-body\'>
-                    	<img src = \'images/user_icon.png\' alt = \'Immagine profilo.\' class = \'centered\'>
-                    	<div class = \'table\'>
+                    	<img src = \'images/user_icon.png\' alt = \'Immagine profilo.\' class = \'profile-image\'>
+                    	<div class = \'user-infos\'>
                       		<h4>'.$_SESSION['name'].' '.$_SESSION['surname'].'</h4>
                       		<p>'.$_SESSION['email'].'</p>
 							<p>
@@ -76,13 +76,13 @@
 
 			print('
 			<section>
-				<h2>Corsi seguiti</h2>
+				<h2 class="subtitle">Corsi seguiti</h2>
 				<br><br>
 				<table class = \'table\'>
                     <tr>
-                        <th>ID corso</th>
-                        <th>Titolo</th>
-                        <th>Descrizione</th>
+                        <th class="index-element">ID corso</th>
+                        <th class="index-element">Titolo</th>
+                        <th class="index-element">Descrizione</th>
                     </tr>
 			');
 
@@ -100,13 +100,13 @@
             </section>
 
 			<section>
-				<h2>Corsi tenuti</h2>
+				<h2 class="subtitle" >Corsi tenuti</h2>
 				<br><br>
 				<table class = \'table\'>
                     <tr>
-                        <th>ID corso</th>
-                        <th>Titolo</th>
-                        <th>Descrizione</th>
+                        <th class="index-element" >ID corso</th>
+                        <th class="index-element">Titolo</th>
+                        <th class="index-element">Descrizione</th>
                     </tr>
             ');
 

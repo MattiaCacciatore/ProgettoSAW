@@ -4,19 +4,29 @@ body {
   text-align: left;
 }
 
-.main-body {
+main {
+  display: block;
+}
+
+.profile {
+  display: block;
   padding: 15px;
 }
 
+.subtitle{
+  text-align: center;
+  font-size: 1.5em; /* Dimensione del testo */
+  font-weight: bold; /* Grassetto per dare importanza */
+  color: #a86486; /* Un colore elegante e sobrio */
+}
+
 .card {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
   background-color: #fff;
-  border: 0 solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
   margin-bottom: 20px;
 }
 
-.centered {
+.profile-image {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -25,6 +35,9 @@ body {
 }
 
 .card-body {
+  border: 2px solid rgba(0, 0, 0, 0.125);
+  border-radius: 28px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.5rem; /* Increased padding */
@@ -39,41 +52,70 @@ body {
 .table {
   border-collapse: collapse;
   width: 100%;
-  margin-bottom: 1rem !important;
   text-align: center;
-  background-color: #fff;
-  border-radius: 0.25rem;
-  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin: 20px 0;
 }
 
+.table tr {
+  background-color: #fafafa;
+}
+
+
 .table th, .table td {
-  border: 1px solid #ddd;
+  border: 1px solid #8f597a;
   padding: 12px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.table .index-line {
+  padding-bottom: 5px;
+}
+
+.table .index-element{
+  border-color: 1px solid #fafafa;
+  color:#fafafa;
+  background-color: rgb(172, 93, 106);
+  text-transform: uppercase;
+  padding: 12px
+
 }
 
 .table th {
-  background-color: transparent;
-  color: rgb(37, 37, 37);
+  color: rgb(70, 70, 70);
   font-weight: bold;
 }
 
-.table tr:nth-child(even) {
-  background-color: #f9f9f9;
+.table td {
+  background-color: #fff;
 }
 
 .table tr:hover {
-  background-color: #e0f7fa;
+  background-color: #e0f7fa; 
 }
 
-.bg-gray-300 {
-  background-color: #e2e8f0;
+.table th, .table td {
+  text-align: center;
+  vertical-align: middle;
 }
 
-.h-100 {
-  height: 100% !important;
+.table caption {
+  caption-side: bottom;
+  padding: 8px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #555;
 }
 
-.shadow-none {
-  box-shadow: none !important;
+.table .index-table{
+  background-color: #8f597a;
+  color: #e0f7fa;
+}
+
+.table {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
