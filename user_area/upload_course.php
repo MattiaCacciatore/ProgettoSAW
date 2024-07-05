@@ -28,6 +28,8 @@
 
 			if(isset($_FILES['video']) && isset($_POST['name_course']) && isset($_POST['description']) && isset($_POST['price'])){
 
+				exit('Unable to move \'/tmp/yourvideo\' to \'/videos/yourvideo.mp4\' because Permission denied.');
+
 				$target_dir = 'videos/';
 				/* videos/myvideo.mp4 */
 				$target_file = $target_dir.basename($_FILES['video']['name']);
@@ -59,7 +61,7 @@
 
 							$params = array($_SESSION['email'], $_POST['name_course']);
 							/* 's' means that the param is bounded as a string. */
-							$param_types = 's';
+							$param_types = 'ss';
 				
 							$res;
 
@@ -71,10 +73,7 @@
 //                          	SECOND QUERY, the insertion of the course.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
 								/* All four queries are a single transaction. */
-								$query = 'START TRANSACTION;
-										  SET GLOBAL TRANSACTION ISOLATION LEVEL SERIALIZABLE;
-										  SET autocommit=0;
-										  INSERT INTO course (name, description, duration, price, average_evaluation) 
+								$query = 'INSERT INTO course (name, description, duration, price, average_evaluation) 
 										  VALUES (?, ?, 0, ?, 0);';
 
 								$course_title       = $_POST['name_course'];
@@ -115,8 +114,7 @@
 //                          	FIFTH QUERY, the insertion of the teacher.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
 								$query = 'INSERT INTO teach (email_user, id_course) 
-										  VALUES (?, ?);
-										  COMMIT;';
+										  VALUES (?, ?);';
 
 								$params = array($_SESSION['email'], $id_course);
 
@@ -126,7 +124,6 @@
 								require dirname(__FILE__).'/../configuration/database_disconnect.php';
 
 								if(move_uploaded_file($_FILES['video']['tmp_name'], $target_file)){
-									/* Everything went well... */
 									print('<div><p>Il video e il corso sono stati caricati con successo! Visita il tuo profilo per vederli!</p></div>');
 								} 
 								else{
@@ -148,7 +145,6 @@
 				else{ 
 					die('Errore: Impossibile caricare il video: '.$_FILES['video']['error']);
 				}
-
 			}
 			else{
 				
