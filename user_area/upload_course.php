@@ -26,137 +26,85 @@
 
 		<?php
 
-			if(isset($_FILES['video']) && isset($_POST['name_course']) && isset($_POST['description']) && isset($_POST['price'])){
-
-				exit('Unable to move \'/tmp/yourvideo\' to \'/videos/yourvideo.mp4\' because Permission denied.');
-
-				$target_dir = 'videos/';
-				/* videos/myvideo.mp4 */
-				$target_file = $target_dir.basename($_FILES['video']['name']);
-		
-				/* Check if file was uploaded without errors. */
-				if($_FILES['video']['error'] == 0){
-
-					$allowed_ext = array('mp4' => 'video/mp4');
-
-					$finfo = new finfo(FILEINFO_MIME_TYPE);
-					/* Note: the $_FILES variable in PHP (except tmp_name) can be modified. */
-					$file_name = basename($_FILES['video']['name'], '.mp4');
-					$file_type = $finfo->file($_FILES['video']['tmp_name']);
-					$file_size = filesize($_FILES['video']['tmp_name']);
-
-					/* Verify MIME type of the video and its size. */
-					if(in_array($file_type, $allowed_ext) && $file_size <= (1024*1024*100)){
-						/* Check whether video exists before uploading it. */
-						if(file_exists($target_file)){
-							print('<div><p>Un video con quel titolo e formato esiste già. Cambia il nome del file video e riprova.</p></div>'); 
-						}		 
-						else{ 
+			if(isset($_POST['video']) && isset($_POST['name_course']) && isset($_POST['description']) && isset($_POST['price'])){
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-//                          FIRST QUERY, check if the course exists.
+//              FIRST QUERY, check if the course exists.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-							$query = 'SELECT c.name 
-									  FROM course c JOIN teach t 
-									  WHERE t.email_user = ? AND c.name = ?;';
+				$query = 'SELECT c.name 
+				          FROM course c JOIN teach t 
+				          WHERE t.email_user = ? AND c.name = ?;';
 
-							$params = array($_SESSION['email'], $_POST['name_course']);
-							/* 's' means that the param is bounded as a string. */
-							$param_types = 'ss';
-				
-							$res;
+				$course_title = $_POST['name_course'];
 
-							require dirname(__FILE__).'/../configuration/database_connect.php';
-							require dirname(__FILE__).'/../configuration/database_query.php';
-							/* If the course doesn't exist... */
-							if(empty($res)){
+				$params = array($_SESSION['email'], $course_title);
+				/* 'ss' means that the param is bounded as a string. */
+				$param_types = 'ss';
+
+				$res;
+
+				require dirname(__FILE__).'/../configuration/database_connect.php';
+				require dirname(__FILE__).'/../configuration/database_query.php';
+				/* If the course doesn't exist... */
+				if(empty($res)){
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-//                          	SECOND QUERY, the insertion of the course.
+//                  SECOND QUERY, the insertion of the course.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-								/* All four queries are a single transaction. */
-								$query = 'INSERT INTO course (name, description, duration, price, average_evaluation) 
-										  VALUES (?, ?, 0, ?, 0);';
+					$query = 'INSERT INTO course (name, description, duration, price, average_evaluation) 
+						      VALUES (?, ?, 0, ?, 0);';
 
-								$course_title       = $_POST['name_course'];
-								$course_description = $_POST['description'];
-								$course_price       = floatval($_POST['price']);
+					$course_description = $_POST['description'];
+					$course_price       = floatval($_POST['price']);
 
-								$params = array($course_title, $course_description, $course_price);
-								/* 'ssd' means that the first two params are bounded as strings and the last one as float. */
-								$param_types = 'ssd';
+					$db_connection;
 
-								require dirname(__FILE__).'/../configuration/database_query.php';
+					$params = array($course_title, $course_description, $course_price);
+					/* 'ssd' means that the first two params are bounded as strings and the last one as float. */
+					$param_types = 'ssd';
+
+					require dirname(__FILE__).'/../configuration/database_query.php';
+					/* Get the last auto-increment ID (primary key) from the previous query. */
+					$id_course = mysqli_insert_id($db_connection);
+
+					if($id_course !== 0){
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-//                          	THIRD QUERY, the course's ID.
+//                  	THIRD QUERY, the insertion of the video related to this course.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-								$query = 'SELECT c.id 
-										  FROM course c 
-										  WHERE c.name = ? AND c.description = ? AND c.price = ?;';
+						$query = 'INSERT INTO video (title, duration, type, filename, id_course) 
+								  VALUES (?, 10, \'url\', ?, ?);';
 
-								$params = array($course_title, $course_description, $course_price);
+						$file_id = $_POST['video'];
 
-								$param_types = 'ssd';
+						$params = array($file_name, $file_id, $id_course);
+						/* 'ssi' means that the first three params are bounded as strings and the last one as an integer. */
+						$param_types = 'ssi';
 
-								require dirname(__FILE__).'/../configuration/database_query.php';
-
-								$id_course = $res[0]['id'];
+						require dirname(__FILE__).'/../configuration/database_query.php';
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-//                          	FOURTH QUERY, the insertion of the video related to this course.
+//                  	FOURTH QUERY, the insertion of the teacher.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-								$query = 'INSERT INTO video (title, duration, type, filename, id_course) 
-										  VALUES (?, 10, ?, ?, ?);';
-								
-								$params = array($file_name, $file_type, $_FILES['video']['name'], $id_course);
-								/* 'sssi' means that the first three params are bounded as strings and the last one as an integer. */
-								$param_types = 'sssi';
-				
-								require dirname(__FILE__).'/../configuration/database_query.php';
-/* ------------------------------------------------------------------------------------------------------------------------------------------ */
-//                          	FIFTH QUERY, the insertion of the teacher.
-/* ------------------------------------------------------------------------------------------------------------------------------------------ */
-								$query = 'INSERT INTO teach (email_user, id_course) 
-										  VALUES (?, ?);';
+						$query = 'INSERT INTO teach (email_user, id_course) 
+								  VALUES (?, ?);';
 
-								$params = array($_SESSION['email'], $id_course);
+						$params = array($_SESSION['email'], $id_course);
 
-								$param_types = 'si';
+						$param_types = 'si';
 
-								require dirname(__FILE__).'/../configuration/database_query.php';
-								require dirname(__FILE__).'/../configuration/database_disconnect.php';
+						require dirname(__FILE__).'/../configuration/database_query.php';
+					}
 
-								if(move_uploaded_file($_FILES['video']['tmp_name'], $target_file)){
-									print('<div><p>Il video e il corso sono stati caricati con successo! Visita il tuo profilo per vederli!</p></div>');
-								} 
-								else{
-									die('Errore: Video non salvato!');
-								}
-							}
-							else{
-								require dirname(__FILE__).'/../configuration/database_disconnect.php';
-
-								print('<div><p>Questo corso esiste gi&agrave;!</p></div>');
-							}
- 
-						} 
-					} 
-					else{ 
-						die('Errore: Formato video non valido.');
-					} 
-				} 
-				else{ 
-					die('Errore: Impossibile caricare il video: '.$_FILES['video']['error']);
+					require dirname(__FILE__).'/../configuration/database_disconnect.php';
 				}
 			}
+
 			else{
-				
 				print('
 					<section>
 						<h2>Carica qui i video del tuo corso</h2>
 						<br><br>
-						<p>Attenzione che ogni corso può avere al massimo UN video che non deve superare i 100MB come peso e dev\'essere in formato mp4.</p>
+						<p>Attenzione che ogni corso può avere al massimo UN video.</p>
 						<br><br>
-						<form enctype = \'multipart/form-data\' action = \'upload_course.php\' method = \'post\'>
-							<input type = \'hidden\' name = \'MAX_FILE_SIZE\' value = \'104857600\' />
-							Seleziona il video da caricare: <input type = \'file\' name = \'video\'/>
+						<form action = \'upload_course.php\' method = \'post\'>
+							Inserisci il codice ID del video su Youtube: <input type = \'text\' name = \'video\'/>
 							<br><br>
 							<label for = \'name_course\'>Titolo del corso:</label>
 							<br>
