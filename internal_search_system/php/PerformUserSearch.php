@@ -17,8 +17,10 @@
       $param_array = [];
   
       if(!empty($searchInput)){
-        $param_type         .= "ss";
+        $param_type         .= "ssss";
         $searchWithWildcards = "%" . $searchInput . "%";
+        $param_array[]       = &$searchWithWildcards;
+        $param_array[]       = &$searchWithWildcards;
         $param_array[]       = &$searchWithWildcards;
         $param_array[]       = &$searchWithWildcards;
       }
@@ -62,7 +64,7 @@
 function buildQuery($searchInput, $minPrice, $maxPrice) {
   $whereClause = [];
   if ($searchInput !== "") {
-      $whereClause[] = " (name LIKE ? OR description LIKE ?)";
+      $whereClause[] = " (name LIKE ? OR description LIKE ? OR firstname LIKE ? OR lastname LIKE ?)";
   }
 
   if ($minPrice !== null && $maxPrice !== null) {
@@ -73,12 +75,12 @@ function buildQuery($searchInput, $minPrice, $maxPrice) {
       $whereClause[] = " (price <= ?)";
   }
 
-  $query = "SELECT * FROM course";
+  $query = "SELECT * FROM course JOIN teach ON id = id_course JOIN user ON email_user = email";
   if (!empty($whereClause)) {
       $query .= " WHERE " . implode(" AND ", $whereClause);
   }
 
-  $query .= " ORDER BY average_evaluation DESC LIMIT 10";
+  $query .= " ORDER BY average_evaluation DESC LIMIT 30";
 
   return $query;
 }

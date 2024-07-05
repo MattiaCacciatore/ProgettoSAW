@@ -8,6 +8,16 @@ h1 {
 /*--------------------------------------------------------------------------------------------------------*/
 /*search bar & filters*/
 
+.page-title {
+  font-size: 2.5em; /* Dimensione del testo */
+  font-weight: bold; /* Grassetto per dare importanza */
+  color: #a86486; /* Un colore elegante e sobrio */
+  text-align: center; /* Centrato */
+  margin: 20px 0; /* Spaziatura sopra e sotto */
+  padding: 10px 20px; /* Padding per dare respiro al testo */
+  display: inline-block; /* Adatta la larghezza al contenuto */
+}
+
 .search-system {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(480px, 1.5fr));
@@ -54,13 +64,20 @@ h1 {
   color: rgba(0, 0, 0, 0.25);
 }
 
-/* clears the ‘X’ from Internet Explorer and Chrome */
-input[type=search]::-ms-clear,
-input[type=search]::-ms-reveal,
+/* Clears the ‘X’ from Internet Explorer and Chrome */
+input[type="search"]::-ms-clear,
+input[type="search"]::-ms-reveal,
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+/* Clears the ‘X’ from Brave */
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
   display: none;
 }
 
@@ -97,7 +114,7 @@ input[type="search"]::-webkit-search-results-decoration {
   border: none;
   background-color: #fff;
   outline: none;
-  width: 120px; /* Increased width to align with "Eur" */
+  width: 120px; 
   font-size: 1rem;
   margin-right: 10px;
   margin-left: 10px;
@@ -109,6 +126,8 @@ input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
   margin: 0;
 }
+
+
 
 .price-filter .button {
   cursor: pointer;

@@ -1,7 +1,7 @@
 <?php
 require dirname(__FILE__) . '/../../configuration/database_connect.php';
 
-$query = "SELECT * FROM course ORDER BY average_evaluation DESC LIMIT 10;";
+$query = "SELECT * FROM course JOIN teach ON id = id_course JOIN user ON email_user = email ORDER BY average_evaluation DESC LIMIT 10;";
 
 try {
     // Prepara la query
