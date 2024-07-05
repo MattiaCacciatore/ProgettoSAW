@@ -1,23 +1,96 @@
-.table{
-    border-collapse: collapse;
-    width: 100%;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .table tr, .table th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  /*
-  form{
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
-      width: 100%;
-  }
-  */
-  body{
-    min-height: 0vh;
-  }
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin: 20px 0;
+}
+
+.table tr {
+  background-color: #fafafa;
+}
+
+
+.table th, .table td {
+  border: 1px solid #8f597a;
+  padding: 12px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.table .index-line {
+  padding-bottom: 5px;
+}
+
+.table .index-element{
+  border-color: 1px solid #fafafa;
+  color:#fafafa;
+  background-color: rgb(172, 93, 106);
+  text-transform: uppercase;
+  padding: 12px
+
+}
+
+.table th {
+  color: rgb(70, 70, 70);
+  font-weight: bold;
+}
+
+.table td {
+  background-color: #fff;
+}
+
+.table tr:hover {
+  background-color: #e0f7fa; 
+}
+
+.table th, .table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table caption {
+  caption-side: bottom;
+  padding: 8px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #555;
+}
+
+.table .index-table{
+  background-color: #8f597a;
+  color: #e0f7fa;
+}
+
+/* Optional: Adding a subtle shadow to the table */
+.table {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Styling buttons within the table */
+.table button {
+  background-color: #8f597a;  /* Matching the table header */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.table button:hover {
+  background-color: #6b3c59;  /* Darker blue on hover */
+  transform: scale(1.05);
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

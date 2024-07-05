@@ -22,7 +22,7 @@
 <body>
 
     <?php
-        require dirname(__FILE__).'/../modules/navbar.php';
+        require dirname(__FILE__).'/../modules/header.php';
 
         $query = 'SELECT * FROM user ORDER BY lastname;';
 
@@ -41,14 +41,14 @@
             <div class = "table">
             <form action = \'update_users.php\' method = \'post\' class = "table">
                 <table class = "table">
-                    <tr>
-                        <th>Nome</th>
-                        <th>Cognome</th>
-                        <th>Indirizzo email</th>
-                        <th>Elimina</th>
-                        <th>Banna</th>
-                        <th>Sbanna</th>
-                        <th>Concedi permessi</th>
+                    <tr class="index-line">
+                        <th class="index-element">Nome</th>
+                        <th class="index-element">Cognome</th>
+                        <th class="index-element">Indirizzo email</th>
+                        <th class="index-element">Elimina</th>
+                        <th class="index-element">Banna</th>
+                        <th class="index-element">Sbanna</th>
+                        <th class="index-element">Concedi permessi</th>
                     </tr>');
             foreach($res as $row){
                 printf('
