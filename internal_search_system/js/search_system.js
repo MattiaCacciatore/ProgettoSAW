@@ -151,7 +151,7 @@ function renderCourseCard(course){
   return `
   <div class = 'course-card'>
     <h2>${course.name}</h2>
-    <p>Da: ${course.teacher}</p>
+    <p>Da: ${course.firstname} ${course.lastname} </p>
     <p>${course.description}</p>
 
     <div class = 'bottom-cards-elements'>
