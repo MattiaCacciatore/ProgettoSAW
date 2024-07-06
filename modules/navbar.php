@@ -28,7 +28,7 @@
     }
 
     // Add common links
-    $navItems[] = ['href' => $MYROOT.'/info/contact_us.html', 'label' => 'Contatti'];
+    $navItems[] = ['href' => $MYROOT.'/info/contact_us.php', 'label' => 'Contatti'];
   
 
     // Sort the nav items if needed

@@ -19,3 +19,47 @@ main {
     align-items: center; /* Center the form vertically */
     padding: 20px;
 }
+
+
+/* CSS per la scrollbar ---------------------------------------------*/
+/* Definisco la scrollbar customizzata */
+/* CSS per la scrollbar ---------------------------------------------*/
+/* Definisco la scrollbar customizzata */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+/* Track aka. la barra "totale" */
+::-webkit-scrollbar-track {
+    background: #f9e3e5; /* Colore di sfondo più chiaro per il track */
+    border-radius: 10px;
+}
+
+/* Thumb aka. Il barretta a scorrimento */
+::-webkit-scrollbar-thumb {
+    background: rgb(226, 106, 126); /* Colore principale per il thumb */
+    border-radius: 10px;
+    border: 3px solid #f9e3e5; /* Bordo per il thumb per un effetto separatore */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(230, 54, 83); /* Colore più scuro al passaggio del mouse */
+}
+
+/* Definisco la scrollbar per Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(226, 106, 126) #f9e3e5;
+}
+
+body, html {
+    scrollbar-face-color: rgb(226, 106, 126);
+    scrollbar-base-color: #f9e3e5;
+    scrollbar-3dlight-color: #f9e3e5;
+    scrollbar-highlight-color: #f9e3e5;
+    scrollbar-track-color: #f9e3e5;
+    scrollbar-arrow-color: #f9e3e5;
+    scrollbar-shadow-color: #f9e3e5;
+    scrollbar-darkshadow-color: rgb(226, 106, 126);
+}
