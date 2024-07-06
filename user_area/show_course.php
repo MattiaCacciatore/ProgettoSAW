@@ -30,6 +30,7 @@
 	<main>
         
 		<?php
+		
 			if(isset($_POST['courseId'])){
 
 				require dirname(__FILE__).'/../configuration/database_connect.php';
@@ -53,7 +54,7 @@
 					require dirname(__FILE__).'/../configuration/database_query.php';
 				}
 				/* The limit of videos for each course is 1. */
-				$query = 'SELECT c.id, c.name, c.description, c.average_evaluation, v.title, v.type, v.file
+				$query = 'SELECT c.id, c.name, c.description, c.average_evaluation, v.title, v.filename
 						  FROM course c JOIN video v ON c.id = v.id_course 
 						  WHERE c.id = ?;';
 
@@ -75,7 +76,7 @@
 
 						<section class = \'course-section\'>
 							<h2>Video: '.htmlspecialchars($res[0]['title']).'</h2>
-							<iframe src = \'https://www.youtube.com/embed/'.htmlspecialchars($res[0]['filename']).'>
+							<iframe src = \'https://www.youtube.com/embed/'.htmlspecialchars($res[0]['filename']).'\'>
 							</iframe>
 						</section>
 

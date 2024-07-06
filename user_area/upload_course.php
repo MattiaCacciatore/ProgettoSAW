@@ -70,11 +70,11 @@
 //                  	THIRD QUERY, the insertion of the video related to this course.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
 						$query = 'INSERT INTO video (title, duration, type, filename, id_course) 
-								  VALUES (?, 10, \'url\', ?, ?);';
+								  VALUES (?, 10, "url", ?, ?);';
 
-						$file_id = $_POST['video'];
+						$file_id   = $_POST['video'];
 
-						$params = array($file_name, $file_id, $id_course);
+						$params = array($course_title, $file_id, $id_course);
 						/* 'ssi' means that the first three params are bounded as strings and the last one as an integer. */
 						$param_types = 'ssi';
 
@@ -90,6 +90,8 @@
 						$param_types = 'si';
 
 						require dirname(__FILE__).'/../configuration/database_query.php';
+
+						print('<br><br>Corso caricato!<br>');
 					}
 
 					require dirname(__FILE__).'/../configuration/database_disconnect.php';
