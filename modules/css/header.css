@@ -26,48 +26,51 @@ header #title {
 
 }
 
+/* Container della navbar */
 nav {
     margin-left: 10px;
     flex: 1;
-    overflow-x: scroll;
+    overflow-x: hidden; /* Nascondi overflow orizzontale */
+    white-space: normal; /* Permetti la rottura di riga */
 }
 
+/* Lista della navbar */
 nav ul {
     display: flex;
-    flex-wrap: nowrap; /* Ensure items do not wrap to the next line */
+    flex-wrap: wrap; /* Permetti agli elementi di andare a capo */
     list-style-type: none;
-    vertical-align: center;
-
+    align-items: center;
     padding: 0;
     margin: 0;
-    justify-content: left; /* Center the items horizontally */
-    gap: 7px; /* Add gap between items */
-
+    justify-content: left; /* Allinea gli elementi a sinistra */
+    gap: 7px; /* Spazio tra gli elementi */
 }
 
+/* Elemento della navbar */
 .nav-elmnt {
     display: flex; 
     align-items: center;
-    vertical-align: center;
-    min-width: 0; /* Allow flex items to shrink below their content width */
+    min-width: 0; /* Permette agli elementi di restringersi sotto la larghezza del contenuto */
 }
 
+/* Link della navbar */
 .nav-elmnt a {
     display: block;
     padding: 10px;
     border-radius: 28px;
     color: steelblue;
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
-    text-decoration: none; /* Ensure no underline */
-    white-space: nowrap; /* Prevent text from wrapping */
-    overflow: hidden; /* Hide overflowing text */
-    text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+    transition: background-color 0.3s, color 0.3s; /* Transizione morbida per il cambio di colore */
+    text-decoration: none; /* Rimuovi la sottolineatura */
+    white-space: nowrap; /* Impedisci la rottura di riga all'interno del link */
+    overflow: hidden; /* Nascondi il testo che eccede */
+    text-overflow: ellipsis; /* Aggiungi ellissi per il testo che eccede */
 }
 
+/* Hover sul link della navbar */
 .nav-elmnt a:hover {
     color: antiquewhite;
     background-color: rgb(226, 106, 126);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add a subtle box shadow on hover */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Aggiungi un'ombra sottile al passaggio del mouse */
 }
 
 /* COOKIE BANNER */

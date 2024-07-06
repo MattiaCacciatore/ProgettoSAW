@@ -1,7 +1,26 @@
-#welcome-wrapper {
-    padding: 30px;
-    border-radius:11px;
-    background-color: transparent;
-    font-family: 'Roboto', sans-serif; 
 
+/* Stili per il wrapper di benvenuto */
+#welcome-wrapper {
+    background-color: #f9f9f9; /* Colore di sfondo leggero */
+    padding: 20px; /* Spaziatura interna */
+    margin: 20px auto; /* Margine automatico per centrare il div */
+    border-radius: 10px; /* Angoli arrotondati */
+    max-width: 800px; /* Larghezza massima */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra */
+    line-height: 1.6; /* Altezza linea */
+}
+
+/* Stili per l'intestazione */
+#welcome-wrapper h3 {
+    color: #2c3e50; /* Colore del testo */
+    font-size: 2rem; /* Dimensione del font */
+    margin-bottom: 15px; /* Margine inferiore */
+    text-align: center; /* Allineamento centrale */
+}
+
+/* Stili per i paragrafi */
+#welcome-wrapper p {
+    color: #34495e; /* Colore del testo */
+    font-size: 1.1rem; /* Dimensione del font */
+    margin-bottom: 15px; /* Margine inferiore */
 }
