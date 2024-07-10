@@ -21,7 +21,7 @@ function followedCoursesByUser() {
 
 
     $.ajax({
-        url: './performSearchFollowedCourses.php',
+        url: '../php/performSearchFollowedCourses.php',
         method:'POST',
         dataType:'json',
 
