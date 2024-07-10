@@ -31,7 +31,7 @@ function followedCoursesByUser() {
             console.log(result);
 
             // check if there is some result from request to database: if there is no result display a message, displayrResult() otherwise
-            !$.trim(result)?  document.querySelector('.evaluation-courses-wrapper').innerHTML= '<p class="error">Non segui nessun corso</p>' : displayFollowedCourses(result);
+            !$.trim(result)?  document.querySelector('.evaluation-courses-wrapper').innerHTML= '<p class="error">Hai valutato tutti i corsi!</p>' : displayFollowedCourses(result);
 
         },
 
