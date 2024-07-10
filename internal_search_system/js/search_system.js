@@ -1,11 +1,11 @@
 //----------------------------------------------------------------------------------------------------
-// Si definiscono "gli eventi in ascolto".
+// Define "event listeners".
 
 $(document).ready(function() {
   performSearchOpeningPage();
 });
 
-// Ad ogni input dell'utente viene effettuata una ricerca, più dinamico.
+// A search is performed with each user input, more dynamic.
 $("#searchInput").keyup(function(event){
     if(event.isComposing || event.keyCode === 229){
       return;
@@ -15,13 +15,13 @@ $("#searchInput").keyup(function(event){
     performUserSearch(input);
   });
 
-// Se venissero impostati dei valori ai campi del filtro dei prezzi allora...
+// If values are set for the price filter fields then...
 $("#searchButton").click(function(){
   performUserSearch($("#searchInput").val()); // Trigger search with current search input
 });  
 
 /*---------------------------------------------------------------------------------------------------------------------------------- */
-/*                                                          FUNZIONI PRINCIPALI                                                      */
+/*                                                          MAIN FUNCTIONS                                                           */
 /*---------------------------------------------------------------------------------------------------------------------------------- */
 
 function performUserSearch(params){
@@ -29,35 +29,34 @@ function performUserSearch(params){
   document.querySelector('.price-filter-error').innerHTML = '';
 
   
-  // Nota: toFixed aggiunge a un input intero la virgola con due zeri. 80 -> 80,00
+  // Note: toFixed adds a comma with two zeros to an integer input. 80 -> 80.00
   let minPrice = getPriceFilterValue('#input-min'); 
   let maxPrice = getPriceFilterValue('#input-max');
 
   if (minPrice > maxPrice) {
-    document.querySelector('.price-filter-error').innerHTML = '<p class="error"> il minimo non può essere più grande del massimo </p>';
+    document.querySelector('.price-filter-error').innerHTML = '<p class="error"> the minimum cannot be greater than the maximum </p>';
     return;
   }
 
   let searchTextInput = params;
   
-  // Si preparano i dati da inviare al server.
+  // Prepare the data to send to the server.
   let dataToSend = {
     searchTextInput: searchTextInput,
     minPrice:minPrice,
     maxPrice:maxPrice
-
   };
 
-  // Si invia una richiesta ajax 
+  // Send an ajax request 
   $.ajax({
       url: "../php/performUserSearch.php",
       type: "POST",
       data: dataToSend,
       dataType: "json",
       success: function(results) {
-        // Se non si trova nulla si solleva un'eccezione altrimenti si stampano i risultati.
+        // If nothing is found an exception is raised otherwise the results are printed.
         console.log(results);
-        !$.trim(results) ?  document.querySelector('.wildCards').innerHTML= '<p class="error">nessun corso trovato</p>' : displayResults(results);
+        !$.trim(results) ?  document.querySelector('.wildCards').innerHTML= '<p class="error">no course found</p>' : displayResults(results);
     
       },
 
@@ -77,9 +76,9 @@ function performSearchOpeningPage(){
       type: "POST",
       dataType: "json",
       success: function(results) {
-        // Se non si trova nulla si solleva un'eccezione altrimenti si stampano i risultati.
+        // If nothing is found an exception is raised otherwise the results are printed.
         console.log(results);
-        !$.trim(results) ?  document.querySelector('.wildCards').innerHTML= '<p class="error">nessun corso trovato</p>' : displayResults(results);
+        !$.trim(results) ?  document.querySelector('.wildCards').innerHTML= '<p class="error">no course found</p>' : displayResults(results);
     
       },
 
@@ -91,7 +90,7 @@ function performSearchOpeningPage(){
 }
 
 /*---------------------------------------------------------------------------------------------------------------------------------- */
-/*                                                          FUNZIONI SECONDARIE                                                      */
+/*                                                      SECONDARY FUNCTIONS                                                          */
 /*---------------------------------------------------------------------------------------------------------------------------------- */
 
 function getPriceFilterValue(priceFilterId) {
@@ -100,7 +99,7 @@ function getPriceFilterValue(priceFilterId) {
 
   // Sanity check.
   if (priceValue < 0) {
-    document.querySelector('.price-filter-error').innerHTML = '<p class="error">Il prezzo non può essere negativo</p>';
+    document.querySelector('.price-filter-error').innerHTML = '<p class="error">Price cannot be negative</p>';
     return; // Return or throw an error.
   }
 
@@ -122,7 +121,7 @@ function displayResults(results) {
 
   console.log(courses);
 
-  // Siccome noi facciamo un parsing dei dati in JSON, possiamo sfruttarlo per eseguire il filtraggio dei dati.
+  // Since we parse the data in JSON, we can use it to filter the data.
 
   // Get the DOM element where the results will be displayed.
   let resultPosition = document.querySelector('.wildCards');
@@ -151,16 +150,16 @@ function renderCourseCard(course){
   return `
   <div class = 'course-card'>
     <h2>${course.name}</h2>
-    <p>Da: ${course.firstname} ${course.lastname} </p>
+    <p>By: ${course.firstname} ${course.lastname} </p>
     <p>${course.description}</p>
 
     <div class = 'bottom-cards-elements'>
       <div class = 'course-details'>
-        <span class = 'price'>Prezzo: ${course.price}</span>
-        <span class = 'rating'>Valutazione: ${course.average_evaluation}</span>
+        <span class = 'price'>Price: ${course.price}</span>
+        <span class = 'rating'>Rating: ${course.average_evaluation}</span>
       </div>
-      <form form action = '../../user_area/show_course.php' method = 'post'>
-        <button type='submit' name = 'courseId' value = ${course.id}>Accedi al corso</button>
+      <form action = '../../user_area/show_course.php' method = 'post'>
+        <button type='submit' name = 'courseId' value = ${course.id}>Access the course</button>
       </form>
     </div>
   </div>

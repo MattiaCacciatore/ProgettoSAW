@@ -6,75 +6,64 @@ body {
 }
 
 /* HEADER */
-/****************************************************************************************************/
 header {
     display: flex;
     border-bottom: 2px solid rgb(172, 93, 106);
     margin: 0 50px;
-    align-items: center; /* Align items vertically center */
-    vertical-align: center;
+    align-items: center; 
     padding: 15px; 
 }
-
 
 header #title {
     text-align: left;
     color: #b66879; 
     font-size: 25px; 
     font-weight: bold;
-    vertical-align: center;
-
 }
 
-/* Container della navbar */
 nav {
     margin-left: 10px;
     flex: 1;
-    overflow-x: hidden; /* Nascondi overflow orizzontale */
-    white-space: normal; /* Permetti la rottura di riga */
+    overflow-x: hidden; 
+    white-space: normal; 
 }
 
-/* Lista della navbar */
 nav ul {
     display: flex;
-    flex-wrap: wrap; /* Permetti agli elementi di andare a capo */
+    flex-wrap: wrap; 
     list-style-type: none;
     align-items: center;
     padding: 0;
     margin: 0;
-    justify-content: left; /* Allinea gli elementi a sinistra */
-    gap: 7px; /* Spazio tra gli elementi */
+    justify-content: left; 
+    gap: 7px; 
 }
 
-/* Elemento della navbar */
 .nav-elmnt {
     display: flex; 
     align-items: center;
-    min-width: 0; /* Permette agli elementi di restringersi sotto la larghezza del contenuto */
+    min-width: 0;
 }
 
-/* Link della navbar */
 .nav-elmnt a {
     display: block;
     padding: 10px;
     border-radius: 28px;
     color: steelblue;
-    transition: background-color 0.3s, color 0.3s; /* Transizione morbida per il cambio di colore */
-    text-decoration: none; /* Rimuovi la sottolineatura */
-    white-space: nowrap; /* Impedisci la rottura di riga all'interno del link */
-    overflow: hidden; /* Nascondi il testo che eccede */
-    text-overflow: ellipsis; /* Aggiungi ellissi per il testo che eccede */
+    transition: background-color 0.3s, color 0.3s; 
+    text-decoration: none; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 }
 
-/* Hover sul link della navbar */
 .nav-elmnt a:hover {
     color: antiquewhite;
     background-color: rgb(226, 106, 126);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Aggiungi un'ombra sottile al passaggio del mouse */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
 }
 
 /* COOKIE BANNER */
-/****************************************************************************************************/
 #hide:checked ~ :is(input, div, label, section, p, a, form){
     --show_banner: none;
     --hold_banner: static;

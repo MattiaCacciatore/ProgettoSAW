@@ -4,11 +4,11 @@ require dirname(__FILE__) . '/../../configuration/database_connect.php';
 $query = "SELECT * FROM course JOIN teach ON id = id_course JOIN user ON email_user = email ORDER BY average_evaluation DESC LIMIT 10;";
 
 try {
-    // Prepara la query
+    // Prepare the query
     $stmt = mysqli_prepare($db_connection, $query);
 
     if ($stmt) {
-        // Esegui la query
+        // execute
         if (mysqli_stmt_execute($stmt)) {
             $result = mysqli_stmt_get_result($stmt);
             $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -16,7 +16,7 @@ try {
         } else {
             echo json_encode(array("error" => "Error executing statement: " . mysqli_stmt_error($stmt)));
         }
-        // Chiudi lo statement
+        //  close the statement
         mysqli_stmt_close($stmt);
     } else {
         echo json_encode(array("error" => "Error preparing statement: " . mysqli_error($db_connection)));
