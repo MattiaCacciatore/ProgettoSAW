@@ -8,7 +8,7 @@
 	?>
 
 	<link rel = 'stylesheet' href = './css/contact.css'>
-	<link rel = 'stylesheet' href = '../css/base.css'>
+	<link rel = 'stylesheet' href = '../modules/css/form.css'>
 
 	<title>Contatti | STEMazing Education</title>
 

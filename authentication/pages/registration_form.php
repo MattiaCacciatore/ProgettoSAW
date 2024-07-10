@@ -7,7 +7,8 @@
     include dirname(__FILE__).'/../../modules/head_style.php'; 
   ?>
 
-  <link rel = 'stylesheet' href = '../css/registration.css'>
+  <link rel="stylesheet" href="../../modules/css/form.css">
+
 
   <title>
     Modulo di Registrazione
