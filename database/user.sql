@@ -10,10 +10,7 @@ CREATE TABLE user(
     UNIQUE KEY (`id_cookie`)
 );
 
-
-
-
--- dati fittizzi
+-- dati .
 INSERT INTO user (email, firstname, lastname, pwd, is_admin) VALUES
   ('maria.rossi@email.com', 'Maria', 'Rossi', 'password', 1),  /* Amministratore, 1 indica vero. */
   ('giovanni.bianchi@email.com', 'Giovanni', 'Bianchi', 'password', 0),

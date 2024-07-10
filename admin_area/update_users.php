@@ -19,13 +19,13 @@
 		$params = array($_POST['grant']);
 	}
 	else{
-		/* Placeholer. */
+		/* Segnaposto. */
 		$query = 'SELECT * FROM field';
 		$params = null;
 	}
-	/* 's' mean that the param is bounded as a string. */
+	/* 's' significa che il parametro è di tipo stringa. */
 	$param_types = 's';
-	/* $res stores the result of the query called in database_query.php */
+
 	$res;
 			
 	require dirname(__FILE__).'/../configuration/database_connect.php';

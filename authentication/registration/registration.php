@@ -22,9 +22,9 @@
 				$query = 'INSERT INTO user(email, firstname, lastname, pwd) VALUES (?, ?, ?, ?);';
 
 				$params = array($email, $name, $surname, $hashed_password);
-				/* 'ssss' means that all params are bounded as strings. */
+				/* 'ssss' significa che i parametri sono di tipo stringa. */
 				$param_types = 'ssss';
-                /* $res stores the result of the query called in database_query.php */
+
 				$res;
 
 				require dirname(__FILE__).'/../../configuration/database_connect.php';
@@ -39,6 +39,6 @@
 			exit('Credenziali vuote.');
 		}
 	}
-    /* Redirect to the homepage. */
+    /* Reindirizzamento alla pagina principale. */
 	header('Location: ../../index.php');
 ?>

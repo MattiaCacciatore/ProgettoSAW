@@ -1,9 +1,9 @@
 <?php
-/* ------------------------------------------------------------------------------------------------
-    OPEN THE CONNECTION TO THE DATABASE.
---------------------------------------------------------------------------------------------------- */
-    /* Enable error reporting and set the desired charset after establishing
-	a connection for the encoding. Mandatory for the try-catch statement. */
+/* ------------------------------------------------------------------------------------------------ */
+// APRE LA CONNESSIONE AL DATABASE.
+/* ------------------------------------------------------------------------------------------------ */
+    /* Attiva la segnalazione degli errori e imposta il charset desiderato dopo aver stabilito una 
+       connessione per la codifica. Obbligatorio lo statement try-catch. */
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
     $db_connection;

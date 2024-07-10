@@ -10,7 +10,7 @@
   <link rel = 'stylesheet' href = '../css/search-page.css'>
   <link rel = 'stylesheet' href = '../css/courses-cards.css'>
 
-  <!-- Icon links: google matireal. -->
+  <!-- Collegamenti icon: google matireal. -->
   <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200' />
   <link rel = 'stylesheet' href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200' />
 
@@ -35,7 +35,7 @@
   </h1>
  
   <!-- ******************************************************************************************************** -->
-  <!-- Search menu. -->
+  <!-- Menù di ricerca. -->
   <div class = 'search-system'>
 
     <div class = 'search-wrapper'>
@@ -44,7 +44,7 @@
     </div>
 
   <!-- ******************************************************************************************************** -->
-  <!-- Price filter. -->
+  <!-- Filtro per prezzo. -->
     <div class = 'price-filter'>
       <div class = 'field'>
         <span>Euro</span>
@@ -66,7 +66,6 @@
   <!-- ******************************************************************************************************** -->
   <!-- wild cards dei corsi 
   
-
     vengono stampate dallo script search_system.js che:
       - prende in input i dati della barra di ricerca e dei filtri
       - effettua una ricerca con ajax: metodo performingSeacrh
@@ -77,7 +76,6 @@
        nel metodo: displayResults
   -->   
   <div class = 'wildCards'></div>
-
 
   <?php
     require dirname(__FILE__).'/../../modules/footer.php';

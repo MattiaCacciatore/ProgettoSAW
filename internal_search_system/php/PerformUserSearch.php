@@ -1,8 +1,8 @@
 <?php
   require dirname(__FILE__).'/../../configuration/database_connect.php';
-// PERFORMING WITH SEARCH ====================================================
+  // ESEGUE LA RICERCA ====================================================
 
-  // Extract search parameters from $_POST
+  /* Si estraggono i parametri. */
   $searchInput = isset($_POST['searchTextInput']) ? trim($_POST['searchTextInput']) : "";
   $minPrice    = isset($_POST['minPrice'])        ? floatval($_POST['minPrice'])      : 1.0;
   $maxPrice    = isset($_POST['maxPrice'])        ? floatval($_POST['maxPrice'])      : 10000.0;
@@ -12,7 +12,7 @@
   try{
     $stmt = mysqli_prepare($db_connection, $query);
     if($stmt){
-      // Binding statement *********************************
+      // Lega lo statement *********************************
       $param_type  = "";
       $param_array = [];
   
@@ -34,17 +34,17 @@
       if(!empty($param_type)){
         mysqli_stmt_bind_param($stmt, $param_type, ...$param_array);
       }
-      // Execute statement **********************************************
+      // Esegue lo statement **********************************************
       if(mysqli_stmt_execute($stmt)){
         $result = mysqli_stmt_get_result($stmt);
         $data   = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        // Encode results as JSON ***************************************
+        // Codifica i risultati in formato JSON ***************************************
         echo json_encode($data);
       }
       else{
         echo json_encode(array("error" => "Error executing statement: " . mysqli_stmt_error($stmt)));
       }
-      // Close statement ************************************************
+      // Chiude lo statement ************************************************
       mysqli_stmt_close($stmt);
     } 
     else{
@@ -58,30 +58,29 @@
 
   require dirname(__FILE__).'/../../configuration/database_disconnect.php';
 
-  
 /***************************************************************************************************** */
-// Method to build the complete query string
-function buildQuery($searchInput, $minPrice, $maxPrice) {
-  $whereClause = [];
-  if ($searchInput !== "") {
-      $whereClause[] = " (name LIKE ? OR description LIKE ? OR firstname LIKE ? OR lastname LIKE ?)";
+  /* Metodo che costruisce la stringa per l'interrogazione al database. */
+  function buildQuery($searchInput, $minPrice, $maxPrice) {
+    $whereClause = [];
+    if ($searchInput !== "") {
+        $whereClause[] = " (name LIKE ? OR description LIKE ? OR firstname LIKE ? OR lastname LIKE ?)";
+    }
+
+    if ($minPrice !== null && $maxPrice !== null) {
+        $whereClause[] = " (price BETWEEN ? AND ?)";
+    } elseif ($minPrice !== null) {
+        $whereClause[] = " (price >= ?)";
+    } elseif ($maxPrice !== null) {
+        $whereClause[] = " (price <= ?)";
+    }
+
+    $query = "SELECT * FROM course JOIN teach ON id = id_course JOIN user ON email_user = email";
+    if (!empty($whereClause)) {
+        $query .= " WHERE " . implode(" AND ", $whereClause);
+    }
+
+    $query .= " ORDER BY average_evaluation DESC LIMIT 30";
+
+    return $query;
   }
-
-  if ($minPrice !== null && $maxPrice !== null) {
-      $whereClause[] = " (price BETWEEN ? AND ?)";
-  } elseif ($minPrice !== null) {
-      $whereClause[] = " (price >= ?)";
-  } elseif ($maxPrice !== null) {
-      $whereClause[] = " (price <= ?)";
-  }
-
-  $query = "SELECT * FROM course JOIN teach ON id = id_course JOIN user ON email_user = email";
-  if (!empty($whereClause)) {
-      $query .= " WHERE " . implode(" AND ", $whereClause);
-  }
-
-  $query .= " ORDER BY average_evaluation DESC LIMIT 30";
-
-  return $query;
-}
 ?>

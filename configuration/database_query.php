@@ -1,7 +1,7 @@
 <?php
-/* ------------------------------------------------------------------------------------------------
-    EXECUTE THE QUERY.
---------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------ */
+// ESEGUE L'INTERROGAZIONE.
+/* ------------------------------------------------------------------------------------------------ */
     try{
         if(!empty($params) && !empty($param_types)){
             $sql_stmt = mysqli_prepare($db_connection, $query);
@@ -10,8 +10,8 @@
             $result = mysqli_stmt_get_result($sql_stmt);
         }
         else{
-            /* I HATE PHP FOR THIS. This must be done because bind_param() requires 
-            at least one parameter, otherwise it throws a warning. */
+            /* SI ODIA PHP QPER QUESTO. Questo ramo else dev'essere fatto perchè la bind_param()
+            richiede che ci sia almeno un parametro, altrimenti lancia un warning. */
             $result = mysqli_query($db_connection, $query);
         }
 

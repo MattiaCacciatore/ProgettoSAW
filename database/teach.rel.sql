@@ -1,4 +1,4 @@
--- In this table all users are teachers.
+-- Tutti gli utenti in questa tabella sono docenti.
 CREATE TABLE teach(
     email_user VARCHAR(100),
     id_course BIGINT UNSIGNED,

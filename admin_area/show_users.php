@@ -29,7 +29,7 @@
         $params = null;
         
         $param_types = null;
-        /* $res stores the result of the query called in database_query.php */
+        /* $res registra il risultato dell'interrogazione. */
         $res;
 
         require dirname(__FILE__).'/../configuration/database_connect.php';
@@ -38,17 +38,17 @@
 
         if(!(empty($res))){
             print('
-            <div class = "table">
-            <form action = \'update_users.php\' method = \'post\' class = "table">
-                <table class = "table">
-                    <tr class="index-line">
-                        <th class="index-element">Nome</th>
-                        <th class="index-element">Cognome</th>
-                        <th class="index-element">Indirizzo email</th>
-                        <th class="index-element">Elimina</th>
-                        <th class="index-element">Banna</th>
-                        <th class="index-element">Sbanna</th>
-                        <th class="index-element">Concedi permessi</th>
+            <div class = \'table\'>
+            <form action = \'update_users.php\' method = \'post\' class = \'table\'>
+                <table class = \'table\'>
+                    <tr class = \'index-line\'>
+                        <th class = \'index-element\'>Nome</th>
+                        <th class = \'index-element\'>Cognome</th>
+                        <th class = \'index-element\'>Indirizzo email</th>
+                        <th class = \'index-element\'>Elimina</th>
+                        <th class = \'index-element\'>Banna</th>
+                        <th class = \'index-element\'>Sbanna</th>
+                        <th class = \'index-element\'>Concedi permessi</th>
                     </tr>');
             foreach($res as $row){
                 printf('

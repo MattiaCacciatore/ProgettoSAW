@@ -7,7 +7,6 @@ CREATE TABLE course(
   average_evaluation DECIMAL(2,1) UNSIGNED NOT NULL CHECK (average_evaluation <= 5.0) /* trigger da implementare. */
 );
 
-
 --- dati
 
 INSERT INTO course (name, description, duration, price, average_evaluation) VALUES

@@ -9,7 +9,6 @@
 
   <link rel="stylesheet" href="../../modules/css/form.css">
 
-
   <title>
     Modulo di Registrazione
   </title>

@@ -21,14 +21,8 @@
     require dirname(__FILE__).'/../../modules/header.php';
   ?>
 
-  <!-- Scheletro del form di registrazione. Non cambiate i nomi dei campi e il nome 
-  dello script che viene invocato una volta inseriti i dati richiesti.
-  Il form può stare in un file a parte oppure nello stesso file registration.php (
-  come abbiamo visto in classe) -->
-
   <main>
   
-
     <form form action = '../login/login.php' method = 'post'>
 
       <h2>Accedi</h2>

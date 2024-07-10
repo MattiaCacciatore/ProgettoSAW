@@ -4,9 +4,9 @@
     if(isset($_POST['remember'])){
 
         $cookie_name = 'user_remember';
-        /* Generate random token. */
+        /* Genera un token casuale. */
         $value = random_bytes(512);
-        $value = base64_encode($value); /* MANDATORY. */
+        $value = base64_encode($value); /* OBBLIGATORIO. */
         $expire_date = new DateTime(date('Y-m-d H:i:s'));
 
         try{
@@ -21,17 +21,17 @@
         $expire = date_format($expire_date, 'Y-m-d H:i:s');
         
         $query = 'UPDATE user SET user.id_cookie = ?, user.expire = ? WHERE user.email=?;';
-        /* Note: $user_email is checked in login.php. */
+        /* Nota: $user_email è già controllata in login.php. */
         $params = array($value, $expire, $user_email);
-        /* 'sss' means that all 3 params are bounded as strings. */
+        /* 'sss' significa che tutti i parametri sono di tipo stringa. */
         $param_types = 'sss';
-        /* $res stores the result of the query called in database_query.php */
+        /* $res registra il risultato dell'interrogazione al database. */
         $res;
         
         require dirname(__FILE__).'/database_connect.php';
         require dirname(__FILE__).'/database_query.php';
         require dirname(__FILE__).'/database_disconnect.php';
-        /* Cookie expire: 1 month. */
+        /* Scadenza cookie: 1 mese. */
         $expire = time() + (60*60*24*30);
         if(!setcookie($cookie_name, $value, $expire, '/', '', false, true)){
             exit('HTTP 500 Internal Server Error');
@@ -39,7 +39,7 @@
     }
     else if(isset($_POST['cookie_agreement'])){ /* Banner cookies. */
         $cookie_consent = 'cookies_banner_agreement';
-        /* Cookie expire: 6 months. */
+        /* Scadenza cookie: 6 mesi. */
         $expire = time() + (60*60*24*30*6);
 
         if($_POST['accettazione'] === 'Sì'){
@@ -60,6 +60,6 @@
 
         $_SESSION['cookies_banner_agreement'] = $_POST['accettazione'];
     }
-    /* Redirect to the homepage. */
+    /* Reindirizzamento alla pagina principale. */
     header('Location: ../index.php');
 ?>
