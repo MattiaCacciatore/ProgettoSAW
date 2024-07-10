@@ -64,7 +64,7 @@ function performUpdateEvaluation(vote, feedback) {
         console.log("data to send:", dataToSend);
 
         $.ajax({
-            url: './updateEvaluation.php',
+            url: '../php/updateEvaluation.php',
             method: 'POST',
             data: dataToSend,
 
