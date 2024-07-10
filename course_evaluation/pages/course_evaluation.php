@@ -4,13 +4,13 @@
 <head>
 
     <?php 
-		include dirname(__FILE__).'/../modules/head_style.php'; 
+		include dirname(__FILE__).'/../../modules/head_style.php'; 
 	?>
 
-    <link rel = 'stylesheet' href = './course-evaluation.css'>
+    <link rel = 'stylesheet' href = '../css/course-evaluation.css'>
 
     <script src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-    <script src = './askAndDisplayFollowedCourses.js' defer></script>
+    <script src = '../js/askAndDisplayFollowedCourses.js' defer></script>
 
     <title>
         Valutazione dei corsi
@@ -22,7 +22,7 @@
 
     <?php
         /* Note: header includes navbar. */
-        require dirname(__FILE__).'/../modules/header.php';
+        require dirname(__FILE__).'/../../modules/header.php';
     ?>
 
     <h1 class="page-title">
