@@ -159,7 +159,7 @@ function renderCourseCard(course){
         <span class = 'rating'>Rating: ${course.average_evaluation}</span>
       </div>
       <form action = '../../user_area/show_course.php' method = 'post'>
-        <button type='submit' name = 'courseId' value = ${course.id}>Access the course</button>
+        <button type='submit' name = 'courseId' value = ${course.id}>Accedi al corso</button>
       </form>
     </div>
   </div>
