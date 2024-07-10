@@ -1,26 +1,25 @@
-
-/* Stili per il wrapper di benvenuto */
+/* Styles for the welcome wrapper */
 #welcome-wrapper {
-    background-color: #f9f9f9; /* Colore di sfondo leggero */
-    padding: 20px; /* Spaziatura interna */
-    margin: 20px auto; /* Margine automatico per centrare il div */
-    border-radius: 10px; /* Angoli arrotondati */
-    max-width: 800px; /* Larghezza massima */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra */
-    line-height: 1.6; /* Altezza linea */
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
 }
 
-/* Stili per l'intestazione */
+/* Styles for the header */
 #welcome-wrapper h3 {
-    color: #2c3e50; /* Colore del testo */
-    font-size: 2rem; /* Dimensione del font */
-    margin-bottom: 15px; /* Margine inferiore */
-    text-align: center; /* Allineamento centrale */
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
-/* Stili per i paragrafi */
+/* Styles for the paragraphs */
 #welcome-wrapper p {
-    color: #34495e; /* Colore del testo */
-    font-size: 1.1rem; /* Dimensione del font */
-    margin-bottom: 15px; /* Margine inferiore */
+    color: #34495e;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
 }

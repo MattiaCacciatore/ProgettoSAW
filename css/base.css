@@ -1,4 +1,4 @@
-/* Per tutti gli elementi HTML, ossia l'intera pagina. */
+
 *{
     font-family: 'Roboto', sans-serif; 
     margin: 0;
@@ -30,30 +30,30 @@ main {
 
 
 /* CSS per la scrollbar ---------------------------------------------*/
-/* Definisco la scrollbar customizzata */
+/* define coustom scrollbar */
 ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
 }
 
-/* Track aka. la barra "totale" */
+/* Track */
 ::-webkit-scrollbar-track {
-    background: #f9e3e5; /* Colore di sfondo più chiaro per il track */
+    background: #f9e3e5; 
     border-radius: 10px;
 }
 
-/* Thumb aka. Il barretta a scorrimento */
+/* Thumb */
 ::-webkit-scrollbar-thumb {
-    background: rgb(226, 106, 126); /* Colore principale per il thumb */
+    background: rgb(226, 106, 126); 
     border-radius: 10px;
-    border: 3px solid #f9e3e5; /* Bordo per il thumb per un effetto separatore */
+    border: 3px solid #f9e3e5; 
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(230, 54, 83); /* Colore più scuro al passaggio del mouse */
+    background: rgb(230, 54, 83); 
 }
 
-/* Definisco la scrollbar per Firefox */
+/* scrollbar for Firefox */
 * {
     scrollbar-width: thin;
     scrollbar-color: rgb(226, 106, 126) #f9e3e5;
