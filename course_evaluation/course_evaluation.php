@@ -25,7 +25,7 @@
         require dirname(__FILE__).'/../modules/header.php';
     ?>
 
-    <h1>
+    <h1 class="page-title">
         Valuta i tuoi corsi
     </h1>
 

@@ -1,23 +1,17 @@
-h1 {
-  padding-top: 20px;
-  text-align: center;
-  font-size: x-large; 
-  font-weight: bold; 
-  color: #a86486; 
-}
+
+
+  .page-title {
+    padding-top: 20px;
+    font-size: 2.5em; 
+    font-weight: bold;
+    color: #a86486; 
+    text-align: center; 
+  }
+
 
 /*--------------------------------------------------------------------------------------------------------*/
 /*search bar & filters*/
 
-.page-title {
-  font-size: 2.5em; /* Dimensione del testo */
-  font-weight: bold; /* Grassetto per dare importanza */
-  color: #a86486; /* Un colore elegante e sobrio */
-  text-align: center; /* Centrato */
-  margin: 20px 0; /* Spaziatura sopra e sotto */
-  padding: 10px 20px; 
-  display: inline-block; /* Adatta la larghezza al contenuto */
-}
 
 .search-system {
   display: grid;

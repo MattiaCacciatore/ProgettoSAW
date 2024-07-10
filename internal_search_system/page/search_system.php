@@ -30,7 +30,7 @@
     require dirname(__FILE__).'/../../modules/header.php';
   ?>
 
-  <h1>
+  <h1 class="page-title">
     Cerca il tuo prossimo corso
   </h1>
  

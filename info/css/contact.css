@@ -28,27 +28,21 @@ form {
 
   }
   
-  /* Form headings */
-  form h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-    text-align: center;
-  }
-  
+
 
   
-  #contact-form textarea {
+ #contact-form textarea {
     padding: 10px;
+    margin-bottom: 20px;
     border: 1px solid #ccc; 
     border-radius: 5px; 
     font-size: 1rem; 
-}
 
-#contact-form textarea {
     resize: vertical; 
-    height: 150px; 
+    height: 150px;
+    width: 380px;
     max-height: 300px; 
     overflow-y: auto;
 }
+
   

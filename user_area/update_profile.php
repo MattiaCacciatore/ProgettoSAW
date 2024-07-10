@@ -12,7 +12,7 @@
 		include dirname(__FILE__).'/../modules/head_style.php'; 
 	?>
 
-	<link rel = 'stylesheet' href = './css/update-profile.css'>
+	<link rel = 'stylesheet' href = '../modules/css/form.css'>
 
 </head>
 
@@ -22,9 +22,11 @@
 		/* Note: header include navbar. */
 		require dirname(__FILE__).'/../modules/header.php';
 	?>
+	<h2 class = "page-title">Aggiorna il tuo profilo</h2>
 
 	<!-- Corpo della pagina. -->
 	<main>
+		
 
 		<?php
 			/* Let's update the current user credentials (email, name and surname). */
@@ -52,6 +54,7 @@
 			else{
 				/* Nel modulo di modifica del profilo i campi dovranno essere precompilati rispetto a quanto già presente nel database. */
 				print('
+				
 				<form form action = \'update_profile.php\' method = \'post\'>
 
 				<label for = \'firstname\'>Nuovo nome:</label><br>

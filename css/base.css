@@ -7,6 +7,14 @@
     letter-spacing: 1px;
 }
 
+.page-title {
+    font-size: 2.5em; 
+    font-weight: bold;
+    color: #a86486; 
+    text-align: center;
+    display: block; 
+  }
+
 /* MAIN */
 /****************************************************************************************************/
 main {
@@ -21,8 +29,6 @@ main {
 }
 
 
-/* CSS per la scrollbar ---------------------------------------------*/
-/* Definisco la scrollbar customizzata */
 /* CSS per la scrollbar ---------------------------------------------*/
 /* Definisco la scrollbar customizzata */
 ::-webkit-scrollbar {

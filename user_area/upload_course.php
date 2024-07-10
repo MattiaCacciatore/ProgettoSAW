@@ -11,6 +11,8 @@
 	<?php 
 		include dirname(__FILE__).'/../modules/head_style.php'; 
 	?>
+	<link rel="stylesheet" href="../modules/css/form.css">
+	<link rel="stylesheet" href="./css/upload-course.css">
 
 </head>
 
@@ -101,25 +103,30 @@
 			else{
 				print('
 					<section>
-						<h2>Carica qui i video del tuo corso</h2>
+						<h1 class="page-title">Crea il tuo prossimo corso!</h1>
 						<br><br>
-						<p>Attenzione che ogni corso può avere al massimo UN video.</p>
+
+						<p class="avviso">Per inizializzare il corso, il modulo sottostante richiede l\'invio di un solo video.
+						 Al momento, il modulo per caricare ulteriori video è in fase di sviluppo.
+						Vi preghiamo di pazientare e di caricare un solo video per ora.</p>
 						<br><br>
 						<form action = \'upload_course.php\' method = \'post\'>
-							Inserisci il codice ID del video su Youtube: <input type = \'text\' name = \'video\'/>
+							<label for = \'video\'> Inserisci il codice ID del video su Youtube: </label>
+								 <input type = \'text\' name = \'video\'/>
 							<br><br>
+
 							<label for = \'name_course\'>Titolo del corso:</label>
-							<br>
       						<input type = \'text\' id = \'name_course\' name = \'name_course\' required>
 							<br><br>
+				
 							<label for = \'description\'>Descrizione del corso (massimo 1500 caratteri):</label>
-							<br>
       						<input type = \'text\' id = \'description\' name = \'description\' required>
 							<br><br>
+
 							<label for = \'price\'>Prezzo del corso (Euro):</label>
-							<br>
       						<input type = \'number\' id = \'price\' name = \'price\' min = \'0\' max = \'10000\' required>
 							<br><br>
+
 							<input type = \'submit\' value = \'Invia\' />
 						</form>
 					<section>
