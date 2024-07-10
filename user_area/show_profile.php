@@ -40,7 +40,7 @@
 			$query = 'SELECT * FROM teach WHERE email_user = ?;';
 
 			$params = array($_SESSION['email']);
-			/* 'ssd' means that the first two params are bounded as strings and the last one as float. */
+			/* 's' significa che il parametro è di tipo stringa. */
 			$param_types = 's';
 				
 			$res;
@@ -65,7 +65,7 @@
                 </div>
             </section>
 			');
-			/* Nota: aggiungere tabella/elenco dei corsi seguiti dall'utente e i corsi tenuti. */
+
 			$query = 'SELECT c.id, c.name, c.description
 			          FROM course c JOIN follow f ON c.id = f.id_course
 					  WHERE f.email_user = ?;';
@@ -74,13 +74,13 @@
 
 			print('
 			<section>
-				<h2 class="subtitle">Corsi seguiti</h2>
+				<h2 class = \'subtitle\'>Corsi seguiti</h2>
 				<br><br>
 				<table class = \'table\'>
                     <tr>
-                        <th class="index-element">ID corso</th>
-                        <th class="index-element">Titolo</th>
-                        <th class="index-element">Descrizione</th>
+                        <th class = \'index-element\'>ID corso</th>
+                        <th class = \'index-element\'>Titolo</th>
+                        <th class = \'index-element\'>Descrizione</th>
                     </tr>
 			');
 
@@ -98,13 +98,13 @@
             </section>
 
 			<section>
-				<h2 class="subtitle" >Corsi tenuti</h2>
+				<h2 class = \'subtitle\'>Corsi tenuti</h2>
 				<br><br>
 				<table class = \'table\'>
                     <tr>
-                        <th class="index-element" >ID corso</th>
-                        <th class="index-element">Titolo</th>
-                        <th class="index-element">Descrizione</th>
+                        <th class = \'index-element\'>ID corso</th>
+                        <th class = \'index-element\'>Titolo</th>
+                        <th class = \'index-element\'>Descrizione</th>
                     </tr>
             ');
 

@@ -2,7 +2,7 @@
 <html lang = 'it'>
 
 <head>
-  <!-- Same style for all pages. -->
+  <!-- Stesso stile per tutte le pagine. -->
   <?php 
 		include dirname(__FILE__).'/../../modules/head_style.php'; 
 	?>

@@ -1,5 +1,5 @@
 <?php 
-	/* Only authorized users can update their profiles. */
+	/* Solo gli utenti autorizzati possono vedere i corsi. */
 	require dirname(__FILE__).'/../configuration/check_session.php'; 
 ?>
 
@@ -19,7 +19,7 @@
 <body>
 
 	<?php
-		/* Note: header include navbar. */
+		/* Nota: header include navbar. */
 		require dirname(__FILE__).'/../modules/header.php';
 	?>
 
@@ -30,7 +30,7 @@
 
 			if(isset($_POST['video']) && isset($_POST['name_course']) && isset($_POST['description']) && isset($_POST['price'])){
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-//              FIRST QUERY, check if the course exists.
+//              PRIMA INTERROGAZIONE, controlla se il corso esiste.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
 				$query = 'SELECT c.name 
 				          FROM course c JOIN teach t 
@@ -39,17 +39,17 @@
 				$course_title = $_POST['name_course'];
 
 				$params = array($_SESSION['email'], $course_title);
-				/* 'ss' means that the param is bounded as a string. */
+				/* 'ss' significa che i parametri sono di tipo stringa. */
 				$param_types = 'ss';
 
 				$res;
 
 				require dirname(__FILE__).'/../configuration/database_connect.php';
 				require dirname(__FILE__).'/../configuration/database_query.php';
-				/* If the course doesn't exist... */
+				/* Se il corso non esiste... */
 				if(empty($res)){
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-//                  SECOND QUERY, the insertion of the course.
+//                  SECONDA INTERROGAZIONE, inserisce il corso.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
 					$query = 'INSERT INTO course (name, description, duration, price, average_evaluation) 
 						      VALUES (?, ?, 0, ?, 0);';
@@ -60,16 +60,16 @@
 					$db_connection;
 
 					$params = array($course_title, $course_description, $course_price);
-					/* 'ssd' means that the first two params are bounded as strings and the last one as float. */
+					/* 'ssd' significa che i primi due parametri sono di tipo stringa e l'ultimo di tipo float. */
 					$param_types = 'ssd';
 
 					require dirname(__FILE__).'/../configuration/database_query.php';
-					/* Get the last auto-increment ID (primary key) from the previous query. */
+					/* Ottiene l'ultimo ID autoincrementale (chiave primaria) della precedente interrogazione. */
 					$id_course = mysqli_insert_id($db_connection);
 
 					if($id_course !== 0){
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-//                  	THIRD QUERY, the insertion of the video related to this course.
+//                  	TERZA INTERROGAZIONE, inserisce il video relativo al corso.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
 						$query = 'INSERT INTO video (title, duration, type, filename, id_course) 
 								  VALUES (?, 10, "url", ?, ?);';
@@ -77,12 +77,12 @@
 						$file_id   = $_POST['video'];
 
 						$params = array($course_title, $file_id, $id_course);
-						/* 'ssi' means that the first three params are bounded as strings and the last one as an integer. */
+						/* 'ssi' significa che i primi due parametri sono di tipo stringa e l'ultimo di tipo intero. */
 						$param_types = 'ssi';
 
 						require dirname(__FILE__).'/../configuration/database_query.php';
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
-//                  	FOURTH QUERY, the insertion of the teacher.
+//                  	QUARTA INTERROGAZIONE, inserisce l'utente come docente.
 /* ------------------------------------------------------------------------------------------------------------------------------------------ */
 						$query = 'INSERT INTO teach (email_user, id_course) 
 								  VALUES (?, ?);';

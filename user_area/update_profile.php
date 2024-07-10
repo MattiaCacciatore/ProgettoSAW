@@ -1,5 +1,5 @@
 <?php 
-	/* Only authorized users can update their profiles. */
+	/* Solo gli utenti autorizzati possono vedere i corsi. */
 	require dirname(__FILE__).'/../configuration/check_session.php'; 
 ?>
 
@@ -19,7 +19,7 @@
 <body>
 
 	<?php
-		/* Note: header include navbar. */
+		/* Nota: header include navbar. */
 		require dirname(__FILE__).'/../modules/header.php';
 	?>
 	<h2 class = "page-title">Aggiorna il tuo profilo</h2>
@@ -27,14 +27,13 @@
 	<!-- Corpo della pagina. -->
 	<main>
 		
-
 		<?php
-			/* Let's update the current user credentials (email, name and surname). */
+			/* Si aggiornano le credenziali dell'attuale utente. */
 			if(isset($_POST['submit'])){
 				$query = 'UPDATE user SET user.email = ?, user.firstname = ?, user.lastname = ? WHERE user.email = ?;';
-				/* Note: $user_email is already checked in login.php. */
+				/* Nota: $user_email è già controllata in login.php. */
 				$params = array($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_SESSION['email']);
-				/* 'ssss' means that all params are bounded as strings. */
+				/* 'ssss' significa che tutti i parametri sono di tipo stringa. */
 				$param_types = 'ssss';
 
 				$res;
@@ -43,16 +42,16 @@
 				require dirname(__FILE__).'/../configuration/database_query.php';
 				require dirname(__FILE__).'/../configuration/database_disconnect.php';
 
-				/* If everything went well (e.g. there was no email duplicate) the session variables will be updated. */
+				/* Se tutto è andato bene (es. nessun email duplicata) allora le variabili di sessione vengono aggiornate. */
 				$_SESSION['name']    = $_POST['firstname'];
 				$_SESSION['surname'] = $_POST['lastname'];
 				$_SESSION['email']   = $_POST['email'];
 				
-				/* Redirect to the homepage. */
+				/* Redireziona alla pagina iniziale. */
 				header('Location: ../index.php');
 			}
 			else{
-				/* Nel modulo di modifica del profilo i campi dovranno essere precompilati rispetto a quanto già presente nel database. */
+
 				print('
 				
 				<form form action = \'update_profile.php\' method = \'post\'>
