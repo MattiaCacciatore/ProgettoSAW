@@ -14,7 +14,7 @@
         $navItems[] = ['href' => $MYROOT.'/user_area/show_profile.php', 'label' => 'Mostra profilo'];
         $navItems[] = ['href' => $MYROOT.'/user_area/update_profile.php', 'label' => 'Modifica profilo'];
         $navItems[] = ['href' => $MYROOT.'/user_area/upload_course.php', 'label' => 'Carica il tuo corso'];
-        $navItems[] = ['href' => $MYROOT.'/course_evaluation/course_evaluation.php', 'label' => 'Valuta i corsi'];
+        $navItems[] = ['href' => $MYROOT.'/course_evaluation/pages/course_evaluation.php', 'label' => 'Valuta i corsi'];
 		$navItems[] = ['href' => $MYROOT.'/authentication/logout/logout.php', 'label' => 'Disconnetti'];
 
         // Admin specific link

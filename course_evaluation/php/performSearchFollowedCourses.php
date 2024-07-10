@@ -1,5 +1,5 @@
 <?php
-    require dirname(__FILE__).'/../configuration/check_session.php';
+    require dirname(__FILE__).'/../../configuration/check_session.php';
 
     $user_email = $_SESSION['email'];
 
@@ -13,16 +13,8 @@
 
     $type_param = 's';
 
-    /*
-    $query = 'SELECT c.id AS course_id, c.name AS course_name
-    FROM follow f 
-    INNER JOIN course c ON f.id_course = c.id
-    WHERE f.email_user = ? AND f.email_user NOT IN (SELECT email_user FROM evaluate WHERE vote IS NOT NULL)';
 
-    $type_param = 's';
-    */
-
-    require dirname(__FILE__).'/../configuration/database_connect.php';
+    require dirname(__FILE__).'/../../configuration/database_connect.php';
 
     try{
         
@@ -53,10 +45,10 @@
         }
 
     } catch (Exception $e) {
-        error_log($e->getMessage(), 3, dirname(__FILE__) . '/../../../errors/errors.log');
+        error_log($e->getMessage(), 3, dirname(__FILE__) . '/../../../../errors/errors.log');
         echo json_encode(array("error" => "Database Error"));
     }
 
-    require dirname(__FILE__).'/../configuration/database_disconnect.php';
+    require dirname(__FILE__).'/../../configuration/database_disconnect.php';
 
 ?>
