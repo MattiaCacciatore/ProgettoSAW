@@ -1,5 +1,5 @@
 <?php 
-	/* Only authorized users can see courses. */
+	/* Solo gli utenti autorizzati possono vedere i corsi. */
 	require dirname(__FILE__).'/../configuration/check_session.php'; 
 ?>
 
@@ -13,7 +13,7 @@
 	?>
 
 	<link rel = 'stylesheet' href = './css/show-course.css'>
-	<!--  Placeholder. -->
+	<!--  Segnaposto. -->
 	<title>
 		Corso
 	</title>
@@ -23,7 +23,7 @@
 <body>
 
 	<?php
-		/* Note: start_session in check_authorization.php */
+		/* Nota: start_session() viene chiamata in check_authorization.php */
 		require dirname(__FILE__).'/../modules/header.php';
 	?>
 
@@ -34,26 +34,26 @@
 			if(isset($_POST['courseId'])){
 
 				require dirname(__FILE__).'/../configuration/database_connect.php';
-				/* Check if the current course is already followed by the current user. */
+				/* Controlla se l'attuale corso è già seguito dall'attuale utente. */
 				$query = 'SELECT * 
 				          FROM follow 
 						  WHERE email_user = ? AND id_course = ?;';
 
 				$params = array($_SESSION['email'], $_POST['courseId']);
-				/* 'si' means that the first param is bounded as a string and the second one as an integer. */
+				/* 'si' significa che il primo parametro è di tipo stringa e il secondo è di tipo intero. */
 				$param_types = 'si';
-				/* $res stores the result of the query. */
+				/* $res registra il risultato dell'interrogazione al database. */
 				$res;
 
 				require dirname(__FILE__).'/../configuration/database_query.php';
-				/* If the user is following this course for the first time... */
+				/* Se l'utente sta seguendo il corso per la prima volta... */
 				if(empty($res[0])){
-					/* ...upload the current followed course for this user. */
+					/* ...e carica il corso appena seguito per l'attuale utente. */
 					$query = 'INSERT INTO follow (email_user, id_course) VALUES (?, ?);';
 
 					require dirname(__FILE__).'/../configuration/database_query.php';
 				}
-				/* The limit of videos for each course is 1. */
+				/* Il limite dei video per ogni corso è, attualmente, uno. */
 				$query = 'SELECT c.id, c.name, c.description, c.average_evaluation, v.title, v.filename
 						  FROM course c JOIN video v ON c.id = v.id_course 
 						  WHERE c.id = ?;';
