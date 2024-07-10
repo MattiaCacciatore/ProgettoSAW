@@ -1,5 +1,5 @@
 <?php 
-	/* Only authorized users can see their profiles. */
+	/* Solo gli utenti autorizzati possono vedere i corsi. */	
 	require dirname(__FILE__).'/../configuration/check_session.php'; 
 ?>
 
@@ -26,8 +26,6 @@
 	<main>
 
 		<?php
-			/* Non serve interrogare di nuovo il server, i dati dell'utente
-			 sono salvati nell'array superglobale $SESSION di sessione. */
 			print('	
 			<section class = \'profile\'>
             	<div class = \'card\'>
