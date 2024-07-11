@@ -1,6 +1,6 @@
 .table {
   border-collapse: collapse;
-  width: 100%;
+  width: 100vw;
   text-align: center;
   font-family: 'Arial', sans-serif;
   color: #333;
