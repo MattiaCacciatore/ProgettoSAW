@@ -51,13 +51,17 @@
 					/* Si impostano i cookies. */
 					require dirname(__FILE__).'/../../configuration/setcookies.php';
 				}
+				else
+				exit('Credenziali sbagliate. Per tornare alla pagina principale segui il collegamento: <a href = \'../../index.php\'>Homepage</a>.');
 			}
+			else
+				exit('Utente non registrato. Per tornare alla pagina principale segui il collegamento: <a href = \'../../index.php\'>Homepage</a>.');
 		}
 		else
-			exit('Credenziali sbagliate.');
+			exit('Credenziali vuote. Per tornare alla pagina principale segui il collegamento: <a href = \'../../index.php\'>Homepage</a>.');
 	}
 	else
-		exit('Credenziali vuote.');
+		exit('Credenziali vuote. Per tornare alla pagina principale segui il collegamento: <a href = \'../../index.php\'>Homepage</a>.');
     /* Reindirizzamento alla pagina iniziale. */
 	header('Location: ../../index.php');
 ?>

@@ -10,6 +10,7 @@
 		$confirm_password = $_POST['confirm'];
 
 		if(!empty($name) && !empty($surname) && !empty($email) && !empty($password) && !empty($confirm_password)){
+			
 			if(strcmp($password,$confirm_password) === 0){
 				/*
 				pepper va configurato nel file config.conf del server.
@@ -32,11 +33,11 @@
 				require dirname(__FILE__).'/../../configuration/database_disconnect.php';
 			}
 			else{
-				exit('Password diverse.');
+				exit('Password diverse. Per tornare alla pagina principale segui il collegamento: <a href = \'../../index.php\'>Homepage</a>.');
 			}
 		}
 		else{
-			exit('Credenziali vuote.');
+			exit('Credenziali vuote. Per tornare alla pagina principale segui il collegamento: <a href = \'../../index.php\'>Homepage</a>.');
 		}
 	}
     /* Reindirizzamento alla pagina principale. */
