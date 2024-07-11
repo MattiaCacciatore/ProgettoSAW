@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------------------------
-// Define "event listeners".
+// Define event listeners.
 
 $(document).ready(function() {
   performSearchOpeningPage();
@@ -34,9 +34,11 @@ function performUserSearch(params){
   let maxPrice = getPriceFilterValue('#input-max');
 
   if (minPrice > maxPrice) {
-    document.querySelector('.price-filter-error').innerHTML = '<p class="error"> the minimum cannot be greater than the maximum </p>';
+    document.querySelector('.price-filter-error').innerHTML = '<br><p class="error"> Il prezzo minimo non può essere più grande del massimo </p>';
     return;
   }
+
+
 
   let searchTextInput = params;
   
@@ -47,6 +49,8 @@ function performUserSearch(params){
     maxPrice:maxPrice
   };
 
+  console.log(dataToSend);
+
   // Send an ajax request 
   $.ajax({
       url: "../php/performUserSearch.php",
@@ -56,7 +60,7 @@ function performUserSearch(params){
       success: function(results) {
         // If nothing is found an exception is raised otherwise the results are printed.
         console.log(results);
-        !$.trim(results) ?  document.querySelector('.wildCards').innerHTML= '<p class="error">no course found</p>' : displayResults(results);
+        !$.trim(results) ?  document.querySelector('.wildCards').innerHTML= '<p class="error">Nessun corso trovato</p>' : displayResults(results);
     
       },
 
@@ -78,7 +82,7 @@ function performSearchOpeningPage(){
       success: function(results) {
         // If nothing is found an exception is raised otherwise the results are printed.
         console.log(results);
-        !$.trim(results) ?  document.querySelector('.wildCards').innerHTML= '<p class="error">no course found</p>' : displayResults(results);
+        !$.trim(results) ?  document.querySelector('.wildCards').innerHTML= '<p class="error">Nessun corso trovato</p>' : displayResults(results);
     
       },
 
@@ -99,7 +103,7 @@ function getPriceFilterValue(priceFilterId) {
 
   // Sanity check.
   if (priceValue < 0) {
-    document.querySelector('.price-filter-error').innerHTML = '<p class="error">Price cannot be negative</p>';
+    document.querySelector('.price-filter-error').innerHTML = '<p class="error">Il prezzo non può essere negativo</p>';
     return; // Return or throw an error.
   }
 

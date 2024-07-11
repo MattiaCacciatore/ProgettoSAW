@@ -1,6 +1,6 @@
 <?php
 /* ------------------------------------------------------------------------------------------------ */
-// ESEGUE L'INTERROGAZIONE.
+// EXEC THE QUERY
 /* ------------------------------------------------------------------------------------------------ */
     try{
         if(!empty($params) && !empty($param_types)){
@@ -10,8 +10,7 @@
             $result = mysqli_stmt_get_result($sql_stmt);
         }
         else{
-            /* SI ODIA PHP QPER QUESTO. Questo ramo else dev'essere fatto perchè la bind_param()
-            richiede che ci sia almeno un parametro, altrimenti lancia un warning. */
+            
             $result = mysqli_query($db_connection, $query);
         }
 

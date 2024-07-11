@@ -1,8 +1,8 @@
 <?php
 /* ------------------------------------------------------------------------------------------------ */
-// CHIUDE LA CONNESSIONE CON IL DATABASE.
+// CLOSE THE CONNECTION TO DATABASE
 /* --------------------------------------------------------------------------------------------------- */
-    /* Ritorna sempre vero o nulla. */
+    
     if($result !== true && $result !== false)
         mysqli_free_result($result);
 
