@@ -1,24 +1,21 @@
-// LISTENERS =============================================
+// ASCOLTATORI. =============================================
 
 $(document).ready(function() {
-    followedCoursesByUser(); // Call followedCoursesByUser on page load
+    followedCoursesByUser(); // Chiama followedCoursesByUser sulla pagina caricata.
 });
 
 
 
-  // se venissero inpostati dei valori ai campi del filtro dei prezzi allora,
+  // Se venissero impostati dei valori ai campi del filtro dei prezzi allora...
   $("#feedbackButton").click(function() {
-    performUpdateEvaluation($("#vote").val(), $("#feedbackText").val() ); // Trigger search with current search input
+    // ...viene innescata la ricerca con l'input corrente.
+    performUpdateEvaluation($("#vote").val(), $("#feedbackText").val() );
   });
 
+// METODI. ===============================================
 
-
-
-// METHODS ===============================================
-
-// This method provides to send ajax request in post and elaborate results
+// Questo metodo permette di inviare richieste ajax in post ed elaborare i risultati.
 function followedCoursesByUser() {
-
 
     $.ajax({
         url: '../php/performSearchFollowedCourses.php',
@@ -27,10 +24,8 @@ function followedCoursesByUser() {
 
         success: function(result) {
 
-            
             console.log(result);
-
-            // check if there is some result from request to database: if there is no result display a message, displayrResult() otherwise
+            // Controlla se ci sono risultati dalla richiesta al database: se non ci sono risultati visualizza un messaggio, altrimenti li mostra.
             !$.trim(result)?  document.querySelector('.evaluation-courses-wrapper').innerHTML= '<p class="error">Hai valutato tutti i corsi!</p>' : displayFollowedCourses(result);
 
         },
@@ -43,14 +38,10 @@ function followedCoursesByUser() {
     
 }
 
-
-
 function performUpdateEvaluation(vote, feedback) {
     let id_course = document.getElementById('courseId').innerHTML;
     let convertedVote = parseFloat(vote);
     console.log(id_course, convertedVote, feedback);
-
-
 
     try {
         updateEvaluationSanityCheck(id_course, convertedVote, feedback);
@@ -83,10 +74,6 @@ function performUpdateEvaluation(vote, feedback) {
     }
 }
 
-
-
-
-
 function updateEvaluationSanityCheck(id_course,vote) {
     
     if (id_course === '' || isNaN(vote)) {
@@ -98,13 +85,9 @@ function updateEvaluationSanityCheck(id_course,vote) {
 
     }
 
-
-    
 }
 
-
-
-// This method provides to display results dynamically
+// Questo metodo permette di visualizzare i risultati dinamicamente.
 function displayFollowedCourses(result) {
     let followedCourses = JSON.parse(JSON.stringify(result));
     let sectionToInjectResult = document.querySelector('#coursesContainer');
@@ -113,16 +96,16 @@ function displayFollowedCourses(result) {
     console.log("followedCourses");
     console.log(followedCourses);
 
-    // Iterate for each course inside followedCourses
+    // Itera per ogni course dentro followedCourses.
     followedCourses.forEach(function(followedCourse) {
         html += followedCoursesTemplate(followedCourse);
     });
 
-    // Check if section to inject results exists inside the page
+    // Controlla se la sezione in cui inserire i risultati esiste all'interno della pagina.
     sectionToInjectResult ? sectionToInjectResult.innerHTML = html : console.error("Element not found.");
 }
 
-// Template for followed courses
+// Template per i corsi seguiti.
 function followedCoursesTemplate(course) {
     return `
         <div class="course-item">
@@ -132,14 +115,14 @@ function followedCoursesTemplate(course) {
     `;
 }
 
-// Function to open the feedback modal
+// Funzione per aprire il feedback modale.
 function openFeedbackModal(courseId, courseName) {
     document.getElementById('courseName').textContent = courseName;
     document.getElementById('courseId').textContent = courseId;
     document.getElementById('feedbackModal').style.display = 'block';
 }
 
-// Function to close the feedback modal
+// Funzione per chiudere il feedback modale.
 function closeFeedbackModal() {
     document.getElementById('feedbackModal').style.display = 'none';
 }
