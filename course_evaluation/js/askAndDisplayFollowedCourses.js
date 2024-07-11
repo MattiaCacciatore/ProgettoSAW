@@ -82,7 +82,6 @@ function updateEvaluationSanityCheck(id_course,vote) {
 
     if (vote < 0.0 || vote > 5.0) {
         throw new Error('il voto deve essere compreso tra 0.0 e 5.0');
-
     }
 
 }
