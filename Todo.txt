@@ -1,0 +1,19 @@
+1- Variabili ridondanti negli script come login.php (eliminarle ove sensato).
+
+2- In show_course.php sbagliato registrare il corso in automatico se il cliente arriva
+dal motore interno di ricerca.  Si può inserire un bottone per l'iscrizione 
+(da modificare la visualizzazione).
+
+3- Gli ambiti non sono usati neanche nel motore interno di ricerca. (filtri aggiuntivi)
+
+4- Area amministratore unire Banna/Sbanna e dare la possibilità di revocare i permessi.
+
+5- Navigabilità un po' ostruita, non è possibile valutare direttamente un corso dalla 
+pagina del corso e dall'elenco della show_profile.php. In generale bisogna migliorare la
+user experience.
+
+6- L'amministratore non visualizza tutti i corsi registrati.
+
+7- Chiamare trim() negli script .php sugli input ricevuti dagli utenti.
+
+13.07.2024
