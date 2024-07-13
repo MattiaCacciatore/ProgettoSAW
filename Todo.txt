@@ -17,6 +17,6 @@ user experience.
 7- Chiamare trim() negli script .php sugli input ricevuti dagli utenti.
 
 8- Salvare l'hash del token/cookie 'Remember me' e non la versione in chiaro (per aumentare
-la robustezza e la sicurezza in caso di data breach).
+la robustezza e la sicurezza in caso di data breach). [ hash("sha256", random_bytes(10)) ]
 
 13.07.2024
