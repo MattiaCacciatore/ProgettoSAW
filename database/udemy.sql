@@ -4,7 +4,7 @@ CREATE TABLE user(
     firstname VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
     pwd VARCHAR(255) NOT NULL,
-    is_admin BOOLEAN NOT NULL DEFAULT 0, /* di base è false. */
+    is_admin BOOLEAN NOT NULL DEFAULT 0, /* False by default. */
     is_banned BOOLEAN NOT NULL DEFAULT 0,
     id_cookie VARCHAR(768) DEFAULT NULL, /* 768 perchè base64_encode espande la byte-string di 512 byte di circa il 33% */
     expire DATETIME DEFAULT NULL,
@@ -23,10 +23,10 @@ CREATE TABLE course(
 CREATE TABLE video(
   id BIGINT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
-  duration INT UNSIGNED NOT NULL, /* in minuti. */
-  type VARCHAR(50) NOT NULL, /* tipo MIME del video (es. mp4). */
-  filename VARCHAR(255) NOT NULL, /* nome del file video. */
-  id_course BIGINT UNSIGNED NOT NULL, /* sostituisce la relazione course_video. */
+  duration INT UNSIGNED NOT NULL,     /* in minutes. */
+  type VARCHAR(50) NOT NULL,          /* MIME type (e.g. mp4). */
+  filename VARCHAR(255) NOT NULL,     /* title. */
+  id_course BIGINT UNSIGNED NOT NULL,
   FOREIGN KEY (id_course) REFERENCES course(id) ON DELETE CASCADE
 );
 
