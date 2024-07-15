@@ -6,7 +6,7 @@ dal motore interno di ricerca.  Si può inserire un bottone per l'iscrizione
 
 3- Gli ambiti non sono usati neanche nel motore interno di ricerca. (filtri aggiuntivi)
 
-4- Area amministratore unire Banna/Sbanna e dare la possibilità di revocare i permessi.
+4- Area amministratore unire Banna/Sbanna e dare la possibilità di revocare i permessi. [FATTO - da testare]
 
 5- Navigabilità un po' ostruita, non è possibile valutare direttamente un corso dalla 
 pagina del corso e dall'elenco della show_profile.php. In generale bisogna migliorare la
@@ -14,7 +14,7 @@ user experience.
 
 6- L'amministratore non visualizza tutti i corsi registrati.
 
-7- Chiamare trim() negli script .php sugli input ricevuti dagli utenti.
+7- Chiamare trim() negli script .php sugli input ricevuti dagli utenti. [FATTO]
 
 8- Salvare l'hash del token/cookie 'Remember me' e non la versione in chiaro (per aumentare
 la robustezza e la sicurezza in caso di data breach). [ hash("sha256", random_bytes(10)) ]

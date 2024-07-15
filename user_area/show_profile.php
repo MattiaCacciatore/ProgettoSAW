@@ -1,5 +1,4 @@
-<?php 
-	/* Solo gli utenti autorizzati possono vedere i corsi. */	
+<?php 	
 	require dirname(__FILE__).'/../configuration/check_session.php'; 
 ?>
 
@@ -22,11 +21,11 @@
 		require dirname(__FILE__).'/../modules/header.php';
 	?>
 
-	<!-- Corpo della pagina. -->
 	<main>
 
 		<?php
-			print('	
+			print('
+			
 			<section class = \'profile\'>
             	<div class = \'card\'>
             		<div class = \'card-body\'>
@@ -37,10 +36,12 @@
 							<p>
 			');
 
-			$query = 'SELECT * FROM teach WHERE email_user = ?;';
+			$query       = 'SELECT * 
+					  		FROM teach 
+					  		WHERE email_user = ?;';
 
-			$params = array($_SESSION['email']);
-			/* 's' significa che il parametro è di tipo stringa. */
+			$params      = array($_SESSION['email']);
+
 			$param_types = 's';
 				
 			$res;
@@ -48,7 +49,7 @@
 			require dirname(__FILE__).'/../configuration/database_connect.php';
 			require dirname(__FILE__).'/../configuration/database_query.php';
 
-			if($_SESSION['admin'] === 'true'){
+			if($_SESSION['admin'] === 1){
 				print('Amministratore');
 			}
 			elseif(!empty($res)){
@@ -64,6 +65,7 @@
                     </div>
                 </div>
             </section>
+
 			');
 
 			$query = 'SELECT c.id, c.name, c.description

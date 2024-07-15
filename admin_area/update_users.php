@@ -1,29 +1,41 @@
 <?php
+
 	require dirname(__FILE__).'/../configuration/check_session.php';
     require dirname(__FILE__).'/check_admin.php';
 	
 	if(isset($_POST['delete'])){
-		$query = 'DELETE FROM user WHERE user.email = ?;';
+		$query = 'DELETE 
+				  FROM user 
+				  WHERE user.email = ?;';
+
 		$params = array($_POST['delete']);
 	}
-	elseif(isset($_POST['ban'])){
-		$query = 'UPDATE user SET user.is_banned = 1 WHERE user.email=?;';
-		$params = array($_POST['ban']);
+	elseif(isset($_POST['ban']) || isset($_POST['unban'])){
+
+		$query = 'UPDATE user 
+				  SET user.is_banned ='.isset(($_POST['ban'])) ? '1' : '0'.'
+				  WHERE user.email=?;';
+
+		$params = array(isset($_POST['ban']) ? $_POST['ban'] : $_POST['unban']);
+
 	}
-	elseif(isset($_POST['unban'])){
-		$query = 'UPDATE user SET user.is_banned = 0 WHERE user.email=?;';
-		$params = array($_POST['unban']);
-	}
-	elseif(isset($_POST['grant'])){
-		$query = 'UPDATE user SET user.is_admin = 1 WHERE user.email=?;';
-		$params = array($_POST['grant']);
+	elseif(isset($_POST['grant']) || isset($_POST['revoke'])){
+
+		$query = 'UPDATE user 
+				  SET user.is_admin ='.isset(($_POST['grant'])) ? '1' : '0'.'
+				  WHERE user.email=?;';
+
+		$params = array(isset($_POST['grant']) ? $_POST['grant'] : $_POST['revoke']);
+
 	}
 	else{
-		/* Segnaposto. */
-		$query = 'SELECT * FROM field';
+		/* PLACEHOLDER. */
+		$query = 'SELECT * 
+				  FROM field';
+
 		$params = null;
 	}
-	/* 's' significa che il parametro è di tipo stringa. */
+
 	$param_types = 's';
 
 	$res;

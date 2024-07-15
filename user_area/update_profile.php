@@ -1,5 +1,4 @@
 <?php 
-	/* Solo gli utenti autorizzati possono vedere i corsi. */
 	require dirname(__FILE__).'/../configuration/check_session.php'; 
 ?>
 
@@ -19,21 +18,25 @@
 <body>
 
 	<?php
-		/* Nota: header include navbar. */
 		require dirname(__FILE__).'/../modules/header.php';
 	?>
-	<h2 class = "page-title">Aggiorna il tuo profilo</h2>
 
-	<!-- Corpo della pagina. -->
+	<h2 class = 'page-title'>
+		Aggiorna il tuo profilo
+	</h2>
+
 	<main>
 		
 		<?php
-			/* Si aggiornano le credenziali dell'attuale utente. */
-			if(isset($_POST['submit'])){
-				$query = 'UPDATE user SET user.email = ?, user.firstname = ?, user.lastname = ? WHERE user.email = ?;';
-				/* Nota: $user_email è già controllata in login.php. */
-				$params = array($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_SESSION['email']);
-				/* 'ssss' significa che tutti i parametri sono di tipo stringa. */
+
+			if(isset($_POST['submit']) && isset($_POST['firstname']) && isset($_POST['lastname'])){
+
+				$query       = 'UPDATE user 
+						        SET user.email = ?, user.firstname = ?, user.lastname = ? 
+						        WHERE user.email = ?;';
+
+				$params      = array($_POST['email'], $_POST['firstname'], $_POST['lastname'], $_SESSION['email']);
+
 				$param_types = 'ssss';
 
 				$res;
@@ -42,12 +45,11 @@
 				require dirname(__FILE__).'/../configuration/database_query.php';
 				require dirname(__FILE__).'/../configuration/database_disconnect.php';
 
-				/* Se tutto è andato bene (es. nessun email duplicata) allora le variabili di sessione vengono aggiornate. */
+				/* If everything went well... */
 				$_SESSION['name']    = $_POST['firstname'];
 				$_SESSION['surname'] = $_POST['lastname'];
 				$_SESSION['email']   = $_POST['email'];
 				
-				/* Redireziona alla pagina iniziale. */
 				header('Location: ../index.php');
 			}
 			else{
