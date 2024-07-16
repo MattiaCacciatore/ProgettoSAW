@@ -16,7 +16,7 @@ CREATE TABLE course(
   description VARCHAR(1500) NOT NULL,
   duration INT UNSIGNED NOT NULL,      /* V4: in hours. */
   price DECIMAL(4,2) UNSIGNED NOT NULL,
-  average_evaluation DECIMAL(2,1) UNSIGNED NOT NULL CHECK (average_evaluation <= 5.0)
+  average_evaluation DECIMAL(2,1) UNSIGNED DEFAULT NULL CHECK (average_evaluation <= 5.0)
 );
 
 CREATE TABLE video(

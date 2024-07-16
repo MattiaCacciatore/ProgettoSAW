@@ -1,5 +1,7 @@
 # -----------------------------------------------------------------------------------------------------------------------
 # Automatic script to generate fake and dummy tuples to populate the database for testing.
+# 
+# Made by Mattia Cacciatore <cacciatore1995@hotmail.it> - CS student ad UniGe Italy
 # -----------------------------------------------------------------------------------------------------------------------
 from faker import Faker
 import sys
@@ -37,16 +39,16 @@ for i in range(size):
 
 f.write("\n\n")
 # -----------------------------------------------------------------------------------------------------------------------
-course = "INSERT INTO course (name, description, duration, price, average_evaluation) VALUES (\'{name}\', \'{description}\', {duration}, {price}, {average_evaluation});\n"
+course = "INSERT INTO course (name, description, duration, price, average_evaluation) VALUES (\'{name}\', \'{description}\', {duration}, {price});\n"
 
 for i in range(size):
-    f.write(course.format(name = fake.bs(), description = fake.sentence(nb_words = 50), duration = 0, price = (random.randrange(100,10000) / 100), average_evaluation = 0))
+    f.write(course.format(name = fake.bs(), description = fake.sentence(nb_words = 50), duration = 0, price = (random.randrange(100,10000) / 100)))
 
 f.write("\n\n")
 # -----------------------------------------------------------------------------------------------------------------------
 video = "INSERT INTO video (title, duration, type, filename, id_course) VALUES (\'{title}\', {duration}, \'{type}\', \'{filename}\', {course_id});\n"
 
-list_types = ['mp4', 'avi', 'mkv', 'flv', 'mov', 'wmv', '3gp', 'webm', 'mpeg']
+list_types = ['mp4', 'YT']
 
 for i in range(size):
     f.write(video.format(title = fake.bs(), duration = random.randrange(1, 600), type = random.choice(list_types), filename = 'url', course_id = (i+1)))
@@ -90,32 +92,32 @@ for i in range(size):
     f.write(belong.format(course_id = (i+1), field_name = random.choice(list_fields)))
 
 f.write("\n\n")
-
-list_follower = []
 # -----------------------------------------------------------------------------------------------------------------------
 follow = "INSERT INTO follow (email_user, id_course) VALUES (\'{email_user}\', {id_course});\n"
 
+list_followers = []
+
 for i in range(size):
-    list_follower.append((random.choice(list_users), random.randrange(1,size+1)))
+    list_followers.append((random.choice(list_users), random.randrange(1,size+1)))
 
-# Si ripulisce la lista da eventuali duplicati.
-list_follower = list(set(list_follower))
+# Remove all duplicates.
+list_followers = list(set(list_followers))
 
-for i in range(len(list_follower)):
-    f.write(follow.format(email_user = list_follower[i][0], id_course = list_follower[i][1]))
+for i in range(len(list_followers)):
+    f.write(follow.format(email_user = list_followers[i][0], id_course = list_followers[i][1]))
 
 f.write("\n\n")
 # -----------------------------------------------------------------------------------------------------------------------
 evaluate = "INSERT INTO evaluate (email_user, id_course, feedback, vote) VALUES (\'{email_user}\', {id_course}, \'{feedback}\',{vote});\n"
 
-for i in range(len(list_follower)):
-    f.write(evaluate.format(email_user = list_follower[i][0], id_course = list_follower[i][1], feedback = 'NULL', vote = (random.randrange(0, 50) / 10)))
+for i in range(len(list_followers)):
+    f.write(evaluate.format(email_user = list_followers[i][0], id_course = list_followers[i][1], feedback = 'NULL', vote = (random.randrange(0, 50) / 10)))
 
 f.write("\n\n")
-
-list_teachers = []
 # -----------------------------------------------------------------------------------------------------------------------
 teach = "INSERT INTO teach (email_user, id_course) VALUES (\'{email_user}\', {id_course});\n"
+
+list_teachers = []
 
 for i in range(size):
     list_teachers.append((random.choice(list_users), random.randrange(1,size+1)))
