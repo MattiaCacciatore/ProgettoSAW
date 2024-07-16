@@ -37,12 +37,10 @@ CREATE TABLE field(
 /* RELATIONS. */
 /* --------------------------------------------------------------------------------------------------------- */
 CREATE TABLE token(
-  value VARCHAR(768) NOT NULL,        /* 768 because base64_encode() expands the original 512-byte string by 33%. */
+  value VARCHAR(768) PRIMARY KEY,        /* 768 because base64_encode() expands the original 512-byte string by 33%. */
   type VARCHAR(256) NOT NULL,         /* aka name. */
   expire DATETIME DEFAULT NULL,
   email_user VARCHAR(256),
-
-  PRIMARY KEY (value, type),
 
   FOREIGN KEY (email_user) REFERENCES user (email) ON DELETE CASCADE
 );

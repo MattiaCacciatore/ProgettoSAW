@@ -58,7 +58,7 @@
                         <th>%s</th>
                         <th>%s</th>
                         <th>
-                            <button type = \'submit\' name = \'delete\' value = \''.$row['email'].'\' > 
+                            <button type = \'submit\' name = \'delete\' value = \''.$row[0]['email'].'\' > 
                                 ELIMINA                            
                             </button>
                         </th>
@@ -68,13 +68,13 @@
                             
                 if($res[0]['is_banned'] == 1){
                     printf('
-                            name = \'unban\'    value = \''.$row['email'].'\' > 
+                            name = \'unban\'    value = \''.$row[0]['email'].'\' > 
                                 SBANNA
                     '); 
                 }
                 else{
                     printf('
-                            name = \'ban\'    value = \''.$row['email'].'\' > 
+                            name = \'ban\'    value = \''.$row[0]['email'].'\' > 
                                 BANNA
                     ');
                 }
@@ -88,13 +88,13 @@
                 
                 if($res[0]['is_admin'] == 1){
                     printf('
-                            name = \'revoke\'  value = \''.$row['email'].'\' > 
+                            name = \'revoke\'  value = \''.$row[0]['email'].'\' > 
                                 REVOCA
                     ');
                 }
                 else{
                     printf('
-                            name = \'grant\'  value = \''.$row['email'].'\' > 
+                            name = \'grant\'  value = \''.$row[0]['email'].'\' > 
                                 CONCEDI
                     ');
                 }
@@ -102,7 +102,7 @@
                 printf('
                             </button>
                         </th>
-                    </tr>', $row['firstname'], $row['lastname'], $row['email']);
+                    </tr>', $row[0]['firstname'], $row[0]['lastname'], $row[0]['email']);
             }
 
             print('

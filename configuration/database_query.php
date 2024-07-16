@@ -9,8 +9,7 @@
             mysqli_stmt_execute($sql_stmt);
             $result = mysqli_stmt_get_result($sql_stmt);
         }
-        else{
-            
+        else{   
             $result = mysqli_query($db_connection, $query);
         }
 
