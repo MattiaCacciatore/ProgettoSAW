@@ -16,7 +16,7 @@
 		$navItems[] = ['href' => $MYROOT.'/authentication/logout/logout.php', 'label' => 'Disconnetti'];
 
         /* Collegamenti riservati agli amministratori. */
-        if (isset($_SESSION['admin']) && $_SESSION['admin'] === 'true'){
+        if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
             $navItems[] = ['href' => $MYROOT.'/admin_area/show_users.php', 'label' => 'Mostra utenti'];
         }
     } 
@@ -28,11 +28,17 @@
 
     $navItems[] = ['href' => $MYROOT.'/info/contact_us.php', 'label' => 'Contatti'];
 
-    print('<nav><ul>');
+    print('
+            <nav>
+                <ul>
+    ');
 
     foreach($navItems as $item){
-        print('<li class="nav-elmnt"><a href="' . $item['href'] . '">' . $item['label'] . '</a></li>');
+        print('<li class = \'nav-elmnt\'><a href = \'' . $item['href'] . '\'>' . $item['label'] . '</a></li>');
     }
 
-    print('</ul></nav>');
+    print('
+                </ul>
+            </nav>
+    ');
 ?>
