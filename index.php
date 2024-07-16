@@ -7,8 +7,7 @@
 		include dirname(__FILE__).'/./modules/head_style.php';
 	?>
 	
-	<link rel="stylesheet" href="./modules/css/welcomeWrapper.css">
-
+	<link rel = 'stylesheet' href = './modules/css/welcomeWrapper.css'>
 
 	<title>
 		Homepage
