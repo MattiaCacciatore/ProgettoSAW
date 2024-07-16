@@ -24,7 +24,7 @@
     <?php
         require dirname(__FILE__).'/../modules/header.php';
 
-        $query       = 'SELECT * 
+        $query       = 'SELECT email, firstname, lastname, is_banned, is_admin
                         FROM user 
                         ORDER BY lastname;';
 
@@ -51,14 +51,15 @@
                         <th class = \'index-element\'>Banna</th>
                         <th class = \'index-element\'>Concedi permessi amministratore</th>
                     </tr>');
+            
             foreach($res as $row){
-                printf('
+                print('
                     <tr>
-                        <th>%s</th>
-                        <th>%s</th>
-                        <th>%s</th>
+                        <th>'.$row['firstname'].'</th>
+                        <th>'.$row['lastname'].'</th>
+                        <th>'.$row['email'].'</th>
                         <th>
-                            <button type = \'submit\' name = \'delete\' value = \''.$row[0]['email'].'\' > 
+                            <button type = \'submit\' name = \'delete\' value = \''.$row['email'].'\' > 
                                 ELIMINA                            
                             </button>
                         </th>
@@ -66,35 +67,35 @@
                             <button type = \'submit\''
                 );
                             
-                if($res[0]['is_banned'] == 1){
-                    printf('
-                            name = \'unban\'    value = \''.$row[0]['email'].'\' > 
+                if($res['is_banned'] == 1){
+                    print('
+                            name = \'unban\'    value = \''.$row['email'].'\' > 
                                 SBANNA
                     '); 
                 }
                 else{
-                    printf('
-                            name = \'ban\'    value = \''.$row[0]['email'].'\' > 
+                    print('
+                            name = \'ban\'    value = \''.$row['email'].'\' > 
                                 BANNA
                     ');
                 }
                 
-                printf('                             
+                print('                             
                             </button>
                         </th>
                         <th>
                             <button type = \'submit\''
                 );
                 
-                if($res[0]['is_admin'] == 1){
-                    printf('
-                            name = \'revoke\'  value = \''.$row[0]['email'].'\' > 
+                if($res['is_admin'] == 1){
+                    print('
+                            name = \'revoke\'  value = \''.$row['email'].'\' > 
                                 REVOCA
                     ');
                 }
                 else{
-                    printf('
-                            name = \'grant\'  value = \''.$row[0]['email'].'\' > 
+                    print('
+                            name = \'grant\'  value = \''.$row['email'].'\' > 
                                 CONCEDI
                     ');
                 }
@@ -102,7 +103,8 @@
                 printf('
                             </button>
                         </th>
-                    </tr>', $row[0]['firstname'], $row[0]['lastname'], $row[0]['email']);
+                    </tr>'
+                );
             }
 
             print('
