@@ -17,7 +17,7 @@ list_users = []
 
 command = 'php'
 
-path = 'C:/path/to/hash.php' # TO BE MODIFIED!!!!!
+path = 'D:\Programmazione\Pagine HTML CSS JS PHP\ProgettoSAW\database\hash.php' # TO BE MODIFIED!!!!!
 
 f = open('population.sql', 'a')
 # Prepared statements.
