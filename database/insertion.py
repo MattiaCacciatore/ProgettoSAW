@@ -20,7 +20,7 @@ path = 'C:/path/to/hash.php' # TO BE MODIFIED!!!!!
 f = open('population.sql', 'a')
 # Prepared statements.
 # -----------------------------------------------------------------------------------------------------------------------
-users = 'INSERT INTO user (email, firstname, lastname, pwd) VALUES (\'{email}\', \'{firstname}\', \'{lastname}\', {pwd}); /* la vera password è: {pas} */\n'
+users = "INSERT INTO user (email, firstname, lastname, pwd) VALUES (\'{email}\', \'{firstname}\', \'{lastname}\', {pwd}); /* la vera password è: {pas} */\n"
 
 for i in range(size):
     arg = fake.unique.password(8,  special_chars=False)
@@ -55,16 +55,29 @@ f.write("\n\n")
 # -----------------------------------------------------------------------------------------------------------------------
 field = "INSERT INTO field (field_name) VALUES (\'{field_name}\');\n"
 
-list_fields = ['Matematica', 'Chimica', 'Chimica Analitica', 'Chimica Applicata', 'Chimica Industriale',
-               'Fisica', 'Fisica Applicata', 'Fisica e Astronomia', 'Fisica Nucleare', 'Giurisprudenza', 'Economia', 'Diritto della Economia',
-               'Amministrazione, Economia e Finanza', 'Economia Aziendale', 'Economia Bancaria', 'Economia dei Mercati', 'Economia del Turismo', 
-               'Economia di Impresa', 'Informatica', 'Informatica Sicurezza del Software', 'Informatica Intelligenza Artificiale',
-               'Informatica Analisi dei Dati', 'Ingegneria', 'Ingegneria Aerospaziale', 'Ingegneria Biomedica', 'Ingegneria Chimica',
-                'Ingegneria Informatica', 'Diritto', 'Diritto Civile', 'Diritto Penale', 'Diritto Amministrativo', 'Diritto Commerciale',
-                'Filosofia', 'Lettere', 'Lettere Classiche', 'Lettere Moderne', 'Lettere e Beni Culturali', 'Medicina', 'Medicina Chirurgia',
-                'Medicina Veterinaria','Scienze Biologiche', 'Scienze Chimiche', 'Scienze della Comunicazione', 'Scienze della Formazione',
-                'Scienze della Nutrizione', 'Scienze della Psicologia', 'Scienze della Salute','Scienze della Terra e dello Ambiente e del Territorio',
-                'Scienze della Educazione']
+list_fields = ['DESIGN DEL PRODOTTO E DELLA COMUNICAZIONE', 'DESIGN DEL PRODOTTO NAUTICO', 'SCIENZE DELL\'ARCHITETTURA',
+               'ECONOMIA AZIENDALE', 'ECONOMIA DELLE AZIENDE MARITTIME, DELLA LOGISTICA E DEI TRASPORTI',
+               'SCIENZE DEL TURISMO: IMPRESA, CULTURA E TERRITORIO', 'SCIENZE ECONOMICHE E FINANZIARIE',
+               'DIRITTO ED ECONOMIA DELLE IMPRESE', 'SERVIZI LEGALI ALL\'IMPRESA E ALLA PUBBLICA AMMINISTRAZIONE',
+               'SERVIZIO SOCIALE', 'INGEGNERIA BIOMEDICA', 'INGEGNERIA CHIMICA E DI PROCESSO', 
+               'INGEGNERIA CIVILE, EDILE E AMBIENTALE', 'INGEGNERIA DELL\'ENERGIA', 'INGEGNERIA ELETTRICA', 
+               'INGEGNERIA ELETTRONICA E TECNOLOGIE DELL\'INFORMAZIONE', 'INGEGNERIA GESTIONALE', 'INGEGNERIA INFORMATICA', 
+               'INGEGNERIA MECCANICA', 'INGEGNERIA NAUTICA', 'INGEGNERIA NAVALE', 
+               'SCIENZE E CULTURE AGROALIMENTARI DEL MEDITERRANEO', 'TECNOLOGIE INDUSTRIALI', 
+               'TECNOLOGIE PER L\'EDILIZIA E IL TERRITORIO', 'CONSERVAZIONE DEI BENI CULTURALI', 'FILOSOFIA', 'LETTERE', 
+               'STORIA', 'LINGUE E CULTURE MODERNE', 'TEORIE E TECNICHE DELLA MEDIAZIONE INTERLINGUISTICA', 
+               'ASSISTENZA SANITARIA', 'BIOTECNOLOGIE', 'DIETISTICA', 'EDUCAZIONE PROFESSIONALE', 'FISIOTERAPIA',
+               'IGIENE DENTALE', 'INFERMIERISTICA', 'INFERMIERISTICA PEDIATRICA', 'LOGOPEDIA', 
+               'ORTOTTICA ED ASSISTENZA OFTALMOLOGICA', 'OSTETRICIA', 'PODOLOGIA', 'SCIENZE MOTORIE, SPORT E SALUTE',
+               'TECNICA DELLA RIABILITAZIONE PSICHIATRICA', 'TECNICHE DELLA PREVENZIONE NELL\'AMBIENTE E NEI LUOGHI DI LAVORO', 
+               'TECNICHE DI FISIOPATOLOGIA CARDIOCIRCOLATORIA E PERFUSIONE CARDIOVASCOLARE', 'TECNICHE DI LABORATORIO BIOMEDICO',
+               'TECNICHE DI NEUROFISIOPATOLOGIA', 'TECNICHE DI RADIOLOGIA MEDICA, PER IMMAGINI E RADIOTERAPIA',
+               'TECNICHE ORTOPEDICHE', 'TERAPIA DELLA NEURO E PSICOMOTRICITA\' DELL\'ETA\' EVOLUTIVA', 
+               'MEDIA, COMUNICAZIONE E SOCIETÀ', 'SCIENZE DELL\'EDUCAZIONE E DELLA FORMAZIONE', 'SCIENZE E TECNICHE PSICOLOGICHE',
+               'CHIMICA E TECNOLOGIE CHIMICHE', 'FISICA', 'INFORMATICA', 'MATEMATICA', 'SCIENZA DEI MATERIALI',
+               'SCIENZE AMBIENTALI E NATURALI', 'SCIENZE BIOLOGICHE', 'SCIENZE GEOLOGICHE', 
+               'STATISTICA MATEMATICA E TRATTAMENTO INFORMATICO DEI DATI', 'POLITICHE, GOVERNANCE E INFORMAZIONE DELLO SPORT',
+               'SCIENZE DELL\'AMMINISTRAZIONE E DELLA POLITICA', 'SCIENZE INTERNAZIONALI E DIPLOMATICHE']
 
 for i in range(len(list_fields)):
     f.write(field.format(field_name = list_fields[i]))
