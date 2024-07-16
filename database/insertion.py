@@ -39,7 +39,7 @@ for i in range(size):
 
 f.write("\n\n")
 # -----------------------------------------------------------------------------------------------------------------------
-course = "INSERT INTO course (name, description, duration, price, average_evaluation) VALUES (\'{name}\', \'{description}\', {duration}, {price});\n"
+course = "INSERT INTO course (name, description, duration, price) VALUES (\'{name}\', \'{description}\', {duration}, {price});\n"
 
 for i in range(size):
     f.write(course.format(name = fake.bs(), description = fake.sentence(nb_words = 50), duration = 0, price = (random.randrange(100,10000) / 100)))
