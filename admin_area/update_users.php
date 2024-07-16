@@ -13,8 +13,8 @@
 	elseif(isset($_POST['ban']) || isset($_POST['unban'])){
 
 		$query = 'UPDATE user 
-				  SET user.is_banned ='.isset(($_POST['ban'])) ? '1' : '0'.'
-				  WHERE user.email=?;';
+				  SET user.is_banned = '.(isset(($_POST['ban'])) ? '1' : '0').'
+				  WHERE user.email = ?;';
 
 		$params = array(isset($_POST['ban']) ? $_POST['ban'] : $_POST['unban']);
 
@@ -22,8 +22,8 @@
 	elseif(isset($_POST['grant']) || isset($_POST['revoke'])){
 
 		$query = 'UPDATE user 
-				  SET user.is_admin ='.isset(($_POST['grant'])) ? '1' : '0'.'
-				  WHERE user.email=?;';
+				  SET user.is_admin = '.(isset(($_POST['grant'])) ? '1' : '0').'
+				  WHERE user.email = ?;';
 
 		$params = array(isset($_POST['grant']) ? $_POST['grant'] : $_POST['revoke']);
 

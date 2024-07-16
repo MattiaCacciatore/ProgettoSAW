@@ -67,7 +67,7 @@
                             <button type = \'submit\''
                 );
                             
-                if($res['is_banned'] == 1){
+                if($row['is_banned'] == 1){
                     print('
                             name = \'unban\'    value = \''.$row['email'].'\' > 
                                 SBANNA
@@ -87,7 +87,7 @@
                             <button type = \'submit\''
                 );
                 
-                if($res['is_admin'] == 1){
+                if($row['is_admin'] == 1){
                     print('
                             name = \'revoke\'  value = \''.$row['email'].'\' > 
                                 REVOCA
