@@ -51,7 +51,7 @@ video = "INSERT INTO video (title, duration, type, filename, id_course) VALUES (
 list_types = ['mp4', 'YT']
 
 for i in range(size):
-    f.write(video.format(title = fake.bs(), duration = random.randrange(1, 600), type = random.choice(list_types), filename = 'url', course_id = (i+1)))
+    f.write(video.format(title = fake.bs(), duration = random.randrange(1, 60), type = random.choice(list_types), filename = 'url', course_id = (i+1)))
 
 f.write("\n\n")
 # -----------------------------------------------------------------------------------------------------------------------
