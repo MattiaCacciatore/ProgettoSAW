@@ -8,7 +8,6 @@
     $value       = '';
 
     if(isset($_POST['remember_me'])){
-
         $cookie_name = 'remember_me';
         /* Random token. Note: hashing the token for database data breach protection. */
         $val         = base64_encode(random_bytes(512));
@@ -16,7 +15,6 @@
         $cookie_set  = true;
     }
     else if(isset($_POST['acceptance']) && $_POST['acceptance'] === 'yes'){
-
         $cookie_name                            = 'banner';
         $_SESSION[$cookie_name] = $val = $value = $_POST['acceptance'];
         $cookie_set                             = true;
@@ -25,7 +23,6 @@
     if($cookie_set){
         /* Note: 1 month. */
         $expire      = time() + (60*60*24*30);
-
         $expire_date = new DateTime(date('Y-m-d H:i:s'));
 
         if(!setcookie($cookie_name, $val, $expire, '/', '', false, true)){
@@ -42,11 +39,8 @@
         }
 
         $expire      = date_format($expire_date, 'Y-m-d H:i:s');
-            
         $query       = 'INSERT INTO token(value, type, expire, email_user) VALUES (?, ?, ?, ?);';
-
         $params      = array($value, $cookie_name, $expire, $_SESSION['email']);
-
         $param_types = 'ssss';
             
         require dirname(__FILE__).'/database_connect.php';
