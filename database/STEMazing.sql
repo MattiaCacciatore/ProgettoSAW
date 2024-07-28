@@ -37,7 +37,7 @@ CREATE TABLE field(
 /* RELATIONS. */
 /* --------------------------------------------------------------------------------------------------------- */
 CREATE TABLE token(
-  value VARCHAR(128) NOT NULL, 
+  value VARCHAR(128) UNIQUE NOT NULL, 
   type VARCHAR(64) NOT NULL,         /* aka name. */
   expire DATETIME DEFAULT NULL,
   email_user VARCHAR(256),
